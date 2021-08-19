@@ -6,7 +6,7 @@ import cn from 'classnames'
 import Page from 'components/Page'
 
 import './component.scss'
-import hero from 'assets/bgshelf/logo-400x400.webp'
+import hero from 'assets/pigamesclub/logo-400x400.webp'
 
 import useAuth from 'data/auth/useAuth'
 import useCollection from 'data/collection/useCollection'
