@@ -1,0 +1,13 @@
+.scan-barcode #image-viewport {
+  display: none;
+
+  canvas {
+    display: none;
+  }
+}
+
+.scan-barcode__scan--open {
+  #image-viewport {
+    display: block;
+  }
+}

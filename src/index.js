@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
+import './index.scss';
+
+import store from './store';
+import initData from './data'
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import sw from './swController'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+initData(store, 'bgshelf') // TODO customize per domain
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<App store={store} />, document.getElementById('root'));
+sw.register();

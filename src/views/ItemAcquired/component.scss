@@ -1,0 +1,19 @@
+.app-aquired-item {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "form";
+  grid-template-columns: 1fr;
+  grid-gap: var(--pad);
+
+  .app-aquired-item__header {
+    grid-area: header;
+  }
+
+  .app-aquired-item__form {
+    grid-area: form;
+
+    border-top: var(--border-1);
+  }
+  
+}

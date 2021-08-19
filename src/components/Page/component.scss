@@ -1,0 +1,35 @@
+/* utility */
+
+.page__container {
+  max-width: 864px;
+  margin: 0 auto;
+}
+
+.page__loader {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 100%;
+  align-items: center;
+  justify-items: center;
+  min-height: 70vh; 
+}
+
+/* page template styles */
+.page {
+  min-height: 100vh;
+
+  background: var(--layout-c-bg);
+
+  .page__content {
+    padding: var(--pad);
+  }
+
+  .page__foot {
+    margin-top: var(--pad2);
+    padding: var(--pad);
+
+    a:link, a:visited {
+      color: #666;
+    }
+  }
+}
