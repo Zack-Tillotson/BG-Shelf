@@ -1,5 +1,5 @@
 .page-head {
-  background: var(--color-contrast-bg);
+  background: var(--color-contrast-bg-base);
 
   .page-head__content {
     display: flex;
@@ -34,13 +34,9 @@
     margin: 0;
 
     background: none;
-    color: var(--color-contrast-font-primary);
+    color: var(--color-contrast-font-base);
     font-size: 24px;
     font-weight: bold;
-  }
-
-  h3 {
-    color: var(--color-contrast-font-primary);
   }
 
   .page-head-menu__menu {
@@ -54,7 +50,7 @@
     z-index: 1;
 
     flex-flow: column nowrap;
-    background: var(--color-contrast-bg);
+    background: var(--color-contrast-bg-focus);
     padding: var(--pad2);
     text-align: right;
 
@@ -91,7 +87,7 @@
     padding: var(--pad);
     border: none;
 
-    color: var(--color-contrast-font-primary);
+    color: var(--color-contrast-font-base);
     background: none;
     font-size: 20px;
     text-align: right;

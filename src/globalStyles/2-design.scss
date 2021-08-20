@@ -1,0 +1,67 @@
+body {
+  background: var(--color-bg-base);
+  color: var(--color-font-base);
+  font-family: var(--font-content);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: .5rem 0;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: var(--color-font-base);
+}
+
+a:hover {
+  color: var(--color-font-primary);
+}
+
+p {
+  margin: .5rem 0;
+}
+
+strong {
+  font-weight: bold;
+  color: var(--color-font-primary);
+}
+
+figure {
+  display: inline-block;
+  width: 100%;
+  max-width: 600px;
+  height: fit-content;
+  margin: var(--pad) auto;
+  padding: var(--pad);
+  border: var(--border-2);
+  border-radius: 8px;
+}
+
+figcaption {
+  color: var(--color-font-secondary);
+  font-style: italic;
+}
+
+video {
+  width: 100%;
+}

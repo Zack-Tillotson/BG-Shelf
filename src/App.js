@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import {Provider} from 'react-redux'
 
+import Molecules from 'views/Molocules'
+
 import Home from 'components/Home';
 import AppHome from 'views/Home';
 import AppEditItem from 'views/EditItem';
@@ -32,6 +34,7 @@ function App({store}) {
       <BrowserRouter>
         <Route path="/" component={Hack} />{/*A hack way to access the Browser Route in Saga files*/}
         <Switch>
+          <Route path="/molocules/" exact component={Molecules} />
           <Route path="/app/add/barcode/" exact component={AppAddItemBarcode} />
           <Route path="/app/add/attributes/" exact component={AppAddItemAttributes} />
           <Route path="/app/add/review/" exact component={AppAddItemReview} />

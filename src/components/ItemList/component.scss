@@ -1,6 +1,6 @@
 .item-list {
   display: grid;
-  background: var(--color-bg);
+  background: var(--color-bg-primary);
 
   grid-template-columns: repeat(1, 1fr);
   grid-gap: var(--pad2);
@@ -34,7 +34,7 @@
   }
   
   &:hover {
-    background: var(--color-bg);
+    background: var(--color-bg-primary);
     box-shadow: 1px 1px 6px var(--brand-primary);
   }
 

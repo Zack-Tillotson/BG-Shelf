@@ -18,7 +18,7 @@
 .page {
   min-height: 100vh;
 
-  background: var(--layout-c-bg);
+  background: var(--color-bg-base);
 
   .page__content {
     padding: var(--pad);
@@ -29,7 +29,7 @@
     padding: var(--pad);
 
     a:link, a:visited {
-      color: #666;
+      color: var(--color-font-base);
     }
   }
 }
