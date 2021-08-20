@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import cn from 'classnames'
 
 import './component.scss'
-import logo from 'assets/pigamesclub/logo-400x400.webp'
+import logo from 'assets/bgshelf/logo-400x400.webp'
 
 function Component(props) {
   return (

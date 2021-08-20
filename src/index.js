@@ -9,7 +9,7 @@ import initData from './data'
 import App from './App';
 import sw from './swController'
 
-initData(store, 'pigamesclub')
+initData(store, 'bgshelf')
 
 ReactDOM.render(<App store={store} />, document.getElementById('root'));
 sw.register();

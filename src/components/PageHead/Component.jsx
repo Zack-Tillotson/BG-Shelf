@@ -7,8 +7,8 @@ import useAuth from 'data/auth/useAuth'
 
 import './component.scss'
 
-import logoTitle from 'assets/pigamesclub/headline-250x50.webp'
-import logoTitleDark from 'assets/pigamesclub/headline-dark-250x50.webp'
+import logoTitle from 'assets/bgshelf/headline-250x50.webp'
+import logoTitleDark from 'assets/bgshelf/headline-dark-250x50.webp'
 
 function Component(props) {
   const [isMenuOpen, updateIsMenuOpen] = useState(false)

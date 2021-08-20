@@ -8,16 +8,15 @@ import collection from './collection'
 import image from './image'
 
 const apps = { // TODO move this to a better config location
-  'pigamesclub': {
-    firebaseConfig:  {
-      apiKey: "AIzaSyDTsmjk49sELCNPXSZVqXzpA0TzctoSzE8",
-      authDomain: "pigamesclub.firebaseapp.com",
-      databaseURL: "https://pigamesclub-default-rtdb.firebaseio.com",
-      projectId: "pigamesclub",
-      storageBucket: "pigamesclub.appspot.com",
-      messagingSenderId: "243665209457",
-      appId: "1:243665209457:web:9b6f119f403eee4eddf3d0",
-      measurementId: "G-ZLR5BQ87FH"
+  'bgshelf': {
+    firebaseConfig: {
+      apiKey: "AIzaSyBU4coiQFABFfweG91LTjQidzeSFSfpYfw",
+      authDomain: "boardgamepiggy.firebaseapp.com",
+      projectId: "boardgamepiggy",
+      storageBucket: "boardgamepiggy.appspot.com",
+      messagingSenderId: "941134951158",
+      appId: "1:941134951158:web:10dfadc9fde6c14b2db2d7",
+      measurementId: "G-PQS927J25D"
     },
     collectionType: 'boardgame',
   },
