@@ -7,6 +7,8 @@ import Card from 'atoms/Card'
 import Button from 'atoms/Button'
 
 import './component.scss'
+import renderCards from './components/Card';
+import renderButtons from './components/Button';
 
 const longLorumIpsum = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`
 
@@ -98,107 +100,6 @@ function renderMoloculeContent(name) {
   }
 }
 
-function renderCard(variant) {
-  let content = null
-  
-  if(variant === 'standard') {
-    content = variant
-  }
-
-  if(variant === 'withheader') {
-    content = (
-      <div>
-        <h3>Lorum Ipsum</h3>
-        <p>{longLorumIpsum}</p>
-      </div>
-    )
-  }
-
-  return (
-    <Card>{content}</Card>
-  )
-}
-
-function renderButton(variant) {
-  
-  if(variant === 'standard') {
-    return (
-      <Button>{variant}</Button>
-    )
-  }
-
-  if(variant === 'primary') {
-    return (
-      <Button primary>{variant}</Button>
-    )
-  }
-
-  if(variant === 'secondary') {
-    return (
-      <Button secondary>{variant}</Button>
-    )
-  }
-
-  if(variant === 'hollow') {
-    return (
-      <Button hollow>{variant}</Button>
-    )
-  }
-
-  if(variant === 'tight') {
-    return (
-      <Button tight>{variant}</Button>
-    )
-  }
-
-  if(variant === 'wide') {
-    return (
-      <Button wide>{variant}</Button>
-    )
-  }
-
-  if(variant === 'minimal') {
-    return (
-      <Button minimal>{variant}</Button>
-    )
-  }
-
-  if(variant === 'disabled') {
-    return (
-      <Button disabled>{variant}</Button>
-    )
-  }
-
-  if(variant === 'disabled primary') {
-    return (
-      <Button disabled primary>{variant}</Button>
-    )
-  }
-
-}
-
-function renderAtom(name, ...variants) {
-  return (
-    <section>
-      <h3>{name}</h3>
-        {renderAtomContent(name, variants.length > 0 ? variants : ['standard'])}
-    </section>
-  )
-}
-
-function renderAtomContent(name, variants) {
-  return variants.map(variant => {
-    switch(name) {
-      case 'Card': return renderCard(variant)
-      case 'Button': return renderButton(variant)
-    }
-  }).map(content => (
-    <div className="molocules__item">
-      {content}
-    </div>
-  ))
-}
-
 function Component(props) {
 
   return (
@@ -219,8 +120,8 @@ function Component(props) {
       {renderMolocule('ItemSelector')}
       {renderMolocule('SortAndFilter')}
       <h2>Atoms</h2>
-      {renderAtom('Card', 'standard', 'withheader')}
-      {renderAtom('Button', 'standard', 'primary', 'secondary', 'hollow', 'minimal', 'tight', 'wide', 'disabled', 'disabled primary')}
+      {renderCards()}
+      {renderButtons()}
     </Page>
   );
 }

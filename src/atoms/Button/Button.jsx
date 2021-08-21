@@ -24,6 +24,7 @@ function Button(props) {
     wide = false,
     tight = false,
     minimal = false,
+    ...restProps
   } = props
   
   const fullClassName =  cn(
@@ -41,7 +42,7 @@ function Button(props) {
   )
 
   return (
-    <Element className={fullClassName}>
+    <Element className={fullClassName} {...restProps}>
       {children}
     </Element>
   );
