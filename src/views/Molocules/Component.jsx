@@ -157,6 +157,24 @@ function renderButton(variant) {
     )
   }
 
+  if(variant === 'minimal') {
+    return (
+      <Button minimal>{variant}</Button>
+    )
+  }
+
+  if(variant === 'disabled') {
+    return (
+      <Button disabled>{variant}</Button>
+    )
+  }
+
+  if(variant === 'disabled primary') {
+    return (
+      <Button disabled primary>{variant}</Button>
+    )
+  }
+
 }
 
 function renderAtom(name, ...variants) {
@@ -202,7 +220,7 @@ function Component(props) {
       {renderMolocule('SortAndFilter')}
       <h2>Atoms</h2>
       {renderAtom('Card', 'standard', 'withheader')}
-      {renderAtom('Button', 'standard', 'primary', 'secondary', 'hollow', 'minimal', 'tight', 'wide', 'disabled')}
+      {renderAtom('Button', 'standard', 'primary', 'secondary', 'hollow', 'minimal', 'tight', 'wide', 'disabled', 'disabled primary')}
     </Page>
   );
 }

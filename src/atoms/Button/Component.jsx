@@ -23,6 +23,7 @@ function Button(props) {
     disabled = false,
     wide = false,
     tight = false,
+    minimal = false,
   } = props
   
   const fullClassName =  cn(
@@ -35,6 +36,7 @@ function Button(props) {
       [`${baseCn}--disabled`]: disabled,
       [`${baseCn}--wide`]: wide,
       [`${baseCn}--tight`]: tight,
+      [`${baseCn}--minimal`]: minimal,
     },
   )
 
