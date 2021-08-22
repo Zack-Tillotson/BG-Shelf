@@ -10,7 +10,8 @@ function renderCards() {
 
   return (
     <section>
-      <h3>Card</h3>
+      <hr />
+      <h3 className="molocules__title">Card</h3>
       <div className="molocules__item">
         <Card>basic card thing</Card>
       </div>

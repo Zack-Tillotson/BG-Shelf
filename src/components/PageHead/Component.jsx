@@ -4,6 +4,7 @@ import cn from 'classnames'
 import {Link} from 'react-router-dom'
 
 import useAuth from 'data/auth/useAuth'
+import Button from 'atoms/Button'
 
 import './component.scss'
 
@@ -39,9 +40,9 @@ function Component(props) {
         </Link>
         <div className="page-head__menu-container page-head-menu">
           <div className={cn('page-head-menu__background', {['page-head-menu__background--open']: isMenuOpen})} onClick={handleMenuBackgroundClick}> </div>
-          <button className="page-head-menu__toggle --button-like" onClick={handleMenuToggleClick}>
+          <Button className="page-head-menu__toggle" onClick={handleMenuToggleClick}>
             {isMenuOpen ? '✖' : '☰'}
-          </button>
+          </Button>
           <div className={cn('page-head-menu__menu', {['page-head-menu__menu--open']: isMenuOpen})}>
             {!!user && (
               <div>

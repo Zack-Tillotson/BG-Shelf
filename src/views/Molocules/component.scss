@@ -1,3 +1,16 @@
 .molocules__item {
   margin-top: var(--pad);
 }
+
+.molocules__title {
+  margin-top: var(--pad3);
+  color: var(--color-font-primary);
+}
+
+.molocules__subtitle {
+  color: var(--color-contrast-font-focus);
+}
+
+.molocules__todo {
+  color: var(--color-font-secondary);
+}
