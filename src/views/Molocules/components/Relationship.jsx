@@ -3,6 +3,8 @@ import cn from 'classnames'
 
 import Relationship from 'molocules/Relationship'
 
+import {club1, club2} from './data/club'
+
 function renderListTitles() {
 
   return (
@@ -11,12 +13,13 @@ function renderListTitles() {
       <h3 className="molocules__title">Relationship</h3>
       <div className="molocules__item">
         <h4 className="molocules__subtitle">Self</h4>
-        <Relationship title="Some important view" />
+        <Relationship view="Collection" />
       </div>
 
       <div className="molocules__item">
         <h4 className="molocules__subtitle">Club</h4>
-        <Relationship title="Some important view" />
+        <Relationship view="Collection" club={club1} member={club1.members[0]} />
+        <Relationship view="Collection" club={club2} member={club2.members[0]} />
       </div>
     </section>
   )

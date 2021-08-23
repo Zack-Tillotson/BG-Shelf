@@ -20,6 +20,9 @@ function Component(props) {
   return (
     <Page className="molocules">
       <h1>Reusable Components</h1>
+      {renderRelationships()}
+      {renderListTitles()}
+      <hr />
       {renderMolocule('Member')}
       {renderMolocule('MemberCard')}
       {renderMolocule('Item')}
@@ -27,8 +30,7 @@ function Component(props) {
       {renderMolocule('Session')}
       {renderMolocule('SessionCard')}
       {renderMolocule('Ownership')}
-      {renderRelationships()}
-      {renderListTitles()}
+      
       {renderMolocule('Club')}
       {renderMolocule('ClubCard')}
       {renderMolocule('ItemSelector')}

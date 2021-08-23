@@ -1,3 +1,29 @@
 .relationship {
-  
+
+  .relationship__club-title {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .relationship__club {
+    padding-left: 0;
+    color: var(--color-font-primary);
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .relationship__separator {
+    font-size: 1.15rem;
+    font-weight: bold;
+  }
+
+  .relationship__member {
+    color: var(--color-font-secondary);
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: bold;
+    text-align: left;
+  }
 }

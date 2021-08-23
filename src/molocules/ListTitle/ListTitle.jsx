@@ -12,10 +12,11 @@ function ListTitle(props) {
     children,
     button,
     TitleEle = 'h2',
+    className,
   } = props
 
   return (
-    <div className={cn(baseCn)}>
+    <div className={cn(baseCn, className)}>
       <TitleEle className={cn(`${baseCn}__title`)}>{children}</TitleEle>
       {!!button && (
         <span>
