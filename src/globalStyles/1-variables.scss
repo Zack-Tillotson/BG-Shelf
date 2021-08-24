@@ -64,9 +64,9 @@
   --font-content: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 
   /* Borders */
-  --border-1: solid 1px var(--color-bg-offset);
-  --border-2: solid 2px var(--color-bg-offset);
-  --border-4: solid 1px var(--color-bg-offset);
+  --border-1: solid 1px var(--color-contrast-bg-base);
+  --border-2: solid 2px var(--color-contrast-bg-base);
+  --border-4: solid 4px var(--color-contrast-bg-base);
 
   --border-radius: var(--pad-half);
 

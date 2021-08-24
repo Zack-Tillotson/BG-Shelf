@@ -3,6 +3,7 @@
   .relationship__club-title {
     display: flex;
     flex-flow: row nowrap;
+    border-bottom: var(--border-1);
   }
 
   .relationship__club {

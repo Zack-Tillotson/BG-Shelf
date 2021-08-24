@@ -10,10 +10,12 @@
  * 
  */
 
+import {item1} from './item'
+
 export const member1 = {
   firstName: 'Alice',
   lastName: 'Arrington',
-  collection: [],
+  collection: [item1],
   wishlist: [],
   sessions: [],
 }
