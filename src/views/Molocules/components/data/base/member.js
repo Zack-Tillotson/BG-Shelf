@@ -7,17 +7,16 @@
  * collection[]: item[]
  * wishlist[]: item[]
  * sessions[]: session[]
- * 
+ * clubs[]: club[]
  */
-
-import {item1} from './item'
 
 export const member1 = {
   firstName: 'Alice',
   lastName: 'Arrington',
-  collection: [item1],
+  collection: [],
   wishlist: [],
   sessions: [],
+  clubs: [],
 }
 
 export const member2 = {
@@ -26,6 +25,7 @@ export const member2 = {
   collection: [],
   wishlist: [],
   sessions: [],
+  clubs: [],
 }
 
 export default member1

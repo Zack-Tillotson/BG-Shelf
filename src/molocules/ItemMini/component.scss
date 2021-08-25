@@ -1,0 +1,138 @@
+
+.item-mini {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "image prime-attrs"
+    "image ownership";
+  grid-gap: var(--pad-half);
+
+  @media(min-width: 800px) {
+    grid-template:
+      "image prime-attrs attrs"
+      "image ownership   attrs";
+    grid-template-columns: auto 1fr 1fr;
+  }
+  
+  .item-mini__primary-attrs {
+    grid-area: prime-attrs;
+    
+    font-weight: bold;
+        
+    .item-mini__name {
+      font-size: 1rem;
+      text-overflow: ellipsis;
+      max-width: 40vw;
+      white-space: nowrap;
+      overflow: hidden;
+      
+      @media(min-width: 800px) {
+        font-size: 1.5rem;
+        max-width: 325px;
+      }
+    }
+
+    .item-mini__year {
+      color: var(--color-font-focus);
+      font-size: .8rem;
+    }
+
+    .item-mini__desc {
+      display: none;
+    }
+  }
+
+  .item-mini__attrs {
+    grid-area: attrs;
+
+    display: none;
+
+    @media(min-width: 800px) {
+      display: unset;
+    }
+  }
+
+  .item-mini__label {
+    font-size:  .75rem;
+    color:  var(--color-font-primary-focus);
+  }
+
+  .item-mini__publisher {
+    position: relative;
+    height: 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .item-mini__inner {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+  }
+
+  .item-mini__image {
+    grid-area: image;
+  }
+
+  .item-mini__image-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 175px;
+    width: 25vw;
+    height: 75px;
+
+    background: var(--color-bg-offset-light);
+    background: radial-gradient(ellipse at top, var(--color-bg-base), transparent), radial-gradient(ellipse at bottom, var(--color-bg-offset), transparent);
+
+    padding: 0 var(--pad-half);
+
+    @media(min-width: 800px) {
+      height: 150px;
+    }
+  }
+
+  .item-mini__image-inner {
+    position: absolute;
+    left: var(--pad-half);
+    top: 0;
+    right: var(--pad-half);
+    bottom: 0;
+
+    background-position: center center;
+    background-size: contain;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+  }
+
+  .item-mini__ownership {
+    grid-area: ownership;
+
+    font-size: .9rem;
+  }
+
+  .item-mini__favorite {
+    position: absolute;
+    right: var(--pad);
+    top: var(--pad);
+    font-size: .65rem;
+  }
+
+  .ownership-icon {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    font-weight: bold;
+
+    &--own {
+      color: var(--color-font-primary);
+    }
+
+    &--play {
+      color: var(--color-font-secondary);
+    }
+  }
+}

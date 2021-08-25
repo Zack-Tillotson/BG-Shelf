@@ -4,11 +4,15 @@ import cn from 'classnames'
 import Page from 'components/Page'
 
 import './component.scss'
-import renderCards from './components/Card';
-import renderButtons from './components/Button';
-import renderListTitles from './components/ListTitle';
-import renderRelationships from './components/Relationship';
-import renderClubMinis from './components/ClubMini';
+import renderCard from './components/Card';
+import renderButton from './components/Button';
+
+import renderListTitle from './components/ListTitle';
+import renderRelationship from './components/Relationship';
+import renderClubMini from './components/ClubMini';
+import renderMemberCard from './components/MemberMini';
+import renderSessionCard from './components/SessionMini';
+import renderItemCard from './components/ItemMini';
 
 function renderMolocule(name) {
   return (
@@ -21,23 +25,23 @@ function Component(props) {
   return (
     <Page className="molocules">
       <h1>Reusable Components</h1>
-      {renderClubMinis()}
-      {renderRelationships()}
-      {renderListTitles()}
+      {renderMemberCard()}
+      {renderSessionCard()}
+      {renderItemCard()}
+      {renderClubMini()}
+      {renderRelationship()}
+      {renderListTitle()}
       <hr />
       {renderMolocule('Member')}
-      {renderMolocule('MemberCard')}
       {renderMolocule('Item')}
-      {renderMolocule('ItemCard')}
       {renderMolocule('Session')}
-      {renderMolocule('SessionCard')}
       {renderMolocule('Ownership')}
       {renderMolocule('Club')}
       {renderMolocule('ItemSelector')}
       {renderMolocule('SortAndFilter')}
       <h2>Atoms</h2>
-      {renderCards()}
-      {renderButtons()}
+      {renderCard()}
+      {renderButton()}
     </Page>
   );
 }

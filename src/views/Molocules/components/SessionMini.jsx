@@ -2,25 +2,22 @@ import React from 'react';
 import cn from 'classnames'
 
 import Card from 'atoms/Card'
-import ClubMini from 'molocules/ClubMini'
+import SessionMini from 'molocules/SessionMini'
 
 import {club1} from './data'
 
-function renderClubMinis() {
+function renderSessionMinis() {
   return (
     <section>
       <hr />
-      <h3 className="molocules__title">ClubMini</h3>
+      <h3 className="molocules__title">Session Minis</h3>
       <div className="molocules__item">
-        <ClubMini club={club1} />
+        <SessionMini club={club1} />
       </div>
       <div className="molocules__item">
-        <Card>
-          <ClubMini club={club1} />
-        </Card>
       </div>
     </section>
   )
 }
 
-export default renderClubMinis;
+export default renderSessionMinis;
