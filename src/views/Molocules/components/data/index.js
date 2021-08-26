@@ -1,7 +1,7 @@
 import {member1} from './base/member'
 import {club1} from './base/club'
 import {ownership1} from './base/ownership'
-import {session1} from './base/session'
+import {session1, session2} from './base/session'
 import {item1, item2, item3} from './base/item'
 
 // Cross reference the various items
@@ -12,6 +12,7 @@ member1.sessions.push(session1)
 member1.clubs.push(club1)
 
 session1.item = item1
+session2.item = item2
 
 ownership1.item = item1
 
@@ -25,6 +26,7 @@ export {
   club1,
   ownership1,
   session1,
+  session2,
   item1,
   item2,
   item3,

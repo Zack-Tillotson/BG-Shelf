@@ -1,2 +1,85 @@
 .session-mini {
 }
+
+.session-mini__mini {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "image attrs"
+    "image participants";
+  grid-gap: var(--pad-half);
+
+  .session-mini__date {
+    grid-area: date;
+  }
+
+  .session-mini__image {
+    grid-area: image;
+  }
+
+  .session-mini__image-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 175px;
+    width: 25vw;
+    height: 70px;
+
+    background: var(--color-bg-offset-light);
+    background: radial-gradient(ellipse at top, var(--color-bg-base), transparent), radial-gradient(ellipse at bottom, var(--color-bg-offset), transparent);
+
+    padding: 0 var(--pad-half);
+
+    @media(min-width: 800px) {
+      height: 125px;
+    }
+  }
+
+  .session-mini__image-inner {
+    position: absolute;
+    left: var(--pad-half);
+    top: 0;
+    right: var(--pad-half);
+    bottom: 0;
+
+    background-position: center center;
+    background-size: contain;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+  }
+
+  .session-mini__primary-attrs {
+    grid-area: attrs;
+
+    font-weight: bold;
+  }
+
+  .session-mini__name {
+    font-size: 1.1rem;
+    text-overflow: ellipsis;
+    max-width: 40vw;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @media(min-width: 800px) {
+      font-size: 1.5rem;
+      max-width: 325px;
+    }
+  }
+
+  .session-mini__year {
+    color: var(--color-font-focus);
+    font-size: .8rem;
+  }
+
+  .session-mini__participants {
+    grid-area: participants;
+  }
+
+  .session-mini__label {
+    font-size:  .75rem;
+    color:  var(--color-font-primary-focus);
+  }
+}
