@@ -12,8 +12,24 @@
     margin-top: var(--pad);
   }
 
-  .member-member__card--left {
-    background-position: left center;
-    text-align: right;
+  .member-member__image-pack {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-items: after;
+  }
+
+  .member-member__image-pack-item {
+    height: 75px;
+    width: 150px;
+  }
+
+  .member-member--special-1 {
+    background: var(--color-bg-offset-light);
+    background: radial-gradient(ellipse at bottom, var(--color-bg-primary), transparent), radial-gradient(ellipse at top, var(--color-bg-base), transparent);  
+  }
+
+  .member-member--special-2 {
+    background: var(--color-bg-offset-light);
+    background: radial-gradient(ellipse at bottom, var(--color-bg-secondary), transparent), radial-gradient(ellipse at top, var(--color-bg-base), transparent);  
   }
 }

@@ -10,9 +10,6 @@ import ClubMini from 'molocules/ClubMini'
 
 import './component.scss'
 
-import leftPiggy from 'assets/board-game-piggy/left-piggy.png'
-import rightPiggy from 'assets/board-game-piggy/right-piggy.png'
-
 const baseCn = 'member-member'
 
 function MemberMini(props) {
@@ -26,18 +23,32 @@ function MemberMini(props) {
     <div className={cn(baseCn)}>
       <Relationship view={view} club={club} member={member} />
       <div className={`${baseCn}__card-list`}>
-        <Card className={`${baseCn}__card ${baseCn}__card--left`} style={{backgroundImage: `url(${leftPiggy})`}}>
+        <Card className={`${baseCn}__card ${baseCn}--special-1`}>
           <h3 className="member-member__title">Collection</h3>
+          <div className={`${baseCn}__image-pack`}>
+            {member.collection.slice(0, 5).map(item => (
+              <Image className={`${baseCn}__image-pack-item`} src={item.canonicalImage} key={item.id} />
+            ))}
+          </div>
         </Card>
-        <Card className={`${baseCn}__card`} style={{backgroundImage: `url(${rightPiggy})`}}>
+        <Card className={`${baseCn}__card ${baseCn}--special-2`}>
           <h3 className="member-member__title">Wishlist</h3>
+          <div className={`${baseCn}__image-pack`}>
+            {member.wishlist.slice(0, 5).map(item => (
+              <Image className={`${baseCn}__image-pack-item`} src={item.canonicalImage} key={item.id} />
+            ))}
+          </div>
         </Card>
-        <ListTitle>Clubs</ListTitle>
-        {member.clubs.map(club => (
-          <Card key={club.id}>
-            <ClubMini club={club} />
-          </Card>
-        ))}
+        {!club && (
+          <section>
+            <ListTitle>Clubs</ListTitle>
+            {member.clubs.map(club => (
+              <Card key={club.id}>
+                <ClubMini club={club} />
+              </Card>
+            ))}
+          </section>
+        )}
       </div>
     </div>
   );
