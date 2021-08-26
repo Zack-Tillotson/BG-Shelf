@@ -10,12 +10,13 @@ function SessionMini(props) {
     session,
     Ele = 'div',
     noDate = false,
+    className = '',
   } = props
 
   const {item} = session
 
   return (
-    <div className={cn(baseCn)}>
+    <div className={cn(baseCn, className)}>
       {!noDate && (
         <h3 className={cn(`${baseCn}__date`)}>{session.date}</h3>
       )}

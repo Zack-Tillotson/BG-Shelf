@@ -15,8 +15,8 @@ function renderSessionMinis() {
         <SessionMini session={session1} />
       </div>
       <div className="molocules__item">
-      <SessionMini session={session1} Ele={Card} />
-      <SessionMini session={session2} Ele={Card} noDate />
+        <SessionMini session={session1} Ele={Card} className="molocules--space-item" />
+        <SessionMini session={session2} Ele={Card} noDate className="molocules--space-item" />
       </div>
     </section>
   )

@@ -1,18 +1,42 @@
 import React from 'react'
 import cn from 'classnames'
 
+import Button from 'atoms/Button'
+
 import './component.scss'
 
 const baseCn = 'member-mini'
 
 function MemberMini(props) {
   const {
-    club,
+    member,
+    showButton = false,
+    buttonText = 'Invite',
+    onButtonClick,
   } = props
 
   return (
     <div className={cn(baseCn)}>
-      Member Mini
+      <h3 className={cn(`${baseCn}__name`)}>{member.firstName} {member.lastName}</h3>
+      {!showButton && (
+        <div className={cn(`${baseCn}__highlights`)}>
+          <span className={cn(`${baseCn}__highlight`)}>
+            <span className={cn(`${baseCn}__highlight-label`)}>Times played: </span>
+            <span className={cn(`${baseCn}__highlight-value`)}>{member.sessions.length}</span>
+          </span>
+          <span className={cn(`${baseCn}__highlight`)}>
+            <span className={cn(`${baseCn}__highlight-label`)}>Games owned: </span>
+            <span className={cn(`${baseCn}__highlight-value`)}>{member.collection.length}</span>
+          </span>
+        </div>
+      )}
+      {showButton && (
+        <div className={cn(`${baseCn}__button-container`)}>
+          <Button className={cn(`${baseCn}__button-container`)} tight hollow onClick={onButtonClick}>
+            {buttonText}
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import cn from 'classnames'
 import Page from 'components/Page'
 
 import './component.scss'
+
 import renderCard from './components/Card';
 import renderButton from './components/Button';
 import renderSharpToggles from './components/SharpToggle'

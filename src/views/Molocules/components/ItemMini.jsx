@@ -15,13 +15,13 @@ function renderItemMinis() {
         <ItemMini item={item1} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
       </div>
       <div className="molocules__item">
-        <Card>
+        <Card className="molocules--space-item">
           <ItemMini item={item1} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
         </Card>
-        <Card>
+        <Card className="molocules--space-item">
           <ItemMini item={item2} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
         </Card>
-        <Card>
+        <Card className="molocules--space-item">
           <ItemMini item={item3} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
         </Card>
       </div>

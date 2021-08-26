@@ -1,2 +1,17 @@
 .member-mini {
+  display: flex;
+  flex-flow: row nowrap;
+  
+
+  .member-mini__name {
+    flex: 1;
+  }
+
+  .member-mini__highlight {
+    margin-left: var(--pad);
+  }
+
+  .member-mini__highlight-label {
+    font-weight: bold;
+  }
 }
