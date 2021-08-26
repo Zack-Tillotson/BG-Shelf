@@ -7,7 +7,6 @@ function renderButtons() {
   
   return (
     <section>
-      <hr />
       <h3 className="molocules__title">Button</h3>
       <div className="molocules__item">
         <h4 className="molocules__subtitle">Styles</h4>

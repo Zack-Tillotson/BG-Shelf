@@ -6,6 +6,7 @@ import Page from 'components/Page'
 import './component.scss'
 import renderCard from './components/Card';
 import renderButton from './components/Button';
+import renderSharpToggles from './components/SharpToggle'
 
 import renderListTitle from './components/ListTitle';
 import renderRelationship from './components/Relationship';
@@ -42,6 +43,7 @@ function Component(props) {
       <h2>Atoms</h2>
       {renderCard()}
       {renderButton()}
+      {renderSharpToggles()}
     </Page>
   );
 }

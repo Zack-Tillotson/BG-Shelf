@@ -4,7 +4,7 @@ import cn from 'classnames'
 import Card from 'atoms/Card'
 import ItemMini from 'molocules/ItemMini'
 
-import {item1, member1, club1, ownership1, session1} from './data'
+import {item1, item2, item3, member1, club1, ownership1, session1} from './data'
 
 function renderItemMinis() {
   return (
@@ -17,6 +17,12 @@ function renderItemMinis() {
       <div className="molocules__item">
         <Card>
           <ItemMini item={item1} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
+        </Card>
+        <Card>
+          <ItemMini item={item2} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
+        </Card>
+        <Card>
+          <ItemMini item={item3} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />
         </Card>
       </div>
     </section>

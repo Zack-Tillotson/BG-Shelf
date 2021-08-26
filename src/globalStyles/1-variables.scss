@@ -22,6 +22,14 @@
   --brand-red-2: #ff0000;
   --brand-red-3: #8b0000;
   --brand-red-4: #530000;
+  --brand-blue-1: #76a6ff;
+  --brand-blue-2: #0000ff;
+  --brand-blue-3: #0404cc;
+  --brand-blue-4: #07075a;
+  --brand-green-1: #79db91;
+  --brand-green-2: #189e39;
+  --brand-green-3: #1d632f;
+  --brand-green-4: #16301c;
 
   /* semantics standard */
   --color-bg-base: var(--brand-grey-1);
@@ -33,6 +41,10 @@
   --color-font-focus: var(--brand-grey-3);
   --color-font-primary: var(--brand-primary-3);
   --color-font-secondary: var(--brand-secondary-4);
+
+  --color-red: var(--brand-red-2);
+  --color-blue: var(--brand-blue-2);
+  --color-green: var(--brand-green-2);
 
   /* semantics contrast */
 
