@@ -19,7 +19,7 @@ function MemberMini(props) {
     <div className={cn(baseCn)}>
       <h3 className={cn(`${baseCn}__name`)}>{member.firstName} {member.lastName}</h3>
       {!showButton && (
-        <div className={cn(`${baseCn}__highlights`)}>
+        <div key="highlights" className={cn(`${baseCn}__highlights`)}>
           <span className={cn(`${baseCn}__highlight`)}>
             <span className={cn(`${baseCn}__highlight-label`)}>Times played: </span>
             <span className={cn(`${baseCn}__highlight-value`)}>{member.sessions.length}</span>
@@ -31,7 +31,7 @@ function MemberMini(props) {
         </div>
       )}
       {showButton && (
-        <div className={cn(`${baseCn}__button-container`)}>
+        <div key="button" className={cn(`${baseCn}__button-container`)}>
           <Button className={cn(`${baseCn}__button-container`)} tight hollow onClick={onButtonClick}>
             {buttonText}
           </Button>

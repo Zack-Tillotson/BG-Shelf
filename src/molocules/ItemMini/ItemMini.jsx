@@ -15,14 +15,15 @@ function ItemMini(props) {
     sessions,
   } = props
 
-  let dateAcquired = null
+  let dateAcquired = null, isFavorite = false, acquisitionCount = 0
   try {
     dateAcquired = ownership.acquisitions[0].dateAcquired
+    isFavorite = ownership.favorite
   } catch (e) {}
 
   return (
     <div className={cn(baseCn)}>
-      {ownership.favorite && (
+      {isFavorite && (
         <SharpToggle color="red" active={true} className={cn(`${baseCn}__favorite`)}>Favorite</SharpToggle>
       )}
       <div className={cn(`${baseCn}__image`)}>
@@ -70,13 +71,13 @@ function ItemMini(props) {
       </div>
       <div className={cn(`${baseCn}__ownership`)}>
         <div className={cn(`${baseCn}__ownership-wrapper`)}>
-          {ownership.acquisitions.length > 0 && (
-            <div key="ownIt" className={cn('item-mini__icon', 'item-mini__owned', {['item-mini__owned--own-it']: ownership.acquisitions.length > 0})}>
+          {dateAcquired && (
+            <div key="ownIt" className={cn('item-mini__icon', 'item-mini__owned', {['item-mini__owned--own-it']: dateAcquired})}>
               <span className="item-mini__ownership-icon item-mini__ownership-icon--own">$</span> Owned {dateAcquired && `(${dateAcquired})`}
             </div>
           )}
           
-          {ownership.acquisitions.length > 0 && (
+          {dateAcquired && (
             <div key="playedIt" className={cn('item-mini__icon', 'item-mini__played')}>
               <span className="item-mini__ownership-icon item-mini__ownership-icon--play">♙</span> Played {sessions.length} time{sessions.length > 1 && 's'}
             </div>
