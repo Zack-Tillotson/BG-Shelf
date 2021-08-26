@@ -2,6 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 
 import SharpToggle from 'atoms/SharpToggle'
+import Image from 'atoms/Image'
 
 import './component.scss'
 
@@ -25,9 +26,7 @@ function ItemMini(props) {
         <SharpToggle color="red" active={true} className={cn(`${baseCn}__favorite`)}>Favorite</SharpToggle>
       )}
       <div className={cn(`${baseCn}__image`)}>
-        <div className={cn(`${baseCn}__image-wrapper`)}>
-          <div className={cn(`${baseCn}__image-inner`)} style={{backgroundImage: `url("${item.canonicalImage}")`}} />
-        </div>
+        <Image className={cn(`${baseCn}__image-wrapper`)} src={item.canonicalImage} />
       </div>
       <div className={cn(`${baseCn}__primary-attrs`)}>
         <div className={cn(`${baseCn}__year`)}>

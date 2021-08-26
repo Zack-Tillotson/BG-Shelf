@@ -9,11 +9,12 @@ function Card(props) {
   const {
     className,
     children,
+    style,
   } = props
   
 
   return (
-    <div className={cn(baseCn, className)}>
+    <div className={cn(baseCn, className)} style={style}>
       {children}
     </div>
   );

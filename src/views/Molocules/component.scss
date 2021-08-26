@@ -2,12 +2,17 @@
   margin-top: var(--pad);
 }
 
+.molocules__section-title {
+  margin: var(--pad3) 0;
+  font-size: 2rem;
+}
+
 .molocules__title {
   margin-top: var(--pad3);
   color: var(--color-contrast-font-base);
   background: var(--color-contrast-bg-primary);
   padding: var(--pad);
-  margin: 0 -8px;
+  margin: var(--pad2) -8px;
 }
 
 .molocules__subtitle {
@@ -21,4 +26,14 @@
 
 .molocules--space-item {
   margin-top: var(--pad);
+}
+
+.molocules__image-container {
+  height: 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.molocules__image-container--tall {
+  height: 350px;
 }

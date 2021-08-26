@@ -15,10 +15,10 @@ function renderButtons() {
         <Button secondary>Seconary</Button>
         <Button hollow>Hollow</Button>
         <Button tight>Tight</Button>
-        <Button wide>Wide</Button>
         <Button minimal>Minimal</Button>
         <Button disabled>Disabled</Button>
         <Button disabled primary>Disabled Primary</Button>
+        <Button wide>Wide</Button>
       </div>
       <div className="molocules__item">
         <h4 className="molocules__subtitle">Elements</h4>

@@ -7,7 +7,6 @@ function renderListTitles() {
 
   return (
     <section>
-      <hr />
       <h3 className="molocules__title">ListTitle</h3>
       <div className="molocules__item">
         <ListTitle>No Button Title</ListTitle>

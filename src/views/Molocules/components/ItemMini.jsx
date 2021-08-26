@@ -9,7 +9,6 @@ import {item1, item2, item3, member1, club1, ownership1, session1} from './data'
 function renderItemMinis() {
   return (
     <section>
-      <hr />
       <h3 className="molocules__title">Item Minis</h3>
       <div className="molocules__item">
         <ItemMini item={item1} member={member1} club={club1} ownership={ownership1} sessions={[session1]} />

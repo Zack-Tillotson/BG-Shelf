@@ -9,7 +9,6 @@ import {member1, member2} from './data'
 function renderMemberMinis() {
   return (
     <section>
-      <hr />
       <h3 className="molocules__title">Member Minis</h3>
       <div className="molocules__item">
         <MemberMini member={member1} />

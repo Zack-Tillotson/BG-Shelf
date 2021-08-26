@@ -9,7 +9,6 @@ import {club1} from './data'
 function renderClubMinis() {
   return (
     <section>
-      <hr />
       <h3 className="molocules__title">ClubMini</h3>
       <div className="molocules__item">
         <ClubMini club={club1} />

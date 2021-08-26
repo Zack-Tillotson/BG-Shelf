@@ -1,0 +1,22 @@
+.atom-image {
+  position: relative;
+  display: inline-block;
+  
+  background: var(--color-bg-offset-light);
+  background: radial-gradient(ellipse at top, var(--color-bg-base), transparent), radial-gradient(ellipse at bottom, var(--color-bg-offset), transparent);
+
+  padding: 0 var(--pad-half);
+}
+
+.atom-image__inner {
+  position: absolute;
+  left: var(--pad-half);
+  top: 0;
+  right: var(--pad-half);
+  bottom: 0;
+
+  background-position: center center;
+  background-size: contain;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+}

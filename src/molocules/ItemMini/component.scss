@@ -79,39 +79,17 @@
   }
 
   .item-mini__image-wrapper {
-    position: relative;
-    display: inline-block;
     max-width: 175px;
     width: 25vw;
     height: 75px;
-
-    background: var(--color-bg-offset-light);
-    background: radial-gradient(ellipse at top, var(--color-bg-base), transparent), radial-gradient(ellipse at bottom, var(--color-bg-offset), transparent);
-
-    padding: 0 var(--pad-half);
 
     @media(min-width: 800px) {
       height: 150px;
     }
   }
 
-  .item-mini__image-inner {
-    position: absolute;
-    left: var(--pad-half);
-    top: 0;
-    right: var(--pad-half);
-    bottom: 0;
-
-    background-position: center center;
-    background-size: contain;
-    background-repeat-x: no-repeat;
-    background-repeat-y: no-repeat;
-  }
-
   .item-mini__ownership {
     grid-area: ownership;
-
-    
   }
 
   .item-mini__favorite {

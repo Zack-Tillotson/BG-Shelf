@@ -15,6 +15,8 @@ import renderClubMini from './components/ClubMini';
 import renderMemberCard from './components/MemberMini';
 import renderSessionCard from './components/SessionMini';
 import renderItemCard from './components/ItemMini';
+import renderMember from './components/Member'
+import renderImages from './components/Image'
 
 function renderMolocule(name) {
   return (
@@ -26,25 +28,26 @@ function Component(props) {
 
   return (
     <Page className="molocules">
-      <h1>Reusable Components</h1>
+      <h1 className="molocules__section-title">Molocules</h1>
+      {renderMember()}
       {renderMemberCard()}
       {renderSessionCard()}
       {renderItemCard()}
       {renderClubMini()}
       {renderRelationship()}
       {renderListTitle()}
-      <hr />
-      {renderMolocule('Member')}
+      <h2 className="molocules__section-title">TODO</h2>
       {renderMolocule('Item')}
       {renderMolocule('Session')}
       {renderMolocule('Ownership')}
       {renderMolocule('Club')}
       {renderMolocule('ItemSelector')}
       {renderMolocule('SortAndFilter')}
-      <h2>Atoms</h2>
+      <h2 className="molocules__section-title">Atoms</h2>
       {renderCard()}
       {renderButton()}
       {renderSharpToggles()}
+      {renderImages()}
     </Page>
   );
 }

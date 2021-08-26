@@ -1,0 +1,19 @@
+.member-member {
+
+  .member-member__title {
+    font-size: 1.5rem;
+  }
+
+  .member-member__card {
+    min-height: 100px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: var(--pad);
+  }
+
+  .member-member__card--left {
+    background-position: left center;
+    text-align: right;
+  }
+}
