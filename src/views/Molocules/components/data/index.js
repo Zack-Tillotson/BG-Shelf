@@ -1,6 +1,6 @@
 import {member1, member2} from './base/member'
 import {club1} from './base/club'
-import {ownership1} from './base/ownership'
+import {ownership1, ownership2} from './base/ownership'
 import {session1, session2} from './base/session'
 import {item1, item2, item3} from './base/item'
 
@@ -29,6 +29,9 @@ club1.sessions.push(session1)
 ownership1.id = getId()
 ownership1.item = item1
 
+ownership2.id = getId()
+ownership2.item = item2
+
 session1.id = getId()
 session1.item = item1
 
@@ -46,6 +49,7 @@ export {
   member2,
   club1,
   ownership1,
+  ownership2,
   session1,
   session2,
   item1,

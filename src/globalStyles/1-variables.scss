@@ -62,7 +62,7 @@
     /* TODO */
   }
   
-  /* layout */
+  /* Layout */
   --pad: 8px;
   --pad-quart: calc(var(--pad) / 4);
   --pad-half: calc(var(--pad) / 2);
@@ -71,9 +71,15 @@
   --pad4: calc(var(--pad) * 4);
   --pad5: calc(var(--pad) * 5);
 
-  /* fonts */
+  /* Fonts */
   --font-title: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
   --font-content: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+  /* Typography */
+  --font-size-alpha: 1.6rem;
+  --font-size-beta: 1.35rem;
+  --font-size-charlie: 1rem; // Default
+  --font-size-delta: .75rem;
 
   /* Borders */
   --border-1: solid 1px var(--color-contrast-bg-base);

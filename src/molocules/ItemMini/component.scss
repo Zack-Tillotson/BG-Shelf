@@ -23,21 +23,20 @@
     font-weight: bold;
         
     .item-mini__name {
-      font-size: 1.1rem;
+      font-size: var(--font-size-beta);
       text-overflow: ellipsis;
       max-width: 40vw;
       white-space: nowrap;
       overflow: hidden;
       
       @media(min-width: 800px) {
-        font-size: 1.5rem;
         max-width: 325px;
       }
     }
 
     .item-mini__year {
       color: var(--color-font-focus);
-      font-size: .8rem;
+      font-size: var(--font-size-delta);
     }
 
     .item-mini__desc {
@@ -56,14 +55,14 @@
   }
 
   .item-mini__label {
-    font-size:  .75rem;
+    font-size: var(--font-size-delta);
     color:  var(--color-font-primary-focus);
   }
 
   .item-mini__publisher {
     position: relative;
     height: 1.5rem;
-    font-size: 1rem;
+    font-size: var(--font-size-charlie);
     font-weight: bold;
   }
 
@@ -88,6 +87,10 @@
     }
   }
 
+  .item-mini__image-wrapper--small {
+    height: 75px;
+  }
+
   .item-mini__ownership {
     grid-area: ownership;
   }
@@ -96,7 +99,7 @@
     position: absolute;
     right: var(--pad);
     top: var(--pad);
-    font-size: .65rem;
+    font-size: var(--font-size-delta);
   }
 
   .item-mini__ownership-icon {

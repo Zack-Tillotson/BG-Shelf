@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import SharpToggle from 'atoms/SharpToggle'
 import Image from 'atoms/Image'
+import Font from 'atoms/Font'
 
 import './component.scss'
 
@@ -13,6 +14,7 @@ function ItemMini(props) {
     item,
     ownership,
     sessions,
+    details = true,
   } = props
 
   let dateAcquired = null, isFavorite = false, acquisitionCount = 0
@@ -27,7 +29,7 @@ function ItemMini(props) {
         <SharpToggle color="red" active={true} className={cn(`${baseCn}__favorite`)}>Favorite</SharpToggle>
       )}
       <div className={cn(`${baseCn}__image`)}>
-        <Image className={cn(`${baseCn}__image-wrapper`)} src={item.canonicalImage} />
+        <Image className={cn(`${baseCn}__image-wrapper`, {[`${baseCn}__image-wrapper--small`]: !details})} src={item.canonicalImage} />
       </div>
       <div className={cn(`${baseCn}__primary-attrs`)}>
         <div className={cn(`${baseCn}__year`)}>
@@ -37,53 +39,57 @@ function ItemMini(props) {
           {item.name}
         </h3>
       </div>
-      <div className={cn(`${baseCn}__attrs`)}>
-        <div className={cn(`${baseCn}__label`)}>Designer</div>
-        <div className={cn(`${baseCn}__publisher`)}>
-          <span className={cn(`${baseCn}__inner`)}>
-            {item.designer}
-          </span>
-        </div>
-        <div className={cn(`${baseCn}__label`)}>Publisher:</div>
-        <div className={cn(`${baseCn}__publisher`)}>
-          <span className={cn(`${baseCn}__inner`)}>
-            {item.publisher}
-          </span>
-        </div>
-        {item.price && [
-          <div key="label" className={cn(`${baseCn}__label`)}>MSRP:</div>
-          ,
-          <div key="value" className={cn(`${baseCn}__publisher`)}>
+      {details && (
+        <div className={cn(`${baseCn}__attrs`)}>
+          <Font className={cn(`${baseCn}__label`)}>Designer</Font>
+          <div className={cn(`${baseCn}__publisher`)}>
             <span className={cn(`${baseCn}__inner`)}>
-              {item.price}
+              {item.designer}
             </span>
           </div>
-        ]}
-        {(item.minPlayers || item.maxPlayers) && ([
-          <div key="label" className={cn(`${baseCn}__label`)}>Player Count:</div>
-          ,
-          <div key="value" className={cn(`${baseCn}__players`)}>
+          <div className={cn(`${baseCn}__label`)}>Publisher:</div>
+          <div className={cn(`${baseCn}__publisher`)}>
             <span className={cn(`${baseCn}__inner`)}>
-              {[item.minPlayers, item.maxPlayers].filter(val => !!val).join('-')}
+              {item.publisher}
             </span>
           </div>
-        ])}
-      </div>
-      <div className={cn(`${baseCn}__ownership`)}>
-        <div className={cn(`${baseCn}__ownership-wrapper`)}>
-          {dateAcquired && (
-            <div key="ownIt" className={cn('item-mini__icon', 'item-mini__owned', {['item-mini__owned--own-it']: dateAcquired})}>
-              <span className="item-mini__ownership-icon item-mini__ownership-icon--own">$</span> Owned {dateAcquired && `(${dateAcquired})`}
+          {item.price && [
+            <div key="label" className={cn(`${baseCn}__label`)}>MSRP:</div>
+            ,
+            <div key="value" className={cn(`${baseCn}__publisher`)}>
+              <span className={cn(`${baseCn}__inner`)}>
+                {item.price}
+              </span>
             </div>
-          )}
-          
-          {dateAcquired && (
-            <div key="playedIt" className={cn('item-mini__icon', 'item-mini__played')}>
-              <span className="item-mini__ownership-icon item-mini__ownership-icon--play">♙</span> Played {sessions.length} time{sessions.length > 1 && 's'}
+          ]}
+          {(item.minPlayers || item.maxPlayers) && ([
+            <div key="label" className={cn(`${baseCn}__label`)}>Player Count:</div>
+            ,
+            <div key="value" className={cn(`${baseCn}__players`)}>
+              <span className={cn(`${baseCn}__inner`)}>
+                {[item.minPlayers, item.maxPlayers].filter(val => !!val).join('-')}
+              </span>
             </div>
-          )}
+          ])}
         </div>
-      </div>
+      )}
+      {details && (
+        <div className={cn(`${baseCn}__ownership`)}>
+          <div className={cn(`${baseCn}__ownership-wrapper`)}>
+            {dateAcquired && (
+              <div key="ownIt" className={cn('item-mini__icon', 'item-mini__owned', {['item-mini__owned--own-it']: dateAcquired})}>
+                <span className="item-mini__ownership-icon item-mini__ownership-icon--own">$</span> Owned {dateAcquired && `(${dateAcquired})`}
+              </div>
+            )}
+            
+            {dateAcquired && !!sessions && (
+              <div key="playedIt" className={cn('item-mini__icon', 'item-mini__played')}>
+                <span className="item-mini__ownership-icon item-mini__ownership-icon--play">♙</span> Played {sessions.length} time{sessions.length > 1 && 's'}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

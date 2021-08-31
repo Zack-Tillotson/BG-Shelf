@@ -9,13 +9,14 @@ import OwnershipView from './components/OwnershipView'
 function Ownership(props) {
   const {
     form = false,
+    ...rest
   } = props
 
   if(form) {
-    return <OwnershipForm {...props} />
+    return <OwnershipForm {...rest} />
   }
 
-  return <OwnershipView {...props} />
+  return <OwnershipView {...rest} />
 }
 
 export default Ownership;

@@ -8,6 +8,8 @@ import './component.scss'
 import renderCard from './components/Card';
 import renderButton from './components/Button';
 import renderSharpToggles from './components/SharpToggle'
+import renderFont from './components/Font';
+
 
 import renderListTitle from './components/ListTitle';
 import renderRelationship from './components/Relationship';
@@ -51,6 +53,7 @@ function Component(props) {
       {renderButton()}
       {renderSharpToggles()}
       {renderImages()}
+      {renderFont()}
     </Page>
   );
 }

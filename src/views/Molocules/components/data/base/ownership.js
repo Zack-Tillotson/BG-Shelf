@@ -18,7 +18,18 @@ export const ownership1 = {
     date: '2021-10-01',
     price: "$40",
     dateAcquired: '2014-01-01',
+  }, {
+    date: '2015-02-10',
+    price: "$60",
+    dateAcquired: '2010-02-10',
   }],
+}
+
+export const ownership2 = {
+  item: null,
+  favorite: false,
+  note: '',
+  acquisitions: [],
 }
 
 export default ownership1

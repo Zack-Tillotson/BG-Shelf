@@ -10,20 +10,20 @@
     padding-left: 0;
     color: var(--color-font-focus);
     font-family: var(--font-title);
-    font-size: 1.15rem;
+    font-size: var(--font-size-beta);
     font-weight: bold;
     text-align: left;
   }
 
   .relationship__separator {
-    font-size: 1.15rem;
+    font-size: var(--font-size-beta);
     font-weight: bold;
   }
 
   .relationship__member {
     color: var(--color-font-primary);
     font-family: var(--font-title);
-    font-size: 1.15rem;
+    font-size: var(--font-size-beta);
     font-weight: bold;
     text-align: left;
   }

@@ -57,21 +57,21 @@
   }
 
   .session-mini__name {
-    font-size: 1.1rem;
+    font-size: var(--font-size-charlie);
     text-overflow: ellipsis;
     max-width: 40vw;
     white-space: nowrap;
     overflow: hidden;
 
     @media(min-width: 800px) {
-      font-size: 1.5rem;
+      font-size: var(--font-size-beta);
       max-width: 325px;
     }
   }
 
   .session-mini__year {
     color: var(--color-font-focus);
-    font-size: .8rem;
+    font-size: var(--font-size-delta);  
   }
 
   .session-mini__participants {
@@ -79,7 +79,7 @@
   }
 
   .session-mini__label {
-    font-size:  .75rem;
+    font-size: var(--font-size-delta);
     color:  var(--color-font-primary-focus);
   }
 }
