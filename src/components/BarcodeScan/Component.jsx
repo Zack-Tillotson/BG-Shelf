@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom'
 
 import actions from 'state/actions'
-import Input from 'components/ItemForm/components/Input'
+import Input from 'components/Input'
 
 import './component.scss'
 import useBarcodeScan from './useBarcodeScan'

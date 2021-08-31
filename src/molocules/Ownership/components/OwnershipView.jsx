@@ -21,14 +21,20 @@ function OwnershipView(props) {
       {props.ownership.acquisitions.length > 0 && (
         <ol>
           {props.ownership.acquisitions.map(acquisition => (
-            <li key={acquisition.date} className={cn(`${baseCn}__acquistion`)}>
-              <div className="ownership__label">Date Acquired:</div>
-              <div className="ownership__value">
-                {props.ownership.acquisitions[0].dateAcquired}
-              </div>
-              <div className="ownership__label">Price</div>
-              <div className="ownership__value">
-                {props.ownership.acquisitions[0].price}
+            <li key={acquisition.date}>
+              <div className={cn(`${baseCn}__acquisition`)}>
+                <div className="ownership__piece">
+                  <div className="ownership__label">Date Acquired:</div>
+                  <div className="ownership__value">
+                    {acquisition.dateAcquired}
+                  </div>
+                </div>
+                <div>
+                  <div className="ownership__label">Price</div>
+                  <div className="ownership__value">
+                    {acquisition.price}
+                  </div>
+                </div>
               </div>
             </li>
           ))}

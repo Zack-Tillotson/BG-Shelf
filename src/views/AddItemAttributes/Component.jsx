@@ -5,7 +5,7 @@ import cn from 'classnames'
 import './component.scss'
 
 import Page from 'components/Page'
-import Input from 'components/ItemForm/components/Input'
+import Input from 'components/Input'
 import FormBreadcrumbs from 'components/FormBreadcrumbs'
 
 import useAuth from 'data/auth/useAuth'

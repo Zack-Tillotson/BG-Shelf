@@ -11,7 +11,7 @@ import useCollection from 'data/collection/useCollection'
 import actions from 'state/actions'
 
 import ItemHeader from 'components/Item/components/Header'
-import Input from 'components/ItemForm/components/Input'
+import Input from 'components/Input'
 
 import './component.scss'
 

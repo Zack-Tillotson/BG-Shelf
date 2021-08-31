@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import cn from 'classnames'
 
 import useCollection from 'data/collection/useCollection'
-import Input from '../Input'
+import Input from 'components/Input'
 
 import './component.scss'
 

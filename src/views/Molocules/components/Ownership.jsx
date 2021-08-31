@@ -13,11 +13,14 @@ function RenderOwnership() {
       <div className="molocules__item">
         <h4 className="molocules__subtitle">View</h4>
         <Ownership ownership={ownership1} item={item1} />
-        <Ownership ownership={ownership2} item={item2} />
+        <h4 className="molocules__subtitle">Form</h4>
+        <Ownership form ownership={ownership1} item={item1} />
       </div>
       <div className="molocules__item">
+        <h4 className="molocules__subtitle">View</h4>
+        <Ownership ownership={ownership2} item={item2} />
         <h4 className="molocules__subtitle">Form</h4>
-        <Ownership form formName={`ownership-${ownership1.id}`} ownership={ownership1} item={item1} />
+        <Ownership form ownership={ownership2} item={item2} />
       </div>
     </section>
   )

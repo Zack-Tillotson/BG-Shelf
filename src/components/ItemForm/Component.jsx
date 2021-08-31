@@ -9,8 +9,9 @@ import actions from 'state/actions'
 import useAuth from 'data/auth/useAuth'
 import useCollection from 'data/collection/useCollection'
 
+import Input from 'components/Input'
+
 import AttributeList from './components/AttributeList'
-import Input from './components/Input'
 
 import formSelector from 'state/selectors/form'
 
