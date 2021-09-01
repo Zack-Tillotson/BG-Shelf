@@ -1,31 +1,41 @@
 import React from 'react'
 import cn from 'classnames'
 
+import Button from 'atoms/Button'
 import ItemMini from 'molocules/ItemMini'
 import ListTitle from 'molocules/ListTitle'
+import InputList from 'components/InputList'
 
 const baseCn = 'ownership'
 
-function Input(props) {
-  return (
-    <div>Input - {props.name}</div>
-  )
-}
+function OwnershipForm(props) {
+  const {
+    itemSelect,
+    item,
+    ownership,
+    onSubmit,
+  } = props
 
-function OwnershipView(props) {
+  const handleSubmit = event => {
+    event.preventDefault();
+    if(onSubmit) onSubmit()
+  }
+
   return (
     <div className={cn(baseCn)}>
-      <ItemMini item={props.item} details={false} ownership={props.ownership} />
+      {itemSelect && ('ItemSelector')}
+      {!itemSelect && !!item && (
+        <ItemMini item={item} details={false} ownership={ownership} />
+      )}
       <ListTitle>
         Acquisitions
       </ListTitle>
-      <form>
-        TODO
-        <Input name={`ownership.date`} />
-        <Input name={`ownership.price`} />
+      <form onSubmit={handleSubmit}>
+        <InputList attribute="ownership" />
+        <Button type="submit">Submit</Button>
       </form>
     </div>
   )
 }
 
-export default OwnershipView
+export default OwnershipForm

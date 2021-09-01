@@ -17,11 +17,9 @@ export const ownership1 = {
   acquisitions: [{
     date: '2021-10-01',
     price: "$40",
-    dateAcquired: '2014-01-01',
   }, {
     date: '2015-02-10',
     price: "$60",
-    dateAcquired: '2010-02-10',
   }],
 }
 

@@ -1,7 +1,6 @@
 import {types} from './actions'
 
 const DEFAULT_STATE = {
-  collectionType: '',
   meta: {
     isInitialized: false,
   },
@@ -21,8 +20,7 @@ function addIsInitialized(state) {
 function collection(state = DEFAULT_STATE, action) {
   switch(action.type) {
     case types.initialize: {
-      const collectionType = action.payload
-      return {...state, collectionType, meta: {...state.meta, isInitialized: false}}
+      return {...state, meta: {...state.meta, isInitialized: false}}
     }
     case types.dataLoaded: {
       switch(action.payload.id) {

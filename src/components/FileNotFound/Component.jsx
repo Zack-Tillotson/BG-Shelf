@@ -11,7 +11,7 @@ function Component(props) {
     <div className="page__loader">
       <Link to="/" className="">
         <h1>404 File Not Found</h1>
-        <img src={logo} />
+        <img src={logo} alt="This route doesn't exist" />
       </Link>
     </div>
   );

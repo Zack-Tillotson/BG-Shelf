@@ -11,12 +11,11 @@ import useCollection from 'data/collection/useCollection'
 
 import Input from 'components/Input'
 
-import AttributeList from './components/AttributeList'
+import AttributeList from 'components/InputList'
 
 import formSelector from 'state/selectors/form'
 
 function hasMissingRequired(shape, item) {
-  
   const isIdValid = !shape.id.required || item.id
   const isPropertiesValid = Object.keys(shape.properties).every(attr => !shape.properties[attr].required || (item.properties||{})[attr])
   const isOwnershipValid = Object.keys(shape.ownership).every(attr => !shape.ownership[attr].required || (item.ownership||{})[attr])

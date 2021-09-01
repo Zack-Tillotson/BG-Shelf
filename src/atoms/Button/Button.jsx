@@ -7,6 +7,7 @@ import './component.scss'
 const baseCn = 'atom-button'
 const ELE_TYPE_MAP = {
   button: 'button',
+  submit: 'button',
   anchor: 'a',
   link: Link,
 }

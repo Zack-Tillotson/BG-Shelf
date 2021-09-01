@@ -7,13 +7,17 @@ import Input from 'components/Input'
 
 import './component.scss'
 
-function Component(props) {
+function InputList(props) {
   const {
     className,
-    attribute, // properties or ownership
+    attribute,
   } = props
 
   const collection = useCollection()
+
+  if(!collection.meta.isInitialized) {
+    return null
+  }
 
   const {[attribute]: shape} = collection.shape
 
@@ -22,15 +26,15 @@ function Component(props) {
     .sort((a, b) => ((shape[a].order || 999) - (shape[b].order || 999)))
 
   return (
-    <div className={cn('attribute-list', className)}>
+    <div className={cn('input-list', className)}>
       {formAttrs.map(key => {
         const property = shape[key]
         return (
-          <Input key={key} className={cn('attributes__block', `attributes__${key}`)} formName={`${attribute}.${key}`} />
+          <Input key={key} className={cn('input-list__block', `input-list__${key}`)} formName={`${attribute}.${key}`} />
         )
       })}
     </div>
   )
 }
 
-export default Component;
+export default InputList;

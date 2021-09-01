@@ -12,7 +12,6 @@ export const session1 = {
   date: '2020-09-01',
   note: 'We played pretty fast but the game still took forever',
   participants: ['Eddie', 'Joe', 'Zack'],
-  images: [],
 }
 
 export const session2 = {
@@ -20,7 +19,6 @@ export const session2 = {
   date: '2021-12-12',
   note: '',
   participants: ['Eddie', 'Joe', 'Zack', 'Tanya', 'Tara', 'Todd', 'James'],
-  images: [],
 }
 
 export default session1

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import {Link} from 'react-router-dom'
-import cn from 'classnames'
 
 import actions from 'state/actions'
 import useCollection from 'data/collection/useCollection'
+
+import InputList from 'components/InputList'
 
 import Barcode from './Barcode'
 import Image from './Image';
@@ -13,7 +13,7 @@ import Text from './Text'
 
 import formSelector from 'state/selectors/form'
 
-function Component(props) {
+function Input(props) {
   const {
     formName,
     ...restProps
@@ -43,8 +43,11 @@ function Component(props) {
     case 'image': {
       return <Image {...inputProps} />
     }
+    case 'ref': {
+      return <InputList attribute={shape.object} TODO="Yep this is going to work" />
+    }
   }
   return 'Input type not supported (' + formName + ', ' + shape.type + ')'
 }
 
-export default Component;
+export default Input;

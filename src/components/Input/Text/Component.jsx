@@ -21,9 +21,9 @@ function Component(props) {
   const handleChange = event => onUpdate(event.target.value)
 
   return (
-    <div className={cn('attributes__block', 'primary-attributes__name', className)}>
-      <label htmlFor={`${formName}-input`} className="attributes__label">{shape.copy}</label>
-      <input id={id || `${formName}-input`} type="text" value={value || ''} onChange={handleChange} className="attributes__input" />
+    <div className={cn('input-input', className)}>
+      <label htmlFor={`${formName}-input`} className="input-input__label">{shape.copy}</label>
+      <input id={id || `${formName}-input`} type="text" value={value || ''} onChange={handleChange} className="input-input__input" />
     </div>
   )
 }

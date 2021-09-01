@@ -43,18 +43,18 @@ function handleAuthChange(user) {
   if(user) userPromiseResolve(user)
 }
 
-function initialize(store, collectionType) {
+function initialize(store) {
   context.store = store;
   context.db = firebase.database();
   firebase.auth().onAuthStateChanged(handleAuthChange)
 
-  getStore().dispatch(actions.initialize(collectionType))
+  getStore().dispatch(actions.initialize())
   
   const shapePromise = new Promise(resolve => {
-    getDb().ref(`itemshapes/${collectionType}`).on('value', snapshot => {
+    getDb().ref(`itemshapes`).on('value', snapshot => {
       
       if(!snapshot.exists()) {
-        throw new Error('itemshapes document does not exist - ' + collectionType)
+        throw new Error('itemshapes document does not exist')
       }
 
       const shape = snapshot.val()

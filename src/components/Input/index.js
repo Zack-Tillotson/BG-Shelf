@@ -1,2 +1,2 @@
-import C from './Component'
+import C from './Input'
 export default C

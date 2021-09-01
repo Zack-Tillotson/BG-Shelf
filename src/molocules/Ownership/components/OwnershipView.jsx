@@ -24,9 +24,9 @@ function OwnershipView(props) {
             <li key={acquisition.date}>
               <div className={cn(`${baseCn}__acquisition`)}>
                 <div className="ownership__piece">
-                  <div className="ownership__label">Date Acquired:</div>
+                  <div className="ownership__label">Date:</div>
                   <div className="ownership__value">
-                    {acquisition.dateAcquired}
+                    {acquisition.date}
                   </div>
                 </div>
                 <div>
