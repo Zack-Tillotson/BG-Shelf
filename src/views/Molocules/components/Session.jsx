@@ -11,10 +11,14 @@ function RenderSession() {
     <section>
       <h3 className="molocules__title">Session</h3>
       <div className="molocules__item">
-        <Session />
+        <h4 className="molocules__subtitle">View - Modifiable</h4>
+        <Session item={session1.item} session={session1} modifiable />
+        <h4 className="molocules__subtitle">View</h4>
+        <Session item={session1.item} session={session1} />
       </div>
       <div className="molocules__item">
-        <Session form formName={`session-${session1.id}`} session={session1} />
+        <h4 className="molocules__subtitle">Form</h4>
+        <Session form session={session1} item={session1.item} />
       </div>
     </section>
   )

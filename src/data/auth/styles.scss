@@ -4,13 +4,13 @@
 
   .skeleton__hero {
     height: 25vh;
-    background: #efefef;
+    background: var(--color-bg-focus);
     border-radius: 5px;
   }
 
   .skeleton__block {
     height: 10vh;
-    background: #efefef;
+    background: var(--color-bg-focus);
     border-radius: 5px;
     margin-top: var(--pad);
   }

@@ -3,7 +3,8 @@ import cn from 'classnames'
 
 import SharpToggle from 'atoms/SharpToggle'
 import Image from 'atoms/Image'
-import Font from 'atoms/Font'
+
+import AttributeList from 'molocules/AttributeList'
 
 import './component.scss'
 
@@ -41,36 +42,16 @@ function ItemMini(props) {
       </div>
       {details && (
         <div className={cn(`${baseCn}__attrs`)}>
-          <Font className={cn(`${baseCn}__label`)}>Designer</Font>
-          <div className={cn(`${baseCn}__publisher`)}>
-            <span className={cn(`${baseCn}__inner`)}>
-              {item.designer}
-            </span>
-          </div>
-          <div className={cn(`${baseCn}__label`)}>Publisher:</div>
-          <div className={cn(`${baseCn}__publisher`)}>
-            <span className={cn(`${baseCn}__inner`)}>
-              {item.publisher}
-            </span>
-          </div>
-          {item.price && [
-            <div key="label" className={cn(`${baseCn}__label`)}>MSRP:</div>
-            ,
-            <div key="value" className={cn(`${baseCn}__publisher`)}>
-              <span className={cn(`${baseCn}__inner`)}>
-                {item.price}
-              </span>
-            </div>
-          ]}
-          {(item.minPlayers || item.maxPlayers) && ([
-            <div key="label" className={cn(`${baseCn}__label`)}>Player Count:</div>
-            ,
-            <div key="value" className={cn(`${baseCn}__players`)}>
-              <span className={cn(`${baseCn}__inner`)}>
-                {[item.minPlayers, item.maxPlayers].filter(val => !!val).join('-')}
-              </span>
-            </div>
-          ])}
+          <AttributeList object="item" values={item} position="secondary">
+            {(item.minPlayers || item.maxPlayers) && (
+              <div className={cn(`${baseCn}__attribute`)}>
+                <div key="label" className={cn(`attribute-list__label`)}>Player Count:</div>
+                <div key="value" className={cn(`attribute-list__value`)}>
+                  {[item.minPlayers, item.maxPlayers].filter(val => !!val).join('-')}
+                </div>
+              </div>
+            )}
+          </AttributeList>
         </div>
       )}
       {details && (

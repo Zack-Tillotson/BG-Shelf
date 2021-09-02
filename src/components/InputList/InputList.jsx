@@ -15,10 +15,6 @@ function InputList(props) {
 
   const collection = useCollection()
 
-  if(!collection.meta.isInitialized) {
-    return null
-  }
-
   const {[attribute]: shape} = collection.shape
 
   const formAttrs = Object.keys(shape)

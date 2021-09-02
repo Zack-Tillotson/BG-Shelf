@@ -1,5 +1,3 @@
-.session-mini {
-}
 
 .session-mini__mini {
   position: relative;
@@ -8,8 +6,8 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "image attrs"
-    "image participants";
+    "image main"
+    "image secondary";
   grid-gap: var(--pad-half);
 
   .session-mini__date {
@@ -51,7 +49,7 @@
   }
 
   .session-mini__primary-attrs {
-    grid-area: attrs;
+    grid-area: main;
 
     font-weight: bold;
   }
@@ -74,12 +72,7 @@
     font-size: var(--font-size-delta);  
   }
 
-  .session-mini__participants {
-    grid-area: participants;
-  }
-
-  .session-mini__label {
-    font-size: var(--font-size-delta);
-    color:  var(--color-font-primary-focus);
+  .session-mini__secondary-attrs {
+    grid-area: secondary;
   }
 }

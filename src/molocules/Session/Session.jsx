@@ -3,21 +3,20 @@ import cn from 'classnames'
 
 import './component.scss'
 
-import ListTitle from 'molocules/ListTitle'
-import Button from 'atoms/Button'
-
-const baseCn = 'session'
+import Form from './components/SessionForm'
+import View from './components/SessionView'
 
 function Session(props) {
   const {
-
+    form = false,
+    ...rest
   } = props
 
-  return (
-    <div className={cn(baseCn)}>
-      Session {props.form ?'form' : 'view'} {props.formName}
-    </div>
-  );
+  if(form) {
+    return <Form {...rest} />
+  }
+
+  return <View {...rest} />
 }
 
 export default Session;

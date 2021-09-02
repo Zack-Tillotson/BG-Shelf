@@ -1,6 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
 
+import AttributeList from 'molocules/AttributeList'
+
 import './component.scss'
 
 const baseCn = 'session-mini'
@@ -34,13 +36,8 @@ function SessionMini(props) {
             {item.name}
           </h3>
         </div>
-        <div className={cn(`${baseCn}__participants`)}>
-          <div className={cn(`${baseCn}__label`)}>Players</div>
-          <div className={cn(`${baseCn}__value`)}>
-            <span className={cn(`${baseCn}__inner`)}>
-              {session.participants.join(', ')}
-            </span>
-          </div>
+        <div className={cn(`${baseCn}__secondary-attrs`)}>
+          <AttributeList object="session" values={session} position="secondary" />
         </div>
       </Ele>
     </div>
