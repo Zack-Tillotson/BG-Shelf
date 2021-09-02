@@ -1,6 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
+import Button from 'atoms/Button'
 import ItemMini from 'molocules/ItemMini'
 import ListTitle from 'molocules/ListTitle'
 
@@ -13,14 +14,14 @@ function OwnershipView(props) {
       <ListTitle button={{type: 'link', children: "+ Add", to: "TODO"}}>
         Acquisitions
       </ListTitle>
-      {props.ownership.acquisitions.length === 0 && (
+      {props.acquisitions.length === 0 && (
         <div className={`${baseCn}__not-owned`}>
           Not yet acquired.
         </div>
       )}
-      {props.ownership.acquisitions.length > 0 && (
+      {props.acquisitions.length > 0 && (
         <ol>
-          {props.ownership.acquisitions.map(acquisition => (
+          {props.acquisitions.map(acquisition => (
             <li key={acquisition.date}>
               <div className={cn(`${baseCn}__acquisition`)}>
                 <div className="ownership__piece">
@@ -29,12 +30,22 @@ function OwnershipView(props) {
                     {acquisition.date}
                   </div>
                 </div>
-                <div>
+                <div className="ownership__piece">
                   <div className="ownership__label">Price</div>
                   <div className="ownership__value">
                     {acquisition.price}
                   </div>
                 </div>
+                {props.modifiable && props.onEdit && (
+                  <div className="ownership__control">
+                    <Button minimal onClick={props.onEdit}>Edit</Button>
+                  </div>
+                )}
+                {props.modifiable && props.onDelete && (
+                  <div className="ownership__control">
+                    <Button minimal onClick={props.onDelete}>Delete</Button>
+                  </div>
+                )}
               </div>
             </li>
           ))}

@@ -28,10 +28,10 @@ function OwnershipForm(props) {
         <ItemMini item={item} details={false} ownership={ownership} />
       )}
       <ListTitle>
-        Acquisitions
+        Acquisition
       </ListTitle>
       <form onSubmit={handleSubmit}>
-        <InputList attribute="ownership" />
+        <InputList attribute="acquisition" />
         <Button type="submit">Submit</Button>
       </form>
     </div>

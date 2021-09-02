@@ -43,9 +43,6 @@ function Input(props) {
     case 'image': {
       return <Image {...inputProps} />
     }
-    case 'ref': {
-      return <InputList attribute={shape.object} TODO="Yep this is going to work" />
-    }
   }
   return 'Input type not supported (' + formName + ', ' + shape.type + ')'
 }

@@ -1,6 +1,7 @@
 import {member1, member2} from './base/member'
 import {club1} from './base/club'
 import {ownership1, ownership2} from './base/ownership'
+import {acquisitions1, acquisitions2} from './base/acquisition'
 import {session1, session2} from './base/session'
 import {item1, item2, item3} from './base/item'
 
@@ -32,6 +33,8 @@ ownership1.item = item1
 ownership2.id = getId()
 ownership2.item = item2
 
+acquisitions1.forEach(acq => acq.id = getId())
+
 session1.id = getId()
 session1.item = item1
 
@@ -50,6 +53,8 @@ export {
   club1,
   ownership1,
   ownership2,
+  acquisitions1,
+  acquisitions2,
   session1,
   session2,
   item1,
