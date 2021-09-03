@@ -31,7 +31,7 @@ function OwnershipForm(props) {
         Acquisition
       </ListTitle>
       <form onSubmit={handleSubmit}>
-        <InputList attribute="acquisition" />
+        <InputList object="acquisition" />
         <Button type="submit">Submit</Button>
       </form>
     </div>

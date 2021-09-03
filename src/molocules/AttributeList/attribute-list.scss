@@ -1,10 +1,13 @@
-
+.attribute-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}
 .attribute-list__label {
   font-size: var(--font-size-delta);
   color:  var(--color-font-primary-focus);
 }
 
 .attribute-list__value {
-  font-size: var(--font-size-delta);
+  font-size: var(--font-size-charlie);
   font-weight: bold;
 }

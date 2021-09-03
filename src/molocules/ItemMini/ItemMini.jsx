@@ -43,14 +43,13 @@ function ItemMini(props) {
       {details && (
         <div className={cn(`${baseCn}__attrs`)}>
           <AttributeList object="item" values={item} position="secondary">
-            {(item.minPlayers || item.maxPlayers) && (
-              <div className={cn(`${baseCn}__attribute`)}>
-                <div key="label" className={cn(`attribute-list__label`)}>Player Count:</div>
-                <div key="value" className={cn(`attribute-list__value`)}>
-                  {[item.minPlayers, item.maxPlayers].filter(val => !!val).join('-')}
-                </div>
+            {(item.minPlayers || item.maxPlayers) && [(
+              <div key="label" className={cn(`attribute-list__label`)}>Player Count:</div>
+            ), (
+              <div key="value" className={cn(`attribute-list__value`)}>
+                {[item.minPlayers, item.maxPlayers].filter(val => !!val).join('-')}
               </div>
-            )}
+            )]}
           </AttributeList>
         </div>
       )}

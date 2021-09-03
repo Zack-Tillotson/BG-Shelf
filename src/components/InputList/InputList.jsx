@@ -10,12 +10,12 @@ import './component.scss'
 function InputList(props) {
   const {
     className,
-    attribute,
+    object,
   } = props
 
   const collection = useCollection()
 
-  const {[attribute]: shape} = collection.shape
+  const {[object]: shape} = collection.shape
 
   const formAttrs = Object.keys(shape)
     .filter(attr => !shape[attr].hidden)
@@ -26,7 +26,7 @@ function InputList(props) {
       {formAttrs.map(key => {
         const property = shape[key]
         return (
-          <Input key={key} className={cn('input-list__block', `input-list__${key}`)} formName={`${attribute}.${key}`} />
+          <Input key={key} className={cn('input-list__block', `input-list__${key}`)} formName={`${object}.${key}`} />
         )
       })}
     </div>

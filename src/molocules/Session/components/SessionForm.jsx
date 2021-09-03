@@ -27,7 +27,10 @@ function SessionForm(props) {
       {!itemSelect && !!item && (
         <ItemMini item={item} details={false} ownership={ownership} />
       )}
-      Session Form
+      <form onSubmit={handleSubmit}>
+        <InputList object="session" />
+        <Button type="submit">Submit</Button>
+      </form>
     </div>
   )
 }

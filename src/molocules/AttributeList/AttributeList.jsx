@@ -45,16 +45,15 @@ function AttributeList(props) {
 
   return (
     <div className={cn(`${baseCn}`)}>
-      {formAttrs.map(attr => (
-        <div key={attr} className={cn(`${baseCn}__attribute`)}>
-          <div className={cn(`${baseCn}__label`)}>
-            {shape[attr].copy}
-          </div>
-          <div className={cn(`${baseCn}__value`, `${baseCn}__string`)}>
-            {getValue(attr, values[attr], shape[attr])}
-          </div>
+      {formAttrs.map(attr => [(
+        <div key={`${attr}-label`} className={cn(`${baseCn}__label`)}>
+          {shape[attr].copy}
         </div>
-      ))}
+      ), (
+        <div key={`${attr}-value`} className={cn(`${baseCn}__value`, `${baseCn}__string`)}>
+          {getValue(attr, values[attr], shape[attr])}
+        </div>
+      )])}
       {children}
     </div>
   )
