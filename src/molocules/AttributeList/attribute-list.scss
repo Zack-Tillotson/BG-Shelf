@@ -1,10 +1,11 @@
 .attribute-list {
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: var(--pad-quart);
 }
 .attribute-list__label {
   font-size: var(--font-size-delta);
-  color:  var(--color-font-primary-focus);
+  color:  var(--color-font-focus);
 }
 
 .attribute-list__value {
