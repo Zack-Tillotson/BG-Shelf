@@ -1,0 +1,27 @@
+.item-selector {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--color-bg-base);
+  width: 80%;
+  z-index: 2;
+
+
+  @media(min-width: 800px) {
+    & {
+      width: 400px;
+    }
+  }
+}
+
+.--portal-open:before {
+  content: ' ';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background: var(--color-contrast-bg-base-transparent);
+}

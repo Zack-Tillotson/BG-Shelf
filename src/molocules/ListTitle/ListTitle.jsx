@@ -11,6 +11,7 @@ function ListTitle(props) {
   const {
     children,
     button,
+    showButton = !!button,
     TitleEle = 'h2',
     className,
   } = props
@@ -18,7 +19,7 @@ function ListTitle(props) {
   return (
     <div className={cn(baseCn, className)}>
       <TitleEle className={cn(`${baseCn}__title`)}>{children}</TitleEle>
-      {!!button && (
+      {showButton && (
         <span>
             <Button {...button} />
         </span>

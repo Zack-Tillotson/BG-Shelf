@@ -20,7 +20,7 @@ function Item(props) {
     acquisitions,
     sessions,
     
-    modifiable,
+    modifiable = false,
 
     onToggleFavorite,
     onToggleCollection,
@@ -48,7 +48,7 @@ function Item(props) {
         </div>
       </section>
       <section className={cn(`${baseCn}__section`)}>
-        <ListTitle button={{children: "+ Add", onClick: onAddSession, primary: true}}>
+        <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAddSession, primary: true}}>
           Plays
         </ListTitle>
         {sessions.map(session => (

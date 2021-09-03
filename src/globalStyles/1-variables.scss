@@ -33,6 +33,7 @@
 
   /* semantics standard */
   --color-bg-base: var(--brand-grey-1);
+  --color-bg-base-transparent: rgba(247, 247, 247, .8); /* manually keep to up to date with above */
   --color-bg-focus: var(--brand-white);
   --color-bg-primary: var(--brand-primary-1);
   --color-bg-secondary: var(--brand-secondary-1);
@@ -49,6 +50,7 @@
   /* semantics contrast */
 
   --color-contrast-bg-base: var(--brand-grey-3);
+  --color-contrast-bg-base-transparent: rgba(73, 73, 73, .8); /* manually keep to up to date with above */
   --color-contrast-bg-focus: var(--brand-grey-4);
   --color-contrast-bg-primary: var(--brand-primary-3);
   --color-contrast-bg-secondary: var(--brand-secondary-3);

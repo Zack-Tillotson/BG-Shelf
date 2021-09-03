@@ -12,7 +12,7 @@ function AcquisitionsView(props) {
     item,
     ownership,
     acquisitions,
-    modifiable,
+    modifiable = false,
     noHeader = false,
     onAdd,
     onEdit,
@@ -24,7 +24,7 @@ function AcquisitionsView(props) {
       {!noHeader && (
         <ItemMini item={item} details={false} ownership={ownership} />
       )}
-      <ListTitle button={{children: "+ Add", onClick: onAdd, primary: true}}>
+      <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAdd, primary: true}}>
         Acquisitions
       </ListTitle>
       {acquisitions.length === 0 && (
