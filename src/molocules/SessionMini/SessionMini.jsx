@@ -11,6 +11,7 @@ function SessionMini(props) {
   const {
     session,
     Ele = 'div',
+    noHeader = false,
     noDate = false,
     className = '',
   } = props
@@ -23,19 +24,23 @@ function SessionMini(props) {
         <h3 className={cn(`${baseCn}__date`)}>{session.date}</h3>
       )}
       <Ele className={cn(`${baseCn}__mini`)}>
-        <div className={cn(`${baseCn}__image`)}>
-          <div className={cn(`${baseCn}__image-wrapper`)}>
-            <div className={cn(`${baseCn}__image-inner`)} style={{backgroundImage: `url("${item.canonicalImage}")`}} />
+        {!noHeader && (
+          <div className={cn(`${baseCn}__image`)}>
+            <div className={cn(`${baseCn}__image-wrapper`)}>
+              <div className={cn(`${baseCn}__image-inner`)} style={{backgroundImage: `url("${item.canonicalImage}")`}} />
+            </div>
           </div>
-        </div>
-        <div className={cn(`${baseCn}__primary-attrs`)}>
-          <div className={cn(`${baseCn}__year`)}>
-            {item.releaseDate}
+        )}
+        {!noHeader && (
+          <div className={cn(`${baseCn}__primary-attrs`)}>
+            <div className={cn(`${baseCn}__year`)}>
+              {item.releaseDate}
+            </div>
+            <h3 className={cn(`${baseCn}__name`)}>
+              {item.name}
+            </h3>
           </div>
-          <h3 className={cn(`${baseCn}__name`)}>
-            {item.name}
-          </h3>
-        </div>
+        )}
         <div className={cn(`${baseCn}__secondary-attrs`)}>
           <AttributeList object="session" values={session} position="secondary" />
         </div>

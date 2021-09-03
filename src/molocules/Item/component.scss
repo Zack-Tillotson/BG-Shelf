@@ -1,0 +1,21 @@
+
+.item__quick-actions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+.item__image {
+  height: 250px;
+  display: grid;
+  margin: var(--pad) 0;
+}
+
+.item__label {
+  font-weight: bold;
+  color: var(--color-font-focus);
+}
+
+.item__section {
+  margin-top: var(--pad3);
+  border-top: var(--border-2);
+}

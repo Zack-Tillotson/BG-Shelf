@@ -6,9 +6,9 @@ import ItemMini from 'molocules/ItemMini'
 import ListTitle from 'molocules/ListTitle'
 import InputList from 'components/InputList'
 
-const baseCn = 'ownership'
+const baseCn = 'acquisitions'
 
-function OwnershipForm(props) {
+function AcquisitionsForm(props) {
   const {
     itemSelect,
     item,
@@ -38,4 +38,4 @@ function OwnershipForm(props) {
   )
 }
 
-export default OwnershipForm
+export default AcquisitionsForm

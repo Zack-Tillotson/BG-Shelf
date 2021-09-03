@@ -38,7 +38,7 @@ function getValue(attr, value, shape, joiner = ', ') {
 function AttributeList(props) {
   const {
     object,
-    position = 'full', // ['main', 'secondary', 'full', 'none']
+    position, // ['main', 'secondary', 'full', 'none']
     values,
     showEmpty = false,
     additionalAttrs = [],
@@ -54,7 +54,7 @@ function AttributeList(props) {
       label: shape[attr].copy, 
       value: getValue(attr, values[attr], shape[attr])
     }))
-    .filter(({shape}) => shape.position === position)
+    .filter(({shape}) => shape.position === position || !position && shape.position !== 'none')
     .filter(({shape}) => !shape.hidden)
     .filter(({value}) => showEmpty || value)
     .sort(({shape: a}, {shape: b}) => ((a.order || 999) - (b.order || 999)))
@@ -69,7 +69,7 @@ function AttributeList(props) {
         </div>
       ), (
         <div key={`${attr}-value`} className={cn(`${baseCn}__value`, `${baseCn}__string`)}>
-          {attr.value}
+          {attr.value || '-'}
         </div>
       )])}
     </div>

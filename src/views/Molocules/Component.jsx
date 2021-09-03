@@ -21,7 +21,8 @@ import RenderMember from './components/Member'
 import RenderImages from './components/Image'
 import RenderClubs from './components/Club'
 import RenderSession from './components/Session'
-import RenderOwnership from './components/Ownership'
+import RenderAcquisitions from './components/Acquisitions'
+import RenderItem from './components/Item'
 
 function renderMolocule(name) {
   return (
@@ -37,8 +38,9 @@ function Component(props) {
   return (
     <Page className="molocules">
       <h1 className="molocules__section-title">Molocules</h1>
+      <RenderItem />
       <RenderSession />
-      <RenderOwnership />
+      <RenderAcquisitions />
       <RenderClubs />
       <RenderMember />
       <RenderMemberCard />
@@ -48,7 +50,6 @@ function Component(props) {
       <RenderRelationship />
       <RenderListTitle />
       <h2 className="molocules__section-title">TODO</h2>
-      {renderMolocule('Item')}
       {renderMolocule('ItemSelector')}
       {renderMolocule('SortAndFilter')}
       <h2 className="molocules__section-title">Atoms</h2>

@@ -1,27 +1,27 @@
-.ownership__acquisition {
+.acquisitions__acquisition {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
 }
 
-.ownership__piece {
+.acquisitions__piece {
   flex: 1;
 }
 
-.ownership__piece:last-child {
+.acquisitions__piece:last-child {
   flex: 0;
 }
 
-.ownership__label {
+.acquisitions__label {
   font-size: var(--font-size-delta);
 }
 
-.ownership__value {
+.acquisitions__value {
   font-size: var(--font-size-charlie);
   font-weight: bold;
 }
 
-.ownership__control {
+.acquisitions__control {
   font-size: var(--font-size-delta);
   margin-left: var(--pad2);
 }
