@@ -22,8 +22,8 @@ function Component(props) {
 
   return (
     <div className={cn('input-input', className)}>
-      <label htmlFor={`${formName}-input`} className="input-input__label">{shape.copy}</label>
-      <input id={id || `${formName}-input`} type="text" value={value || ''} onChange={handleChange} className="input-input__input" />
+      {shape.copy && (<label htmlFor={`${formName}-input`} className="input-input__label">{shape.copy}</label>)}
+      <input id={id || `${formName}-input`} type="text" value={value || ''} onChange={handleChange} className="input-input__input" placeholder={shape.placeholder} />
     </div>
   )
 }

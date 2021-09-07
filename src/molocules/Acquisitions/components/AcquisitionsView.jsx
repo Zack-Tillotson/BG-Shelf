@@ -22,7 +22,7 @@ function AcquisitionsView(props) {
   return (
     <div className={cn(baseCn)}>
       {!noHeader && (
-        <ItemMini item={item} details={false} ownership={ownership} />
+        <ItemMini item={item} showDetails={false} ownership={ownership} />
       )}
       <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAdd, primary: true}}>
         Acquisitions

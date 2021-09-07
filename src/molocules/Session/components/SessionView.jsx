@@ -19,7 +19,7 @@ function SessionView(props) {
 
   return (
     <div className={cn(baseCn)}>
-      <ItemMini item={item} details={false} ownership={ownership} />
+      <ItemMini item={item} showDetails={false} ownership={ownership} />
       <AttributeList object="session" values={session} position="secondary" />
       <div className="session__control">
         {modifiable && onEdit && (

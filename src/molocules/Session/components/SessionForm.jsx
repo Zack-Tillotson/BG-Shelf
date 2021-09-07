@@ -25,7 +25,7 @@ function SessionForm(props) {
     <div className={cn(baseCn)}>
       {itemSelect && ('ItemSelector')}
       {!itemSelect && !!item && (
-        <ItemMini item={item} details={false} ownership={ownership} />
+        <ItemMini item={item} showDetails={false} ownership={ownership} />
       )}
       <form onSubmit={handleSubmit}>
         <InputList object="session" />

@@ -38,27 +38,34 @@ function Component(props) {
 
   return (
     <Page className="molocules">
-      <h1 className="molocules__section-title">Molocules</h1>
-      <RenderItemSelector />
-      <RenderItem />
-      <RenderSession />
-      <RenderAcquisitions />
-      <RenderClubs />
-      <RenderMember />
-      <RenderMemberCard />
-      <RenderSessionCard />
-      <RenderItemCard />
-      <RenderClubMini />
-      <RenderRelationship />
-      <RenderListTitle />
+      <section>
+        <h2 className="molocules__section-title">Components</h2>
+        <RenderItemSelector />
+      </section>
       <h2 className="molocules__section-title">TODO</h2>
       {renderMolocule('SortAndFilter')}
-      <h2 className="molocules__section-title">Atoms</h2>
-      <RenderCard />
-      <RenderButton />
-      <RenderSharpToggles />
-      <RenderImages />
-      <RenderFont />
+      <section>
+        <h2 className="molocules__section-title">Molocules</h2>
+        <RenderItem />
+        <RenderSession />
+        <RenderAcquisitions />
+        <RenderClubs />
+        <RenderMember />
+        <RenderMemberCard />
+        <RenderSessionCard />
+        <RenderItemCard />
+        <RenderClubMini />
+        <RenderRelationship />
+        <RenderListTitle />
+      </section>
+      <section>
+        <h2 className="molocules__section-title">Atoms</h2>
+        <RenderCard />
+        <RenderButton />
+        <RenderSharpToggles />
+        <RenderImages />
+        <RenderFont />
+      </section>
     </Page>
   );
 }

@@ -15,7 +15,9 @@ function ItemMini(props) {
     item,
     ownership,
     sessions,
-    details = true,
+    showDetails = true,
+    showImage = true,
+    onClick = () => {},
   } = props
 
   let dateAcquired = null, isFavorite = false, acquisitionCount = 0
@@ -25,13 +27,15 @@ function ItemMini(props) {
   } catch (e) {}
 
   return (
-    <div className={cn(baseCn)}>
+    <div className={cn(baseCn)} onClick={onClick}>
       {isFavorite && (
         <SharpToggle color="red" active={true} className={cn(`${baseCn}__favorite`)}>Favorite</SharpToggle>
       )}
-      <div className={cn(`${baseCn}__image`)}>
-        <Image className={cn(`${baseCn}__image-wrapper`, {[`${baseCn}__image-wrapper--small`]: !details})} src={item.canonicalImage} />
-      </div>
+      {showImage && (
+        <div className={cn(`${baseCn}__image`)}>
+          <Image className={cn(`${baseCn}__image-wrapper`, {[`${baseCn}__image-wrapper--small`]: !showDetails})} src={item.canonicalImage} />
+        </div>
+      )}
       <div className={cn(`${baseCn}__primary-attrs`)}>
         <div className={cn(`${baseCn}__year`)}>
           {item.releaseDate}
@@ -40,7 +44,7 @@ function ItemMini(props) {
           {item.name}
         </h3>
       </div>
-      {details && (
+      {showDetails && (
         <div className={cn(`${baseCn}__attrs`)}>
           <AttributeList object="item" values={item} position="secondary" additionalAttrs={(item.minPlayers || item.maxPlayers) ? [{
               label: 'Player Count', 
@@ -48,7 +52,7 @@ function ItemMini(props) {
             }] : []} />
         </div>
       )}
-      {details && (
+      {showDetails && (
         <div className={cn(`${baseCn}__ownership`)}>
           <div className={cn(`${baseCn}__ownership-wrapper`)}>
             {dateAcquired && (
