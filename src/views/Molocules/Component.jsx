@@ -24,12 +24,7 @@ import RenderSession from './components/Session'
 import RenderAcquisitions from './components/Acquisitions'
 import RenderItem from './components/Item'
 import RenderItemSelector from './components/ItemSelector'
-
-function renderMolocule(name) {
-  return (
-    <h3 className="molocules__todo">{name}</h3>
-  )
-}
+import RenderSortAndFilter from './components/SortAndFilter'
 
 function Component(props) {
 
@@ -40,10 +35,9 @@ function Component(props) {
     <Page className="molocules">
       <section>
         <h2 className="molocules__section-title">Components</h2>
+        <RenderSortAndFilter />
         <RenderItemSelector />
       </section>
-      <h2 className="molocules__section-title">TODO</h2>
-      {renderMolocule('SortAndFilter')}
       <section>
         <h2 className="molocules__section-title">Molocules</h2>
         <RenderItem />
