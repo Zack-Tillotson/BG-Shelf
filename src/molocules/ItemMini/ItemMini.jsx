@@ -17,6 +17,7 @@ function ItemMini(props) {
     sessions,
     showDetails = true,
     showImage = true,
+    imageClassName,
     onClick = () => {},
   } = props
 
@@ -33,7 +34,7 @@ function ItemMini(props) {
       )}
       {showImage && (
         <div className={cn(`${baseCn}__image`)}>
-          <Image className={cn(`${baseCn}__image-wrapper`, {[`${baseCn}__image-wrapper--small`]: !showDetails})} src={item.canonicalImage} />
+          <Image className={cn(`${baseCn}__image-wrapper`, imageClassName, {[`${baseCn}__image-wrapper--small`]: !showDetails})} src={item.canonicalImage} />
         </div>
       )}
       <div className={cn(`${baseCn}__primary-attrs`)}>

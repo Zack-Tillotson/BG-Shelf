@@ -1,12 +1,9 @@
-.input-input {
-  margin: var(--pad);
-}
-.input-input__label {
+.component-input__label {
   font-weight: bold;
   margin-right: var(--pad);
 }
 
-.input-input__input {
+.component-input__input {
   display: block;
   width: 100%;
 }
