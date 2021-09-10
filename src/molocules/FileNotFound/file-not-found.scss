@@ -1,0 +1,11 @@
+.file-not-found {
+  display: grid;
+  height: 100vh;
+
+  justify-content: center;
+  align-content: space-around;
+  grid-template-rows: auto 20vh auto;
+  grid-template-columns: 20vw;
+
+  text-align: center;
+}

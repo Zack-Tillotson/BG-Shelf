@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -7,17 +7,11 @@ import {
 import {Provider} from 'react-redux'
 
 import Molecules from 'views/Molocules'
+import Member from 'views/Member';
+import Landing from 'views/Landing';
 
-import Home from 'components/Home';
-import AppHome from 'views/Home';
-import AppEditItem from 'views/EditItem';
-import AppAddItemBarcode from 'views/AddItemBarcode';
-import AppAddItemAttributes from 'views/AddItemAttributes';
-import AppAddItemReview from 'views/AddItemReview';
-import AppItem from 'views/Item';
-import AppAcquiredItem from 'views/ItemAcquired';
-import AppPlayedItem from 'views/ItemSession';
-import FileNotFound from 'components/FileNotFound';
+import FileNotFound from 'molocules/FileNotFound'
+import Skeleton from 'molocules/Skeleton'
 
 import useAuth from 'data/auth/useAuth'
 
@@ -33,20 +27,14 @@ function App({store}) {
     <Provider store={store}>
       <BrowserRouter>
         <Route path="/" component={Hack} />{/*A hack way to access the Browser Route in Saga files*/}
-        <Switch>
-          <Route path="/molocules/" exact component={Molecules} />
-          <Route path="/app/add/barcode/" exact component={AppAddItemBarcode} />
-          <Route path="/app/add/attributes/" exact component={AppAddItemAttributes} />
-          <Route path="/app/add/review/" exact component={AppAddItemReview} />
-          <Route path="/app/add/" component={FileNotFound} />
-          <Route path="/app/:itemId/edit/" exact component={AppEditItem} />
-          <Route path="/app/:itemId/acquired" exact component={AppAcquiredItem} />
-          <Route path="/app/:itemId/session" exact component={AppPlayedItem} />
-          <Route path="/app/:itemId/" exact component={AppItem} />
-          <Route path="/app/" exact component={AppHome} />
-          <Route path="/" exact component={Home} />
-          <Route component={FileNotFound} />
-        </Switch>
+        <Suspense fallback={Skeleton}>
+          <Switch>
+            <Route path="/molocules/" exact component={Molecules} />
+            <Route path="/app/" exact component={Member} />
+            <Route path="/" exact component={Landing} />
+            <Route component={FileNotFound} />
+          </Switch>
+        </Suspense>
       </BrowserRouter>
     </Provider>
   );

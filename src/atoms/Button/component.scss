@@ -31,6 +31,10 @@
     background: var(--color-contrast-bg-primary);
     color: var(--color-contrast-font-base);
 
+    &:link, &:visited {
+      color: var(--color-contrast-font-base);
+    }
+
     &:hover {
       color: var(--color-font-base);
     }
@@ -39,6 +43,10 @@
   &--secondary {
     background: var(--color-contrast-bg-secondary);
     color: var(--color-contrast-font-base);
+
+    &:link, &:visited {
+      color: var(--color-contrast-font-base);
+    }
 
     &:hover {
       color: var(--color-font-base);
