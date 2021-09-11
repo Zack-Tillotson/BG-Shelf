@@ -23,7 +23,7 @@ function Input(props) {
   const form = useSelector(formSelector)
   const dispatch = useDispatch()
 
-  const shape = formName.split('.').reduce((shape, path) => shape[path], collection.shape)
+  const shape = formName.split('.').reduce((shape, path) => shape[path], collection.itemshapes)
   const value = formName.split('.').reduce((value = {}, path) => value[path], form)
 
   const onUpdate = value => dispatch(actions.formValuesUpdated({name: formName, value}))

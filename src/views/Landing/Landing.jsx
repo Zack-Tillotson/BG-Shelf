@@ -14,7 +14,7 @@ import useCollection from 'data/collection/useCollection'
 function Landing(props) {
 
   const auth = useAuth()
-  const collection = useCollection()
+  const collection = useCollection('itemshapes')
   let history = useHistory();
 
   useEffect(() => {

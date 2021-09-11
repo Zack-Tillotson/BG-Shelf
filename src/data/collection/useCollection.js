@@ -1,23 +1,30 @@
 /*
- * This module is the main interface to interact with database
- * collections within React components. It will expose the data
- * and the interfaces for triggering CRUD actions.
+ * This module is the main interface to tie React components
+ * to the store.
  */
 
 import {useState, useEffect} from 'react'
 
-import collection from './index'
+import store from './store'
 
-export default (itemId) => {
-  const [data, updateData] = useState(collection.get())
+export default (type, id) => {
+  const [data, updateData] = useState(store.get())
 
   useEffect(() => {
-    const unlisten = collection.listen(() => {
-      updateData(collection.get())
+    return store.listen(() => {
+      updateData(store.get())
     })
+  }, [])
 
-    return () => unlisten()
-  }, [itemId])
-  
-  return data
+  let isInitialized = false
+  try {
+    isInitialized = id ? !!data[type][id] : !!data[type]
+  } catch(e) {}
+
+  return {
+    meta: {
+      isInitialized
+    },
+    data,
+  }
 }

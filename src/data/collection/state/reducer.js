@@ -1,42 +1,17 @@
 import {types} from './actions'
 
-const DEFAULT_STATE = {
-  meta: {
-    isInitialized: false,
-  },
-  items: null,
-  shape: null,
-}
-
-function addIsInitialized(state) {
-  return {
-    ...state,
-    meta: {
-      isInitialized: !!state.shape && !!state.items,
-    },
-  }
-}
+const DEFAULT_STATE = {}
 
 function collection(state = DEFAULT_STATE, action) {
   switch(action.type) {
     case types.initialize: {
-      return {...state, meta: {...state.meta, isInitialized: false}}
+      return DEFAULT_STATE
     }
     case types.dataLoaded: {
-      switch(action.payload.id) {
-        case 'itemshapes': {
-          return addIsInitialized({
-            ...state, 
-            shape: action.payload.data,
-          })
-        }
-        case 'items': {
-          return addIsInitialized({
-            ...state, 
-            items: action.payload.data || [],
-          })
-        }
-      }
+      const {type, id, data} = action.payload
+      const typeObj = state[type] || {} // Handle being the first item of this type loaded
+      const stateObj = id ? {...typeObj, [id]: data} : data // No Id means this is a singleton
+      return {...state, [type]: stateObj}
     }
   }
   return state

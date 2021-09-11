@@ -15,7 +15,7 @@ function InputList(props) {
 
   const collection = useCollection()
 
-  const {[object]: shape} = collection.shape
+  const {[object]: shape} = collection.itemshapes
 
   const formAttrs = Object.keys(shape)
     .filter(attr => !shape[attr].hidden)

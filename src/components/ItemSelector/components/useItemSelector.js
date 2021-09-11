@@ -56,7 +56,7 @@ function useItemSelector(formName) {
 
   const nameLookup = useNameLookup()
 
-  const shape = formName.split('.').reduce((shape, path) => shape[path], collection.shape)
+  const shape = formName.split('.').reduce((shape, path) => shape[path], collection.itemshapes)
   const value = formName.split('.').reduce((value = {}, path) => value[path], form)
 
   const onStartBggSearch = () => nameLookup.startLookup(value)
@@ -64,13 +64,13 @@ function useItemSelector(formName) {
   const collectionGroup = {
     id: 'collection',
     name: 'Collection',
-    results: fakeResults, //collection.items,
+    results: fakeResults, // XXX collection.items,
   }
 
   const wishlistGroup = {
     id: 'wishlist',
     name: 'Wishlist',
-    results: fakeResults, //collection.wishlist,
+    results: fakeResults, // XXX collection.wishlist,
   }
 
   const bggGroup = {

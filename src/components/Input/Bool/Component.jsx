@@ -14,8 +14,6 @@ function Component(props) {
     onUpdate,
   } = props
 
-  const collection = useCollection()
-
   const handleChange = event => onUpdate(!value)
 
   return (

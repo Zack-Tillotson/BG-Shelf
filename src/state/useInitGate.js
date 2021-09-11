@@ -3,7 +3,7 @@ import useCollection from 'data/collection/useCollection'
 
 function useInitGate() {
   const auth = useAuth()
-  const collection = useCollection()
+  const collection = useCollection('itemshapes')
 
   let gateUi = null
 
