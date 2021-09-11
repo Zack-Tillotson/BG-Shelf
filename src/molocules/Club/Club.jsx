@@ -5,7 +5,6 @@ import Card from 'atoms/Card'
 
 import ListTitle from 'molocules/ListTitle'
 import MemberMini from 'molocules/MemberMini'
-import ItemMini from 'molocules/ItemMini'
 import SessionMini from 'molocules/SessionMini'
 
 import './component.scss'
@@ -37,16 +36,6 @@ function Club(props) {
         {club.sessions.map(session => (
           <Card key={session.id} className="club-club__list-item">
             <SessionMini session={session} />
-          </Card>
-        ))}
-      </section>
-      <section className="club-club__section">
-        <ListTitle button={{type: 'link', children: "+ Add", to: "TODO"}}>
-          Games
-        </ListTitle>
-        {club.collection.map(item => (
-          <Card key={item.id} className="club-club__list-item">
-            <ItemMini item={item} club={club} />
           </Card>
         ))}
       </section>

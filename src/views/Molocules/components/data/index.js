@@ -23,8 +23,6 @@ member2.clubs.push(club1)
 
 club1.id = getId()
 club1.members.push(member1)
-club1.collection.push(item1)
-club1.collection.push(item2)
 club1.sessions.push(session1)
 
 ownership1.id = getId()
@@ -33,7 +31,10 @@ ownership1.item = item1
 ownership2.id = getId()
 ownership2.item = item2
 
-acquisitions1.forEach(acq => acq.id = getId())
+acquisitions1[0].item = item1
+acquisitions1.forEach(acq => {
+  acq.id = getId()
+})
 
 session1.id = getId()
 session1.item = item1

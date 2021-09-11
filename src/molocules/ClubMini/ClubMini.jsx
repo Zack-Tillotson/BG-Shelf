@@ -17,9 +17,6 @@ function ClubMini(props) {
         {club.members.length > 0 && (<
           div className={`${baseCn}__stat`}>{club.members.length} members</div>
         )}
-        {club.collection.length > 0 && (
-          <div className={`${baseCn}__stat`}>{club.collection.length} games</div>
-        )}
         {club.sessions.length > 0 && (
           <div className={`${baseCn}__stat`}>{club.sessions.length} sessions</div>
         )}
