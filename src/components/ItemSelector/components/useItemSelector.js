@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import useCollection from 'data/collection/useCollection'
+import useShapes from 'data/collection/useShapes'
 import formSelector from 'state/selectors/form'
 import useNameLookup from './useNameLookup'
 
@@ -52,11 +52,11 @@ function useItemSelector(formName) {
   const form = useSelector(formSelector)
   const dispatch = useDispatch()
 
-  const collection = useCollection()
+  const itemshapes = useShapes()
 
   const nameLookup = useNameLookup()
 
-  const shape = formName.split('.').reduce((shape, path) => shape[path], collection.itemshapes)
+  const shape = formName.split('.').reduce((shape, path) => shape[path], itemshapes)
   const value = formName.split('.').reduce((value = {}, path) => value[path], form)
 
   const onStartBggSearch = () => nameLookup.startLookup(value)

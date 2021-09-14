@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
-import useCollection from 'data/collection/useCollection'
+import useShapes from 'data/collection/useShapes'
 
 import Image from 'atoms/Image'
 
@@ -44,9 +44,7 @@ function AttributeList(props) {
     additionalAttrs = [],
   } = props
 
-  const collection = useCollection()
-
-  const {[object]: shape} = collection.itemshapes
+  const shape = useShapes(object)
 
   const formAttrs = Object.keys(shape)
     .map(attr => ({

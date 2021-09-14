@@ -4,10 +4,9 @@ import firebase from 'firebase'
 
 import Login from 'components/Login'
 import Page from 'components/Page'
+import Skeleton from 'molocules/Skeleton'
 
 import {subscribe, getCurrentAuthData, logout} from './index'
-
-import './styles.scss'
 
 function renderLoginPage() {
   return (
@@ -20,11 +19,7 @@ function renderLoginPage() {
 
 function renderLoadingPage() {
   return (
-    <Page className="loading-page skeleton">
-      <div className="skeleton__hero">&nbsp;</div>
-      <div className="skeleton__block">&nbsp;</div>
-      <div className="skeleton__block">&nbsp;</div>
-    </Page>
+    <Skeleton />
   )
 }
 

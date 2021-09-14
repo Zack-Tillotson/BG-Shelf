@@ -3,23 +3,21 @@ import useCollection from 'data/collection/useCollection'
 
 function useInitGate() {
   const auth = useAuth()
-  const collection = useCollection('itemshapes')
-
-  let gateUi = null
+  const shapes = useCollection('itemshapes')
 
   if(!auth.isInitialized) {
-    gateUi = auth.renderLoadingPage()
+    return auth.renderLoadingPage()
   }
   
   if(!auth.isLoggedIn) {
-    gateUi = auth.renderLoginPage()
+    return auth.renderLoginPage()
   }
 
-  if(!collection.meta.isInitialized) {
-    gateUi = auth.renderLoadingPage() 
+  if(!shapes) {
+    return auth.renderLoadingPage() 
   }
 
-  return gateUi
+  return null
 }
 
 export default useInitGate

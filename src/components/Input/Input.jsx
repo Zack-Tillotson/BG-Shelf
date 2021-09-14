@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 
 import actions from 'state/actions'
-import useCollection from 'data/collection/useCollection'
+import useShapes from 'data/collection/useShapes';
 
 import InputList from 'components/InputList'
 
@@ -18,12 +18,13 @@ function Input(props) {
     formName,
     ...restProps
   } = props
-  const collection = useCollection()
+
+  const itemshapes = useShapes()
 
   const form = useSelector(formSelector)
   const dispatch = useDispatch()
 
-  const shape = formName.split('.').reduce((shape, path) => shape[path], collection.itemshapes)
+  const shape = formName.split('.').reduce((shape, path) => shape[path], itemshapes)
   const value = formName.split('.').reduce((value = {}, path) => value[path], form)
 
   const onUpdate = value => dispatch(actions.formValuesUpdated({name: formName, value}))

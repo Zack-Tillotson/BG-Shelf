@@ -27,7 +27,7 @@ function App({store}) {
     <Provider store={store}>
       <BrowserRouter>
         <Route path="/" component={Hack} />{/*A hack way to access the Browser Route in Saga files*/}
-        <Suspense fallback={Skeleton}>
+        <Suspense fallback={<Skeleton />}>
           <Switch>
             <Route path="/molocules/" exact component={Molecules} />
             <Route path="/app/" exact component={Member} />

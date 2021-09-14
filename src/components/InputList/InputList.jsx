@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import cn from 'classnames'
 
-import useCollection from 'data/collection/useCollection'
+import useShapes from 'data/collection/useShapes'
 import Input from 'components/Input'
 
 import './component.scss'
@@ -13,9 +13,7 @@ function InputList(props) {
     object,
   } = props
 
-  const collection = useCollection()
-
-  const {[object]: shape} = collection.itemshapes
+  const shape = useShapes(object)
 
   const formAttrs = Object.keys(shape)
     .filter(attr => !shape[attr].hidden)

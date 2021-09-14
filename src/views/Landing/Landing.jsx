@@ -10,11 +10,13 @@ import hero from 'assets/bgshelf/logo-400x400.webp'
 
 import useAuth from 'data/auth/useAuth'
 import useCollection from 'data/collection/useCollection'
+import useInitGate from 'state/useInitGate'
 
 function Landing(props) {
 
   const auth = useAuth()
-  const collection = useCollection('itemshapes')
+  const gate = useInitGate()
+  
   let history = useHistory();
 
   useEffect(() => {
@@ -23,13 +25,7 @@ function Landing(props) {
     }
   }, [auth.isInitialized, auth.isLoggedIn])
 
-  if(!auth.isInitialized) {
-    return auth.renderLoadingPage()
-  }
-
-  if(auth.isLoggedIn && !collection.meta.isInitialized) {
-    return auth.renderLoadingPage() 
-  }
+  if(gate) return gate
 
   return (
     <Page isHeadShown={false}>

@@ -63,7 +63,8 @@ function SortAndFilter(props) {
         id="sort-options" 
         className={`${baseCn}__select`}
         onChange={handleSortChange}
-        value={sortOrder.value}>
+        value={sortOrder.value}
+        hollow>
         {sortOptions.map(option => (
           <option key={option.value} value={option.value}>
             {option.copy}

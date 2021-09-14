@@ -3,11 +3,11 @@
  * to the store.
  */
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useDebugValue} from 'react'
 
 import store from './store'
 
-export default (type, id) => {
+function useCollection(...path) {
   const [data, updateData] = useState(store.get())
 
   useEffect(() => {
@@ -16,15 +16,19 @@ export default (type, id) => {
     })
   }, [])
 
-  let isInitialized = false
+  // null means not in the DB. A promise means its being fetched. An object is the data.
+  let object = null
+
   try {
-    isInitialized = id ? !!data[type][id] : !!data[type]
+    object = path.reduce((soFar, piece) => soFar[piece], data)
   } catch(e) {}
 
-  return {
-    meta: {
-      isInitialized
-    },
-    data,
-  }
+  const isPromise = object instanceof Promise
+
+  useDebugValue(`Path: ${JSON.stringify(path)}, status: ${isPromise ? 'loading' : object}`)
+  if(isPromise) throw object
+
+  return object
 }
+
+export default useCollection
