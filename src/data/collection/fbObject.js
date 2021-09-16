@@ -29,27 +29,33 @@ function initialize(store) {
 
 function read(type, id, callback) {
   const objRef = getObjRef(type, id)
-  return objRef.on('value', snapshot => {
+  const handler = snapshot => {
 
-    if(!snapshot.exists()) {
-      throw new Error(`object does not exist - ${type}/${id}`)
+    let data = undefined
+    if(snapshot.exists()) {
+      data = snapshot.val()
     }
 
-    const data = snapshot.val()
-    callback(data, type, id)
-
-    return data
-  })
+    const cleanObject = {
+      ...data,
+      id,
+      type,
+    }
+    
+    return callback(data)
+  }
+  objRef.on('value', handler)
+  return () => objRef.off(handler)
 }
 
-function upsert(type, id, data) {
-  const {id: objId, ...attrs} = data
+function upsert(data) {
+  const {id, type, ...attrs} = data
 
   const objRef = getObjRef(type, id)
   
   if(id) { // Existing item
     objRef.update(attrs)
-    return objId
+    return id
   } else {
     const key = objRef.push().key
     objRef.update({[key]: attrs})
@@ -57,7 +63,8 @@ function upsert(type, id, data) {
   }
 }
 
-function remove(type, id) {
+function remove(data) {
+  const {id, type} = data
   return getObjRef(type, id).remove()
 }
  

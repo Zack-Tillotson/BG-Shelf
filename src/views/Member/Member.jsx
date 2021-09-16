@@ -17,16 +17,25 @@ function MemberView(props) {
   const gate = useInitGate()
   const auth = useAuth()
 
-  const userId = auth.isInitialized ? auth.user.uid : ''
+  const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
-  const club = useCollection('club', userId)
-
-  useEffect(() => {
-    // null club means we haven't requested it yet
-    if(!club) {
-      
-    }
-  }, [club])
+  const club = useCollection(['club', userId], {
+    createOnNull: true, 
+    obj: {
+      type: 'club',
+      id: userId,
+      attributes: {
+        name: displayName
+      },
+      members: [{
+        type: 'member',
+        id: userId,
+        attributes: {
+          name: displayName,
+        },
+      }]
+    },
+  })
 
   if(gate) return gate
   if(!club) return auth.renderLoadingPage()

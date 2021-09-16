@@ -10,51 +10,17 @@
 
 import 'firebase'
 
+import localObject from './localObject'
+import fbObject from './fbObject'
 import collectionStore from './store'
-import object from './object'
-
-function loadItemShapes() {
-  
-  const shapePromise = new Promise(resolve => {
-    const type = 'itemshapes'
-    object.read(type, null, data => {
-      collectionStore.dataReceived(type, null, data)
-      resolve(data)
-    })
-  })
-  // const collectionPromise = new Promise(resolve => {
-  //   awaitUser()
-  //     .then(user => {
-  //       getDb()
-  //         .ref(`users/${user.uid}/items`)
-  //         .on('value', snapshot => {
-  //             const itemsObj = snapshot.val() || {}
-  //             const items = Object.keys(itemsObj).map(id => {
-  //               const purchases = Object.keys(itemsObj[id].purchases || {}).reduce((purchases, key) => [...purchases, {id: key, ...itemsObj[id].purchases[key]}], [])
-  //               const sessions = Object.keys(itemsObj[id].sessions || {}).reduce((sessions, key) => [...sessions, {id: key, ...itemsObj[id].sessions[key]}], [])
-  //               return {...itemsObj[id], id, purchases, sessions}
-  //             })
-  //             getStore().dispatch(actions.dataLoaded({id: 'items', data: items}))
-  //             resolve(items)
-  //           })
-  //         })
-  //     })
-
-  // return Promise
-  //   .all([shapePromise, collectionPromise])
-  //   .then(([shape, items]) => ({shape, items}))
-  return shapePromise
-}
 
 function initialize(store) {
   collectionStore.initialize(store)
-  object.initialize(store)
+  fbObject.initialize(store)
 
-  loadItemShapes()
+  localObject.monitor('itemshapes')
 }
 
 export default {
-  ...object, // XXX be explicit here
-
   initialize,
 }

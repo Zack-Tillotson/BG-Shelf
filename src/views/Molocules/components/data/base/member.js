@@ -11,8 +11,7 @@
  */
 
 export const member1 = {
-  firstName: 'Alice',
-  lastName: 'Arrington',
+  name: 'Alice Arrington',
   collection: [],
   wishlist: [],
   sessions: [],
@@ -20,8 +19,7 @@ export const member1 = {
 }
 
 export const member2 = {
-  firstName: 'Bobby',
-  lastName: 'Billings',
+  name: 'Bobby Billings',
   collection: [],
   wishlist: [],
   sessions: [],

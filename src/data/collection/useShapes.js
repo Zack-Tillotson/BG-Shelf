@@ -2,7 +2,7 @@
 import useCollection from './useCollection'
 
 function useShapes(objectName) {
-  const collection = useCollection('itemshapes')
+  const collection = useCollection(['itemshapes'])
 
   if(objectName) {
     return collection[objectName]

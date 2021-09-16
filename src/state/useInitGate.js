@@ -3,7 +3,7 @@ import useCollection from 'data/collection/useCollection'
 
 function useInitGate() {
   const auth = useAuth()
-  const shapes = useCollection('itemshapes')
+  const shapes = useCollection(['itemshapes'])
 
   if(!auth.isInitialized) {
     return auth.renderLoadingPage()
