@@ -15,9 +15,15 @@ const baseCn = 'member-member'
 function MemberMini(props) {
   const {
     view,
-    member,
+    member = {},
     club,
   } = props
+
+  const {
+    collection = [],
+    wishlist = [],
+    clubs = [],
+  } = member
 
   return (
     <div className={cn(baseCn)}>
@@ -26,7 +32,7 @@ function MemberMini(props) {
         <Card className={`${baseCn}__card ${baseCn}--special-1`}>
           <h3 className="member-member__title">Collection</h3>
           <div className={`${baseCn}__image-pack`}>
-            {member.collection.slice(0, 5).map(item => (
+            {collection.slice(0, 5).map(item => (
               <Image className={`${baseCn}__image-pack-item`} src={item.canonicalImage} key={item.id} />
             ))}
           </div>
@@ -34,7 +40,7 @@ function MemberMini(props) {
         <Card className={`${baseCn}__card ${baseCn}--special-2`}>
           <h3 className="member-member__title">Wishlist</h3>
           <div className={`${baseCn}__image-pack`}>
-            {member.wishlist.slice(0, 5).map(item => (
+            {wishlist.slice(0, 5).map(item => (
               <Image className={`${baseCn}__image-pack-item`} src={item.canonicalImage} key={item.id} />
             ))}
           </div>
@@ -42,7 +48,7 @@ function MemberMini(props) {
         {!club && (
           <section>
             <ListTitle>Clubs</ListTitle>
-            {member.clubs.map(club => (
+            {clubs.map(club => (
               <Card key={club.id}>
                 <ClubMini club={club} />
               </Card>
