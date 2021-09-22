@@ -15,14 +15,14 @@ const baseCn = 'member-member'
 function MemberMini(props) {
   const {
     view,
-    member = {},
+    member,
     club,
   } = props
 
   const {
-    collection = [],
-    wishlist = [],
-    clubs = [],
+    collection,
+    wishlist,
+    clubs,
   } = member
 
   return (

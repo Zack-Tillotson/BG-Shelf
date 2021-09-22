@@ -4,6 +4,7 @@ import cn from 'classnames'
 import useInitGate from 'state/useInitGate'
 import useCollection from 'data/collection/useCollection'
 import useAuth from 'data/auth/useAuth';
+import { buildSelfClub } from 'data/collection/object';
 
 import Page from 'components/Page'
 import Member from 'molocules/Member'
@@ -20,25 +21,13 @@ function MemberView(props) {
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
   const club = useCollection(['club', userId], {
+    enabled: !!userId,
     createOnNull: true, 
-    obj: {
-      type: 'club',
-      id: userId,
-      attributes: {
-        name: displayName
-      },
-      members: [{
-        type: 'member',
-        id: userId,
-        attributes: {
-          name: displayName,
-        },
-      }]
-    },
+    createFunction: () => buildSelfClub(userId, displayName)
   })
 
   if(gate) return gate
-  if(!club) return auth.renderLoadingPage()
+  if(!club.isReady()) return auth.renderLoadingPage()
 
   return (
     <Page className={baseCn}>

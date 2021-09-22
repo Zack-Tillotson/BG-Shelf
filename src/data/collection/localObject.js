@@ -2,46 +2,37 @@
  * This module is the main interface to interact with the 
  * local cache of the firebase database objects.
  */
+import deepmerge from 'deepmerge'
 
 import collectionStore from './store'
 import fbObject from './fbObject'
+import {objectSelector} from './state/selector'
 
-import deepmerge from 'deepmerge'
-
-function requestObjectRefs(object) {
-
-  const {id: ignoreId, type: ignoreType, attributes, ...rest} = object
-  Object.keys(rest).forEach(key => {
-    if(object[key] instanceof Array) {
-      object[key].forEach((subObj, index) => {
-        if(!subObj instanceof String || !subObj.startsWith('ref.')) {
-          return
-        }
-        const [_, type, id] = subObj.split('.')
-        monitor(type, id)
-      })
-    } else if(object[key] instanceof String && object[key].startsWith('ref.')) {
-      const [_, type, id] = object[key].split('.')
-      monitor(type, id)
-    }
-  })
+const OBJECT_REF_HEAD = 'ref.'
+const isRef = target => target instanceof String && target.startsWith(OBJECT_REF_HEAD)
+function buildRef(object) {
+  const {type, id} = object
+  if(!type || !id) {
+    throw new Error('Unable to build ref for object, type or id missing')
+  }
+  return `${OBJECT_REF_HEAD}${type}.${id}`
 }
 
-// Start watching objects at the given path and returns an unsubscribe function
-function monitor(type, id) {
-  let promiseResolve = () => {}
-  const dataPromise = new Promise(resolve => promiseResolve = resolve)
-  collectionStore.dataReceived(type, id, dataPromise) // For suspense
+function requestObjectRefs(object) {
+  if(!object) return []
 
-  const unsub = fbObject.read(type, id, data => { // XXX unsub wont stop monitoring children for now
-    if(data) {
-      requestObjectRefs(data)
+  let promises = []
+
+  const {id: ignoreId, type: ignoreType, attributes, ...rest} = object
+  forEachChildFlat(rest, child => {
+    if(!isRef(child)) {
+      return
     }
-    collectionStore.dataReceived(type, id, data)
-    promiseResolve(data)
+    const [_, type, id] = child.split('.')
+    promises.push(monitor(type, id).promise)
   })
 
-  return unsub
+  return promises
 }
 
 // Walk the object tree, using a deep-first approach and ignoring non-object
@@ -57,25 +48,94 @@ function walkObjectDeep(object, onChild, path = [], seenObjs = []) {
   }
 
   const {id, type, attributes, ...rest} = object
-  Object.keys(rest).forEach(key => {
-    if(object[key] instanceof Array) {
-      object[key].forEach((subObj, index) => walkObjectDeep(subObj, onChild, [...path, key, index], seenObjs))
-    } else if(object[key] instanceof Object) {
-      walkObjectDeep(object[key], onChild, [...path, key], seenObjs)
-    } else {
-      throw new Error('Non standard object shape')
-    }
-  })
+  forEachChildFlat(rest, (child, childPath) => walkObjectDeep(child, onChild, [...path, ...childPath], seenObjs))
+
   onChild(object, path)
 }
 
-function buildRef(object) {
-  const {type, id} = object
-  if(!type || !id) {
-    throw new Error('Unable to build ref for object, type or id missing')
-  }
-  return `ref.${type}.${id}`
+// Invokes onChild for each attribute, or for each array item if the attribute is an Array
+function forEachChildFlat(children, onChild) {
+  Object.keys(children).forEach(key => {
+    const child = children[key]
+    if(child instanceof Array) {
+      child.forEach((subChild, index) => onChild(subChild, [key, index]))
+    } else {
+      onChild(child, [key])
+    }
+  })
 }
+
+
+// Start watching objects at the given path and returns an unsubscribe function
+const objectsMonitored = {}
+window.__objects_monitored__ = objectsMonitored
+
+function monitor(type, id) {
+
+  if(objectsMonitored[`${type}.${id}`]) {
+    return
+  }
+
+  objectsMonitored[`${type}.${id}`] = true
+
+  let promiseResolve = () => {}
+  let promise = new Promise(resolve => promiseResolve = resolve)
+  collectionStore.dataReceived(type, id, promise) // For suspense
+
+  const fbUnsubscribe = fbObject.read(type, id, data => {
+    collectionStore.dataReceived(type, id, data) // Need to put undefined objects in store
+
+    // Resolve data promise if all children are loaded
+    const fullObject = buildComplexObject(type, id)
+    if(fullObject instanceof Promise) {
+      return
+    }
+    promiseResolve(data)
+  })
+
+  const unsubscribe = () => {
+    fbUnsubscribe()
+    delete objectsMonitored[`${type}.${id}`]
+  }
+
+  return {unsubscribe, promise}
+}
+
+// Return the given object, with all children resolved to their respective object values. If
+// the object or any child is not yet resolved return the promise for that object
+function buildComplexObject(type, id) {
+  const state = collectionStore.get()
+  const object = objectSelector(type, id, state)
+  if(!object) {
+    return undefined
+  }
+
+  let complexObject = deepmerge({}, object)
+  let loadingPromise = null
+
+  walkObjectDeep(object, (child, path) => {
+    if(loadingPromise) return
+
+    if(isRef(child)) {
+      const [refStr, type, id] = child.split('.')
+      const child = objectSelector(type, id, state)
+      if(child instanceof Promise) {
+        loadingPromise = child
+      } else {
+        const attrName = path.pop()
+        const target = path.reduce((soFar, piece) => soFar[piece], complexObject)
+
+        target[attrName] = child
+      }
+    }
+  })
+  if(loadingPromise) {
+    return loadingPromise
+  }
+
+  return complexObject
+}
+
 
 // Given the rawObject, which can include references to other objects, create it 
 // in the db.
@@ -95,19 +155,22 @@ function create(object) {
     const {id, type, attributes} = baseObj
     fbObject.upsert({id, type, attributes})
   })).then(() => { // Update each obj to include refs to the subobjects
-    const cleanObj = deepmerge({}, object)
-    walkObjectDeep(cleanObj, obj => {
-      const {id, type, attributes, ...rest} = obj
-      Object.keys(rest).forEach(key => {
-        if(obj[key] instanceof Array) {
-          obj[key] = obj[key].map(subItem => buildRef(subItem))
-        } else if(obj[key] instanceof Object) {
-          obj[key] = buildRef(obj[key])
-        } else {
+    walkObjectDeep(object, childObj => {
+      const {id, type, attributes, ...rest} = childObj
+      const cleanObj = {id, type, attributes}
+
+      forEachChildFlat(rest, (child, childPath) => {
+        if(!child instanceof Object) {
           throw new Error('Object found with non-standard shape')
         }
+        const lastStep = childPath.pop()
+        const objRef = childPath.reduce((target, step) => {
+          if(!target[step]) target[step] = {}
+          return target[step]
+        }, cleanObj)
+        objRef[lastStep] = buildRef(child)
       })
-      fbObject.upsert(obj)
+      fbObject.upsert(cleanObj)
     })
   })
 }

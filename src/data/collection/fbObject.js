@@ -6,6 +6,7 @@
  */
 
 import firebase from 'firebase'
+import CollectionObject from './object/collectionObject';
 
 const context = {
   db: null,
@@ -31,18 +32,19 @@ function read(type, id, callback) {
   const objRef = getObjRef(type, id)
   const handler = snapshot => {
 
-    let data = undefined
+    let value = null
+
     if(snapshot.exists()) {
-      data = snapshot.val()
+      value = snapshot.val()
     }
 
-    const cleanObject = {
-      ...data,
+    const cleanObject = new CollectionObject(raw: {
       id,
       type,
-    }
-    
-    return callback(data)
+      value,
+    })
+
+    return callback(cleanObject)
   }
   objRef.on('value', handler)
   return () => objRef.off(handler)

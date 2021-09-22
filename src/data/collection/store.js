@@ -30,7 +30,7 @@ function listen(callback) {
 }
 
 function dataReceived(type, id, data) {
-  getStore().dispatch(actions.dataLoaded({type, id, data}))
+  getStore().dispatch(actions.dataLoaded({type, id, data, isPromise: data instanceof Promise}))
 }
 
 export default {

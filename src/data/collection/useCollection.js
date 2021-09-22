@@ -8,9 +8,12 @@ import {useState, useEffect, useDebugValue} from 'react'
 import localObject from './localObject'
 import useObjectMonitor from './useObjectMonitor'
 
+import {isObjectExist} from './object'
+
 const DEFAULT_OPTIONS = {
   createOnNull: false,
-  attributes: {},
+  enabled: true,
+  createFunction: () => ({})
 }
 
 function getOptions(raw = {}) {
@@ -21,21 +24,29 @@ function getOptions(raw = {}) {
 }
 
 function useCollection(path, rawOptions) {
-  const data = useObjectMonitor(...path)
   const options = getOptions(rawOptions)
 
-  useEffect(() => {
-    if(data === null) { // Not yet requested
-      localObject.monitor(...path)
-    }
-    if(data === undefined) { // Not in the DB
-      if(options.createOnNull){
-        localObject.create(options.obj)
-      }
-    }
-  }, [...path, data])
+  const object = useObjectMonitor(path, options.enabled)
 
-  return data
+  useDebugValue(`${path.join(',')} ${JSON.stringify(options)}`)
+
+  useEffect(() => {
+    if(!options.enabled) return
+
+    if(!object.isRequested()) {
+      localObject.monitor(...path)
+      return
+    }
+    
+    if(!object.isReady()) { // Not in the DB
+      if(options.createOnNull){
+        localObject.create(options.createFunction())
+      }
+      return
+    }
+  }, [...path, object.raw, options.enabled])
+
+  return object
 }
 
 export default useCollection

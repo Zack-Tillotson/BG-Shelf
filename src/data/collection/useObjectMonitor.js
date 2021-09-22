@@ -5,10 +5,11 @@
 
 import {useState, useEffect, useDebugValue} from 'react'
 
+import CollectionObject from './object/collectionObject'
 import store from './store'
 
-function useObjectMonitor(...path) {
-  const [data, updateData] = useState(store.get())
+function useObjectMonitor(path, enabled) {
+  const [state, updateData] = useState(store.get())
 
   useEffect(() => {
     return store.listen(() => {
@@ -17,20 +18,23 @@ function useObjectMonitor(...path) {
   }, [])
 
   // null means not in the DB. A promise means its being fetched. An object is the data.
-  let object = null
+  let object = undefined
 
   try {
-    object = path.reduce((soFar, piece) => soFar[piece], data)
+    object = path.reduce((soFar, piece) => soFar[piece], state.objects)
   } catch(e) {}
+
+  useDebugValue(`${path.join('.')} enabled: ${enabled} = ${JSON.stringify(object)}`)
+
+  if(!enabled) return new CollectionObject()
 
   // React dev tools and Suspense
   const isPromise = object instanceof Promise
-  useDebugValue(`Path: ${JSON.stringify(path)}, status: ${isPromise ? 'loading' : object}`)
   if(isPromise) {
     throw object
   }
 
-  return object
+  return new CollectionObject(object)
 }
 
 export default useObjectMonitor
