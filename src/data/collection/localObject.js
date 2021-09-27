@@ -41,15 +41,14 @@ function requestObjectRefs(object) {
 // function will bail on cycles.
 function walkObjectDeep(object, onChild, path = [], seenObjs = []) {
 
-  if(seenObjs.includes(object)) {
-    return
-  } else {
-    seenObjs.push(object)
+  if(object instanceof Object) {
+    if(seenObjs.includes(object)) {
+      return
+    } else {
+      seenObjs.push(object)
+    }
+    forEachChildFlat(object, (child, childPath) => walkObjectDeep(child, onChild, [...path, ...childPath], seenObjs))
   }
-
-  const {id, type, attributes, ...rest} = object
-  forEachChildFlat(rest, (child, childPath) => walkObjectDeep(child, onChild, [...path, ...childPath], seenObjs))
-
   onChild(object, path)
 }
 
@@ -58,7 +57,9 @@ function forEachChildFlat(children, onChild) {
   Object.keys(children).forEach(key => {
     const child = children[key]
     if(child instanceof Array) {
-      child.forEach((subChild, index) => onChild(subChild, [key, index]))
+      child.forEach((subChild, index) => {
+        onChild(subChild, [key, index])
+      })
     } else {
       onChild(child, [key])
     }
@@ -111,26 +112,32 @@ function buildComplexObject(type, id) {
   }
 
   let complexObject = deepmerge({}, object)
-  let loadingPromise = null
+  const unresolvedRefs = []
 
   walkObjectDeep(object, (child, path) => {
-    if(loadingPromise) return
-
     if(isRef(child)) {
       const [refStr, type, id] = child.split('.')
-      const child = objectSelector(type, id, state)
-      if(child instanceof Promise) {
-        loadingPromise = child
+      const childObj = objectSelector(type, id, state)
+      if(childObj instanceof Promise) {
+        unresolvedRefs.push(childObj)
+      } if(!childObj) {
+        unresolvedRefs.push(child)
       } else {
-        const attrName = path.pop()
-        const target = path.reduce((soFar, piece) => soFar[piece], complexObject)
+        const [attrName, ...objPath] = path
+        const target = objPath.reduce((soFar, piece) => soFar[piece], complexObject)
 
-        target[attrName] = child
+        target[attrName] = childObj
       }
     }
   })
-  if(loadingPromise) {
-    return loadingPromise
+  if(unresolvedRefs.length) {
+    unresolvedRefs.forEach(ref => {
+      if(isRef(ref)) {
+        const [refStr, type, id] = ref.split('.')
+        monitor(type, id)
+      }
+    })
+    return unresolvedRefs.find(ref => !isRef(ref))
   }
 
   return complexObject

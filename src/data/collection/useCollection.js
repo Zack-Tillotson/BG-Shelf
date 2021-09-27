@@ -8,8 +8,6 @@ import {useState, useEffect, useDebugValue} from 'react'
 import localObject from './localObject'
 import useObjectMonitor from './useObjectMonitor'
 
-import {isObjectExist} from './object'
-
 const DEFAULT_OPTIONS = {
   createOnNull: false,
   enabled: true,

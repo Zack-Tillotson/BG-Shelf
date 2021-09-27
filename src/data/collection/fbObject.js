@@ -38,11 +38,11 @@ function read(type, id, callback) {
       value = snapshot.val()
     }
 
-    const cleanObject = new CollectionObject(raw: {
+    const cleanObject = new CollectionObject({raw: {
       id,
       type,
       value,
-    })
+    }})
 
     return callback(cleanObject)
   }

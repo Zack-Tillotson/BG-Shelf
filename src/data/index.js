@@ -4,7 +4,7 @@ import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 
-import collection from './collection'
+import objectDb from './objectDb'
 import image from './image'
 
 const firebaseConfig = {
@@ -19,7 +19,7 @@ const firebaseConfig = {
 
 function initialize(store) {
   firebase.initializeApp(firebaseConfig);
-  collection.initialize(store)
+  objectDb.initialize(firebase.firestore())
   image.initialize()
 }
 

@@ -1,13 +1,20 @@
-import {isObjectExist} from './index'
-
 export default class CollectionObject {
-  constructor({raw = undefined, DNE = false}) {
+  constructor(options = {}) {
+    const {raw = undefined, DNE = false} = options
+
     this.raw = raw
     this.DNE = DNE
+    
+    if(this.raw) {
+      const {type, id, value} = raw
+      this.id = id
+      this.type = type
+      Object.keys(value).forEach(key => this[key] = value[key])
+    }
   }
 
   isObjectExist() {
-    return this.DNE
+    return !this.DNE && !!this.raw
   }
 
   isRequesting() {
@@ -19,6 +26,6 @@ export default class CollectionObject {
   }
 
   isReady() {
-    return isObjectExist(this)
+    return this.isObjectExist(this)
   }
 }

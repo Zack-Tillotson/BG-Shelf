@@ -3,7 +3,7 @@ import {types} from './actions'
 const DEFAULT_STATE = {
   objects: {},
 
-  // Used to store the promises which resolve when objects are fully loaded (including children)
+  // Used to store the promises which resolve when objects are loaded (maybe not including children)
   objectPromises: {},
   objectPromisesDebug: {},
 }
