@@ -29,9 +29,9 @@ function App({store}) {
         <Route path="/" component={Hack} />{/*A hack way to access the Browser Route in Saga files*/}
         <Suspense fallback={<Skeleton />}>
           <Switch>
-            <Route path="/xxxmolocules/" exact component={Molecules} />
-            <Route path="/xxxapp/" exact component={Member} />
-            <Route path="/xxx" exact component={Landing} />
+            <Route path="/molocules/" exact component={Molecules} />
+            <Route path="/app/" exact component={Member} />
+            <Route path="/" exact component={Landing} />
             <Route component={FileNotFound} />
           </Switch>
         </Suspense>

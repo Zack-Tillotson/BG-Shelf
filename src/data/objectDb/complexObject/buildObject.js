@@ -1,6 +1,4 @@
-import deepmerge from 'deepmerge'
-
-import walkObject, {setChildPath, getChildPath} from '../util/walkObject'
+import walkObject, {setChildPath} from '../util/walkObject'
 import Ref from '../ref'
 
 // 1. get the object at ref
@@ -8,10 +6,11 @@ import Ref from '../ref'
 // 3. For each ref, recursively get the object then replace attribute with it
 
 class RefErrors extends Error {
-  constructor(refs) {
+  constructor(refs, promise) {
     super('Object not in objectList')
 
     this.refs = refs
+    this.promise = promise
   }
 }
 
@@ -33,7 +32,7 @@ function makeCleanObject(obj, ref) {
 function buildObject(get, ref, seenObjects = []) {
   const objRef = get(ref)
   if(!objRef || !objRef.loaded) {
-    throw new RefErrors([ref])
+    throw new RefErrors([ref], objRef ? objRef.promise : null)
   }
 
   if(!objRef.object) {
@@ -49,6 +48,7 @@ function buildObject(get, ref, seenObjects = []) {
   seenObjects.push(cleanObj)
 
   const refErrors = []
+  let loadingPromise = null
 
   walkObject(objRef.object, (child, path) => {
     try {
@@ -59,6 +59,7 @@ function buildObject(get, ref, seenObjects = []) {
     } catch(e) {
       if(e.refs) {
         refErrors.push(...e.refs)
+        loadingPromise = loadingPromise || e.promise
       } else {
         throw e
       }
@@ -66,7 +67,7 @@ function buildObject(get, ref, seenObjects = []) {
   })
 
   if(refErrors.length) {
-    throw new RefErrors(refErrors)
+    throw new RefErrors(refErrors, loadingPromise)
   }
 
   return cleanObj

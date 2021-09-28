@@ -12,7 +12,9 @@ function initialize(db) {
   complexObject.initialize(objectList)
 }
 
-function watch(refParam, callback) {
+const NOOP = () => {}
+
+function watch(refParam, onData = NOOP, onLoading = NOOP) {
 
   let ref = refParam
   if(typeof ref === 'string') {
@@ -22,10 +24,11 @@ function watch(refParam, callback) {
   const unsub = pubSub.subscribe(ref, (callbackRef, object) => {
     try {
       const fullObject = complexObject.get(ref)
-      callback(fullObject, ref)
+      onData(fullObject, ref)
     } catch(e) {
       if(e.refs) {
         e.refs.forEach(ref => objectList.watch(ref))
+        onLoading(e.promise)
       } else {
         throw e
       }
