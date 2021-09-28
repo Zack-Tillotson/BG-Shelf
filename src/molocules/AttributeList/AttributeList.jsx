@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
-import useShapes from 'data/collection/useShapes'
+import useShapes from 'data/objectDb/useShapes'
 
 import Image from 'atoms/Image'
 

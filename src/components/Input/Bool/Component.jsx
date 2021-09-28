@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import cn from 'classnames'
 
-import useCollection from 'data/collection/useCollection'
-
 import './component.scss'
 
 function Component(props) {

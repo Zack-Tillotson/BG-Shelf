@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import cn from 'classnames'
 
 import useInitGate from 'state/useInitGate'
-import useCollection from 'data/collection/useCollection'
 import useAuth from 'data/auth/useAuth';
-import { buildSelfClub } from 'data/collection/object';
+import useObjectDb from 'data/objectDb/useObjectDb';
+import { buildSelfClub } from 'data/objectCreator';
 
 import Page from 'components/Page'
 import Member from 'molocules/Member'
@@ -20,14 +20,14 @@ function MemberView(props) {
 
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
-  const club = useCollection(['club', userId], {
+  const club = useObjectDb({
+    path: ['club', userId],
     enabled: !!userId,
-    createOnNull: true, 
-    createFunction: () => buildSelfClub(userId, displayName)
+    createFunction: buildSelfClub,
+    createParams: [userId, displayName]
   })
 
   if(gate) return gate
-  if(!club.isReady()) return auth.renderLoadingPage()
 
   return (
     <Page className={baseCn}>

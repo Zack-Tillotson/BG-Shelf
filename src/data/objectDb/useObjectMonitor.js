@@ -9,10 +9,28 @@ import objectDb from '.'
 // Returns
 //    object requested at given ref location
 
-function useObject(ref) {
+const DEFAULT_OPTIONS = {
+  enabled: true,
+}
+
+function getOptions(raw) {
+  return {
+    ...DEFAULT_OPTIONS,
+    ...raw,
+  }
+}
+
+function useObjectMonitor(ref, rawOptions) {
+
+  const options = getOptions(rawOptions)
+
   const [objectOrPromise, updateState] = useState(null)
 
   useEffect(() => {
+    if(!options.enabled) {
+      return
+    }
+
     return objectDb.watch(
       ref, 
       newObject => {
@@ -21,11 +39,11 @@ function useObject(ref) {
       promise => {
         updateState(promise)
       })
-  }, ref)
+  }, [ref, options.enabled])
 
   if(objectOrPromise instanceof Promise) throw objectOrPromise
 
   return objectOrPromise
 }
 
-export default useObject
+export default useObjectMonitor

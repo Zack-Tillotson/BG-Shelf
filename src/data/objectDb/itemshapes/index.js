@@ -1,4 +1,4 @@
-{
+export default {
   "acquisition" : {
     "date" : {
       "copy" : "Date",
@@ -111,6 +111,18 @@
     "placeholder" : "Search by name or year",
     "type" : "string",
     "unique" : true
+  },
+  "member" : {
+    "id" : {
+      "hidden" : true,
+      "type" : "string",
+      "unique" : true
+    },
+    "name" : {
+      "copy" : "Name",
+      "type" : "string",
+      "unique" : false
+    }
   },
   "ownership" : {
     "favorite" : {

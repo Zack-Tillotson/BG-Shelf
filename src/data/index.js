@@ -4,7 +4,6 @@ import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 
-import deprecated from './collection'
 import objectDb from './objectDb'
 import image from './image'
 
@@ -22,12 +21,6 @@ function initialize(store) {
   firebase.initializeApp(firebaseConfig);
   objectDb.initialize(firebase.firestore())
   image.initialize()
-
-  deprecated.initialize(store) // XXXX
-
-  // Testing
-  objectDb.watch('ref.test.USHlYhwtkccHcadCfPs7', console.log)
-  objectDb.watch('ref.test.NOTAREALTHING', console.log)
 }
 
 export default initialize

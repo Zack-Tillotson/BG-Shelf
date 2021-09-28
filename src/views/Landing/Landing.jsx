@@ -9,7 +9,6 @@ import './landing.scss'
 import hero from 'assets/bgshelf/logo-400x400.webp'
 
 import useAuth from 'data/auth/useAuth'
-import useCollection from 'data/collection/useCollection'
 import useInitGate from 'state/useInitGate'
 
 function Landing(props) {

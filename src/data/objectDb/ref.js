@@ -11,6 +11,11 @@ class Ref {
 
       this.collection = collection
       this.doc = doc
+    } else if(params.length === 1 && params[0] instanceof Array) {
+      const [collection, doc] = params[0]
+
+      this.collection = collection
+      this.doc = doc
     } else if(params.length === 2) {
       this.collection = params[0]
       this.doc = params[1]

@@ -2,11 +2,8 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 
 import actions from 'state/actions'
-import useShapes from 'data/collection/useShapes';
+import useShapes from 'data/objectDb/useShapes';
 
-import InputList from 'components/InputList'
-
-import Barcode from './Barcode'
 import Image from './Image';
 import Bool from './Bool';
 import Text from './Text'
@@ -32,9 +29,6 @@ function Input(props) {
   const inputProps = {...restProps, formName, shape, value, onUpdate}
   
   switch(shape.type) {
-    case 'barcode': {
-      return <Barcode {...inputProps} />
-    }
     case 'string': {
       return <Text {...inputProps} />
     }

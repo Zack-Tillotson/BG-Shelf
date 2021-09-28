@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import useShapes from 'data/collection/useShapes'
+import useShapes from 'data/objectDb/useShapes'
 import formSelector from 'state/selectors/form'
 import useNameLookup from './useNameLookup'
 

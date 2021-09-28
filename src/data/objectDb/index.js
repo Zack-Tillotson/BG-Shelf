@@ -17,7 +17,7 @@ const NOOP = () => {}
 function watch(refParam, onData = NOOP, onLoading = NOOP) {
 
   let ref = refParam
-  if(typeof ref === 'string') {
+  if(!(ref instanceof Ref)) {
     ref = new Ref(refParam)
   }
 

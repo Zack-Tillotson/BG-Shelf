@@ -1,16 +1,12 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux'
 import cn from 'classnames'
 
-import actions from 'state/actions'
-import useCollection from 'data/collection/useCollection'
 import useItemSelector from './useItemSelector'
 
 import Input from 'components/Input'
 import ItemMini from 'molocules/ItemMini';
 import Button from 'atoms/Button';
 
-import formSelector from 'state/selectors/form'
 import './item-selector-pane.scss'
 
 const baseCn = 'item-selector-pane'
