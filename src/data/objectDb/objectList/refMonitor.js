@@ -1,9 +1,11 @@
+import debugObject from "../debug"
 import Ref from "../ref"
 import walkObject, {setChildPath} from "../util/walkObject"
 
 const context = {} // deps
 
 const refList = []
+debugObject('objectList.refList', refList)
 
 function initialize(db, onData) {
   context.db = db
@@ -27,8 +29,13 @@ function cleanRefs(object) {
 
 function monitorRef(ref) {
   context.db.collection(ref.getCollection()).doc(ref.getDoc()).onSnapshot(doc => {
-    const object = doc.data()
-    cleanRefs(object)
+    let object = null
+
+    if(doc.exists) {
+      object = doc.data()
+      cleanRefs(object)
+    }
+
     context.onData(object, ref)
   })
 }

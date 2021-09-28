@@ -32,8 +32,12 @@ function makeCleanObject(obj, ref) {
 
 function buildObject(get, ref, seenObjects = []) {
   const objRef = get(ref)
-  if(!objRef || !objRef.object) {
+  if(!objRef || !objRef.loaded) {
     throw new RefErrors([ref])
+  }
+
+  if(!objRef.object) {
+    return objRef.object
   }
 
   const seenObject = seenObjects.find(target => target.ref === ref)

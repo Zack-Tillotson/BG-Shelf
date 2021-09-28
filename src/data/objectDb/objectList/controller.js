@@ -1,3 +1,4 @@
+import debugObject from '../debug'
 import refMonitor from './refMonitor'
 
 const context = {
@@ -5,6 +6,7 @@ const context = {
 } // deps
 
 const objectPromises = new Map()
+debugObject('objectList.objectPromises', objectPromises)
 
 function get(ref) {
   return objectPromises.get(ref.toString())
@@ -29,20 +31,18 @@ function watch(ref) {
       resolve = good
       reject = bad
     })
-    set(ref, {promise, resolve, reject, object: null})
+    set(ref, {promise, resolve, reject, object: null, loaded: false})
   }
 
   return get(ref).promise
 }
 
 function handleDataUpdate(update, ref) {
-  const {resolve, reject, promise, object} = get(ref)
+  const {resolve, reject, promise, object, loaded} = get(ref)
 
-  if(update) {
-    resolve()
-  }
+  resolve()
 
-  set(ref, {promise, resolve, reject, object: update})
+  set(ref, {promise, resolve, reject, object: update, loaded: true})
   context.pubSub.publish(ref, update)
 }
 

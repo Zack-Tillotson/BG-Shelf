@@ -25,7 +25,9 @@ function initialize(store) {
 
   deprecated.initialize(store) // XXXX
 
+  // Testing
   objectDb.watch('ref.test.USHlYhwtkccHcadCfPs7', console.log)
+  objectDb.watch('ref.test.NOTAREALTHING', console.log)
 }
 
 export default initialize

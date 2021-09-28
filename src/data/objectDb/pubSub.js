@@ -1,4 +1,8 @@
+import debug from './debug'
+
 const subscribers = []
+
+debug('pubSub', subscribers)
 
 function getSubscribers() {
   return subscribers
