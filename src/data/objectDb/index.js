@@ -1,24 +1,43 @@
 /*
  */
 
-import {initialize as objectListInit} from './objectList'
+import objectList from './objectList'
+import complexObject from './complexObject'
+import Ref from './ref'
+
 import pubSub from './pubSub'
 
 function initialize(db) {
-  objectListInit(db, pubSub)
+  objectList.initialize(db, pubSub)
+  complexObject.initialize(objectList)
 }
 
-// Whenever an object is updated, 
-// 1. Check it for refs and ensure they are in the objectList
-// 2. Resolve the object promise for that ref if it's not yet resolved
-function handleUpdate(object, ref) {
-  context.pubSub.getSubscribers().forEach(({callback, refList}) => {
-    if(!refList || refList.includes(ref)) {
-      callback(object, ref)
+function watch(refParam, callback) {
+
+  let ref = refParam
+  if(typeof ref === 'string') {
+    ref = new Ref(refParam)
+  }
+
+  const unsub = pubSub.subscribe(ref, (callbackRef, object) => {
+    try {
+      const fullObject = complexObject.get(ref)
+      callback(fullObject, ref)
+    } catch(e) {
+      if(e.refs) {
+        e.refs.forEach(ref => objectList.watch(ref))
+      } else {
+        throw e
+      }
     }
   })
+
+  objectList.watch(ref)
+
+  return unsub
 }
 
 export default {
   initialize,
+  watch,
 }

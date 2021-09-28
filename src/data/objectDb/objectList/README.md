@@ -10,3 +10,4 @@ and subscribers updated.
 
 * initialize(db, pubSub) - Provide dependencies
 * watch(ref) - Add ref to object list which is monitored. Wheenver an object is updated all pubSub scribers will be notified
+* get(ref) - Returns the promise and current object for the given ref

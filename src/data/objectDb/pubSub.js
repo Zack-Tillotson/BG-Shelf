@@ -4,8 +4,8 @@ function getSubscribers() {
   return subscribers
 }
 
-function subscribe(callback, refList) {
-  subscribers.push({callback, refList})
+function subscribe(ref, callback) {
+  subscribers.push({ref, callback})
   return () => unsubscribe(callback)
 }
 
@@ -16,4 +16,8 @@ function unsubscribe(callback) {
   delete subscribers[index]
 }
 
-export default {getSubscribers, subscribe, unsubscribe}
+function publish(ref, object) {
+  getSubscribers().forEach(subber => subber.callback(ref, object))
+}
+
+export default {publish, getSubscribers, subscribe, unsubscribe}
