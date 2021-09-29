@@ -2,6 +2,7 @@ import React from 'react';
 import cn from 'classnames'
 
 import useItemSelector from './useItemSelector'
+import useItemLookup from './useItemLookup'
 
 import Input from 'components/Input'
 import ItemMini from 'molocules/ItemMini';
@@ -16,11 +17,23 @@ function ItemSelectorPane(props) {
   const {
     onSelect,
     onClose,
+    suggestions = [],
   } = props
 
-  const results = useItemSelector(formName)
+  const results = useItemSelector(formName, {suggestions})
+  const {lookupItem, isLoading} = useItemLookup()
+
+  const handleBggItemClick = item => () => {
+    lookupItem(item).then(fullItem => {
+      handleItemFinish(fullItem)
+    })
+  }
 
   const handleItemClick = item => () => {
+    handleItemFinish(item)
+  }
+
+  const handleItemFinish = item => {
     onSelect && onSelect(item)
     onClose()
   }
@@ -40,9 +53,8 @@ function ItemSelectorPane(props) {
           <Input formName={formName} />
         </section>
         <section>
-          <h2>Results</h2>
           {results.totalResults === 0 && (
-            <div>Nothing from your collection or wishlist</div>
+            <div>Nothing from your collection</div>
           )}
           {results.groups.map(group => {
             if(group.results.length === 0) {
@@ -59,7 +71,7 @@ function ItemSelectorPane(props) {
           })}
           {results.search && (
             <section>
-              <h3>or search Board Game Geek</h3>
+              <h3>Search Board Game Geek</h3>
               <Button
                 hollow={results.totalResults}
                 primary={!results.totalResults}
@@ -67,14 +79,19 @@ function ItemSelectorPane(props) {
                 type="submit">
                   Search
               </Button>
-              <ul>
-                {results.bgg.results.map(item => (
-                  <li className={`${baseCn}__bgg-item`} onClick={handleItemClick(item)} key={item.id}>
-                    <span className={`${baseCn}__bgg-item-year`}>{item.attributes.year}</span>
-                    <span className={`${baseCn}__bgg-item-name`}>{item.attributes.name}</span>
-                  </li>
-                ))}
-              </ul>
+              {isLoading && (
+                'Loading...'
+              )}
+              {!isLoading && (
+                <ul>
+                  {results.bgg.results.map(item => (
+                    <li className={`${baseCn}__bgg-item`} onClick={handleBggItemClick(item)} key={item.id}>
+                      <span className={`${baseCn}__bgg-item-year`}>{item.attributes.year}</span>
+                      <span className={`${baseCn}__bgg-item-name`}>{item.attributes.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
           )}
         </section>

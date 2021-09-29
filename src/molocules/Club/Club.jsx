@@ -1,5 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
+import {Link} from 'react-router-dom'
 
 import Card from 'atoms/Card'
 
@@ -24,9 +25,11 @@ function Club(props) {
           Members
         </ListTitle>
         {club.members.map(member => (
-          <Card key={member.id} className="club-club__list-item">
-            <MemberMini member={member} />
-          </Card>
+          <Link key={member.id} to={`member/${member.id}/`}>
+            <Card className="club-club__list-item">
+              <MemberMini member={member} />
+            </Card>
+          </Link>
         ))}
       </section>
       <section className="club-club__section">

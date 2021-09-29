@@ -54,9 +54,11 @@ function Member(props) {
           <section>
             <ListTitle>Clubs</ListTitle>
             {clubs.map((club, index) => (
-              <Card key={club.id || index}>
-                <ClubMini club={club} />
-              </Card>
+              <Link key={club.id || index} to={`/app/club/${club.id}/`}>
+                <Card>
+                  <ClubMini club={club} />
+                </Card>
+              </Link>
             ))}
           </section>
         )}

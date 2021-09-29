@@ -31,9 +31,7 @@ function ItemView(props) {
 
   return (
     <Page className={baseCn}>
-      <Member 
-        view="Board Game Piggy"
-        member={club.members[0]} />
+      Item View
     </Page>
   );
 }

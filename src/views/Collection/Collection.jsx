@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import cn from 'classnames'
-import { useParams } from 'react-router';
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router'
 
 import useInitGate from 'state/useInitGate'
-import useAuth from 'data/auth/useAuth';
-import useObjectDb from 'data/objectDb/useObjectDb';
-import { buildSelfMember } from 'data/objectCreator';
+import useAuth from 'data/auth/useAuth'
+import useObjectDb from 'data/objectDb/useObjectDb'
+import useUpdateObjectDb from 'data/objectDb/useUpdateObjectDb'
+
+import { buildSelfMember } from 'data/objectCreator'
 
 import Card from 'atoms/Card'
 
@@ -39,15 +40,19 @@ function CollectionView(props) {
     createParams: [userId, displayName]
   })
 
+  const updateDb = useUpdateObjectDb()
 
   if(gate) return gate
 
-  const handleAddClick = console.log
+  const handleAddClick = item => {
+    member.collection.push(item)
+    updateDb(member)
+  }
 
   return (
     <Page className={baseCn}>
       <Relationship view="Collection" member={member} />
-      <ItemSelector onSelect={handleAddClick} />
+      <ItemSelector onSelect={handleAddClick} suggestions={['wishlist']} object={member} />
 
       {member.collection.map(item => (
         <Card key={item.id}>

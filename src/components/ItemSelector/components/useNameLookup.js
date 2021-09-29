@@ -1,25 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
-import actions from 'state/actions'
-
-import formSelector from 'state/selectors/form'
-
-function getSafeValue(item, getter, defaultValue = '') {
-  let value = defaultValue
-  try {
-    value = getter(item)
-  } catch (e) {}
-  return value
-}
-
-// lol bgg wut
-function cleanText(text) {
-  const ele = document.createElement('html')
-  ele.innerHTML = text
-  ele.innerHTML = ele.innerText
-  return ele.innerText
-}
+import {useState } from 'react'
 
 function useNameLookup() {
   const [games, updateGames] = useState([])

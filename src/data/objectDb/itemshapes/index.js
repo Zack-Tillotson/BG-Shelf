@@ -110,7 +110,16 @@ export default {
   "itemselector" : {
     "placeholder" : "Search by name or year",
     "type" : "string",
-    "unique" : true
+    "unique" : true,
+    "suggestions": [{
+      id: "collection",
+      name: "Collection",
+      objectPath: ["collection"],
+    }, {
+      id: "wishlist",
+      name: "Wishlist",
+      objectPath: ["wishlist"],
+    }]
   },
   "member" : {
     "id" : {

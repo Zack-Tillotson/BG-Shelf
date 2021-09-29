@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames'
+import { useParams } from 'react-router';
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth';
 import useObjectDb from 'data/objectDb/useObjectDb';
-import { buildSelfClub } from 'data/objectCreator';
+import { buildSelfMember } from 'data/objectCreator';
+
+import Card from 'atoms/Card'
 
 import Page from 'components/Page'
-import Member from 'molocules/Member'
+import ItemSelector from 'components/ItemSelector'
+
+import Relationship from 'molocules/Relationship'
+import ItemMini from 'molocules/ItemMini'
 
 import './wishlist-view.scss'
 
@@ -20,20 +26,34 @@ function WishlistView(props) {
 
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
-  const club = useObjectDb({
-    path: ['club', userId],
+  const {
+    clubId = userId, 
+    memberId = userId, 
+    itemId,
+  } = useParams()
+
+  const member = useObjectDb({
+    path: ['member', memberId],
     enabled: !!userId,
-    createFunction: buildSelfClub,
+    createFunction: buildSelfMember,
     createParams: [userId, displayName]
   })
 
+
   if(gate) return gate
+
+  const handleAddClick = console.log
 
   return (
     <Page className={baseCn}>
-      <Member 
-        view="Board Game Piggy"
-        member={club.members[0]} />
+      <Relationship view="Wishlist" member={member} />
+      <ItemSelector onSelect={handleAddClick} />
+
+      {member.wishlist.map(item => (
+        <Card key={item.id}>
+          <ItemMini item={item} member={member} />
+        </Card>
+      ))}
     </Page>
   );
 }

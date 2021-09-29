@@ -40,7 +40,12 @@ function watch(refParam, onData = NOOP, onLoading = NOOP) {
   return unsub
 }
 
+function update(object) {
+  console.log('objectdb update', object) // TODO
+}
+
 export default {
   initialize,
   watch,
+  update,
 }
