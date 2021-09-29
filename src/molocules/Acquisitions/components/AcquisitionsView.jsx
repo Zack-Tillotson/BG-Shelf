@@ -35,18 +35,18 @@ function AcquisitionsView(props) {
       {acquisitions.length > 0 && (
         <ol>
           {acquisitions.map(acquisition => (
-            <li key={acquisition.date}>
+            <li key={acquisition.attributes.date}>
               <div className={cn(`${baseCn}__acquisition`)}>
                 <div className="acquisitions__piece">
                   <div className="acquisitions__label">Date:</div>
                   <div className="acquisitions__value">
-                    {acquisition.date}
+                    {acquisition.attributes.date}
                   </div>
                 </div>
                 <div className="acquisitions__piece">
                   <div className="acquisitions__label">Price</div>
                   <div className="acquisitions__value">
-                    {acquisition.price}
+                    {acquisition.attributes.price}
                   </div>
                 </div>
                 {modifiable && onEdit && (

@@ -8,7 +8,9 @@
  */
 
 export const club1 = {
-  name: "Test Club #1",
+  attributes: { 
+    name: "Test Club #1",
+  },
   members: [],
   sessions: [],
 }

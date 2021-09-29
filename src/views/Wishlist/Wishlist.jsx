@@ -1,36 +1,29 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
 import cn from 'classnames'
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth';
 import useObjectDb from 'data/objectDb/useObjectDb';
-import { buildSelfMember } from 'data/objectCreator';
+import { buildSelfClub } from 'data/objectCreator';
 
 import Page from 'components/Page'
 import Member from 'molocules/Member'
 
-import './member-view.scss'
+import './wishlist-view.scss'
 
-const baseCn = 'member-view'
+const baseCn = 'wishlist-view'
 
-function MemberView(props) {
+function WishlistView(props) {
 
   const gate = useInitGate()
   const auth = useAuth()
 
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
-  const {
-    clubId = userId, 
-    memberId = userId, 
-    itemId,
-  } = useParams()
-
-  const member = useObjectDb({
-    path: ['member', memberId],
+  const club = useObjectDb({
+    path: ['club', userId],
     enabled: !!userId,
-    createFunction: buildSelfMember,
+    createFunction: buildSelfClub,
     createParams: [userId, displayName]
   })
 
@@ -40,9 +33,9 @@ function MemberView(props) {
     <Page className={baseCn}>
       <Member 
         view="Board Game Piggy"
-        member={member} />
+        member={club.members[0]} />
     </Page>
   );
 }
 
-export default MemberView
+export default WishlistView

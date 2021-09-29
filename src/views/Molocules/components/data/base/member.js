@@ -11,7 +11,9 @@
  */
 
 export const member1 = {
-  name: 'Alice Arrington',
+  attributes: {
+    name: 'Alice Arrington',
+  },
   collection: [],
   wishlist: [],
   sessions: [],
@@ -19,7 +21,9 @@ export const member1 = {
 }
 
 export const member2 = {
-  name: 'Bobby Billings',
+  attributes: {
+    name: 'Bobby Billings',
+  },
   collection: [],
   wishlist: [],
   sessions: [],

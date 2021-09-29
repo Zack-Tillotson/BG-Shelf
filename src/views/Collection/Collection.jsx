@@ -1,20 +1,25 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
 import cn from 'classnames'
+import { useParams } from 'react-router';
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth';
 import useObjectDb from 'data/objectDb/useObjectDb';
 import { buildSelfMember } from 'data/objectCreator';
 
+import Card from 'atoms/Card'
+
 import Page from 'components/Page'
-import Member from 'molocules/Member'
+import ItemSelector from 'components/ItemSelector'
 
-import './member-view.scss'
+import Relationship from 'molocules/Relationship'
+import ItemMini from 'molocules/ItemMini'
 
-const baseCn = 'member-view'
+import './collection-view.scss'
 
-function MemberView(props) {
+const baseCn = 'collection-view'
+
+function CollectionView(props) {
 
   const gate = useInitGate()
   const auth = useAuth()
@@ -34,15 +39,23 @@ function MemberView(props) {
     createParams: [userId, displayName]
   })
 
+
   if(gate) return gate
+
+  const handleAddClick = console.log
 
   return (
     <Page className={baseCn}>
-      <Member 
-        view="Board Game Piggy"
-        member={member} />
+      <Relationship view="Collection" member={member} />
+      <ItemSelector onSelect={handleAddClick} />
+
+      {member.collection.map(item => (
+        <Card key={item.id}>
+          <ItemMini item={item} member={member} />
+        </Card>
+      ))}
     </Page>
   );
 }
 
-export default MemberView
+export default CollectionView

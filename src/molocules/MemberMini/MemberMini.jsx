@@ -17,7 +17,7 @@ function MemberMini(props) {
 
   return (
     <div className={cn(baseCn)}>
-      <h3 className={cn(`${baseCn}__name`)}>{member.name}</h3>
+      <h3 className={cn(`${baseCn}__name`)}>{member.attributes.name}</h3>
       {!showButton && (
         <div key="highlights" className={cn(`${baseCn}__highlights`)}>
           <span className={cn(`${baseCn}__highlight`)}>

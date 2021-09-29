@@ -23,8 +23,8 @@ function ItemMini(props) {
 
   let dateAcquired = null, isFavorite = false, acquisitionCount = 0
   try {
-    dateAcquired = ownership.acquisitions[0].dateAcquired
-    isFavorite = ownership.favorite
+    dateAcquired = ownership.acquisitions[0].attributes.dateAcquired
+    isFavorite = ownership.attributes.favorite
   } catch (e) {}
 
   return (
@@ -34,22 +34,22 @@ function ItemMini(props) {
       )}
       {showImage && (
         <div className={cn(`${baseCn}__image`)}>
-          <Image className={cn(`${baseCn}__image-wrapper`, imageClassName, {[`${baseCn}__image-wrapper--small`]: !showDetails})} src={item.canonicalImage} />
+          <Image className={cn(`${baseCn}__image-wrapper`, imageClassName, {[`${baseCn}__image-wrapper--small`]: !showDetails})} src={item.attributes.canonicalImage} />
         </div>
       )}
       <div className={cn(`${baseCn}__primary-attrs`)}>
         <div className={cn(`${baseCn}__year`)}>
-          {item.releaseDate}
+          {item.attributes.releaseDate}
         </div>
         <h3 className={cn(`${baseCn}__name`)}>
-          {item.name}
+          {item.attributes.name}
         </h3>
       </div>
       {showDetails && (
         <div className={cn(`${baseCn}__attrs`)}>
-          <AttributeList object="item" values={item} position="secondary" additionalAttrs={(item.minPlayers || item.maxPlayers) ? [{
+          <AttributeList object="item" values={item} position="secondary" additionalAttrs={(item.attributes.minPlayers || item.attributes.maxPlayers) ? [{
               label: 'Player Count', 
-              value: [item.minPlayers, item.maxPlayers].filter(val => !!val).join('-'),
+              value: [item.attributes.minPlayers, item.attributes.maxPlayers].filter(val => !!val).join('-'),
             }] : []} />
         </div>
       )}

@@ -8,14 +8,18 @@
 
 export const ownership1 = {
   item: null,
-  favorite: true,
-  note: 'I bought this on a whim but actually love it!',
+  attributes: {
+    favorite: true,
+    note: 'I bought this on a whim but actually love it!',
+  },
 }
 
 export const ownership2 = {
   item: null,
-  favorite: false,
-  note: '',
+  attributes: {
+    favorite: false,
+    note: '',
+  },
 }
 
 export default ownership1

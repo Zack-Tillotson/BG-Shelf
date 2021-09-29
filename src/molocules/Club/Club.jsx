@@ -18,7 +18,7 @@ function Club(props) {
 
   return (
     <div className={cn(baseCn)}>
-      <h1>{club.name}</h1>
+      <h1>{club.attributes.name}</h1>
       <section className="club-club__section">
         <ListTitle button={{type: 'link', children: "+ Add", to: "TODO"}}>
           Members

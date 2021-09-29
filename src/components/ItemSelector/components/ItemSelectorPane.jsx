@@ -70,8 +70,8 @@ function ItemSelectorPane(props) {
               <ul>
                 {results.bgg.results.map(item => (
                   <li className={`${baseCn}__bgg-item`} onClick={handleItemClick(item)} key={item.id}>
-                    <span className={`${baseCn}__bgg-item-year`}>{item.year}</span>
-                    <span className={`${baseCn}__bgg-item-name`}>{item.name}</span>
+                    <span className={`${baseCn}__bgg-item-year`}>{item.attributes.year}</span>
+                    <span className={`${baseCn}__bgg-item-name`}>{item.attributes.name}</span>
                   </li>
                 ))}
               </ul>

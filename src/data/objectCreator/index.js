@@ -1,7 +1,16 @@
 import {buildEmptyObject} from './utils'
 
 // Opinionated functions for use in specific use cases
+
 export function buildSelfClub(userId, name) {
+  return buildSelf(userId, name).club
+}
+
+export function buildSelfMember(userId, name) {
+  return buildSelf(userId, name).member
+}
+
+function buildSelf(userId, name) {
   const club = buildEmptyObject('club')
   const member = buildEmptyObject('member')
 
@@ -14,5 +23,5 @@ export function buildSelfClub(userId, name) {
   club.members.push(member)
   member.clubs.push(club)
 
-  return club
+  return {member, club}
 }

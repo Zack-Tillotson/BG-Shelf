@@ -34,17 +34,17 @@ function Item(props) {
   return (
     <div className={cn(baseCn)}>
       <section className={cn(`${baseCn}__quick-actions`)}>
-        <SharpToggle color="red" onClick={onToggleFavorite} active={ownership.favorite}>Favorite</SharpToggle>
-        <SharpToggle color="blue" onClick={onToggleCollection} active={ownership.favorite}>Collection</SharpToggle>
-        <SharpToggle color="green" onClick={onToggleWishlist} active={ownership.favorite}>Wishlist</SharpToggle>
+        <SharpToggle color="red" onClick={onToggleFavorite} active={ownership.attributes.favorite}>Favorite</SharpToggle>
+        <SharpToggle color="blue" onClick={onToggleCollection} active={ownership.attributes.favorite}>Collection</SharpToggle>
+        <SharpToggle color="green" onClick={onToggleWishlist} active={ownership.attributes.favorite}>Wishlist</SharpToggle>
       </section>
       <section className={cn(`${baseCn}__image`)}>
-        <Image className={cn(`${baseCn}__hero`)} src={item.canonicalImage} />
+        <Image className={cn(`${baseCn}__hero`)} src={item.attributes.canonicalImage} />
       </section>
       <section>
-        <h1>{item.name}</h1>
+        <h1>{item.attributes.name}</h1>
         <div className={cn(`${baseCn}__year`)}>
-          <span className={cn(`${baseCn}__label`)}>Year: </span> {item.releaseDate}
+          <span className={cn(`${baseCn}__label`)}>Year: </span> {item.attributes.releaseDate}
         </div>
       </section>
       <section className={cn(`${baseCn}__section`)}>
@@ -70,7 +70,7 @@ function Item(props) {
         <ListTitle>
           Attributes
         </ListTitle>
-        <AttributeList object="item" values={item} />
+        <AttributeList object="item" values={item.attributes} />
       </section>
     </div>
   );

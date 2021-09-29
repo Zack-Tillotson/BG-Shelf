@@ -14,10 +14,10 @@ function subscribe(ref, callback) {
 }
 
 function unsubscribe(callback) {
-  const index = this.subscribers.findIndex(item => item.callback === callback)
+  const index = subscribers.findIndex(item => item.callback === callback)
   if(index < 0) throw new Error('Unable to remove callback, not in the callback list')
 
-  delete subscribers[index]
+  subscribers.splice(index, 1)
 }
 
 function publish(ref, object) {

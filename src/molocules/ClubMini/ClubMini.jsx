@@ -12,7 +12,7 @@ function ClubMini(props) {
 
   return (
     <div className={cn(baseCn)}>
-      <h3>{club.name}</h3>
+      <h3>{club.attributes.name}</h3>
       <div className={cn(`${baseCn}__stats`)}>
         {club.members.length > 0 && (<
           div className={`${baseCn}__stat`}>{club.members.length} members</div>

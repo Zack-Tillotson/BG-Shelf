@@ -13,7 +13,9 @@ function initialize(db, onData) {
 }
 
 function add(ref) {
-  if(refList.includes(ref)) return false
+  if(refList.find(item => ref.equals(item))) {
+    return false
+  }
 
   refList.push(ref)
   monitorRef(ref)

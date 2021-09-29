@@ -35,9 +35,11 @@ function useNameLookup() {
             const yearEle = [...item.children].find(attr => attr.tagName === 'yearpublished')
             return {
               id: item.getAttribute('id'),
-              isBggStub: true,
-              name: nameEle && nameEle.getAttribute('value') || '',
-              year: yearEle && yearEle.getAttribute('value') || '',
+              attributes: {
+                isBggStub: true,
+                name: nameEle && nameEle.getAttribute('value') || '',
+                year: yearEle && yearEle.getAttribute('value') || '',
+              },
             }
           })
           updateGames(data)

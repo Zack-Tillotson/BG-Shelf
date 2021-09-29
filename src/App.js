@@ -7,8 +7,13 @@ import {
 import {Provider} from 'react-redux'
 
 import Molecules from 'views/Molocules'
-import Member from 'views/Member';
 import Landing from 'views/Landing';
+
+import Member from 'views/Member';
+import Collection from 'views/Collection';
+import Wishlist from 'views/Wishlist';
+import Item from 'views/Item';
+import Club from 'views/Club';
 
 import FileNotFound from 'molocules/FileNotFound'
 import Skeleton from 'molocules/Skeleton'
@@ -29,9 +34,22 @@ function App({store}) {
         <Route path="/" component={Hack} />{/*A hack way to access the Browser Route in Saga files*/}
         <Suspense fallback={<Skeleton />}>
           <Switch>
-            <Route path="/molocules/" exact component={Molecules} />
+            {/* No club, implicit self Member */}
             <Route path="/app/" exact component={Member} />
+            <Route path="/app/collection/" exact component={Collection} />
+            <Route path="/app/wishlist/" exact component={Wishlist} />
+            <Route path="/app/item/:itemId" exact component={Item} />
+
+            {/* Club specific */}
+            <Route path="/app/club/:clubId/" exact component={Club} />
+            <Route path="/app/club/:clubId/member/:memberId/" exact component={Member} />
+            <Route path="/app/club/:clubId/member/:memberId/collection/" exact component={Collection} />
+            <Route path="/app/club/:clubId/member/:memberId/wishlist/" exact component={Wishlist} />
+            <Route path="/app/club/:clubId/member/:memberId/item/:itemId" exact component={Item} />
+
             <Route path="/" exact component={Landing} />
+            <Route path="/molocules/" exact component={Molecules} />
+            
             <Route component={FileNotFound} />
           </Switch>
         </Suspense>

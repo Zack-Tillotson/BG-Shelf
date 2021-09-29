@@ -21,23 +21,23 @@ function SessionMini(props) {
   return (
     <div className={cn(baseCn, className)}>
       {!noDate && (
-        <h3 className={cn(`${baseCn}__date`)}>{session.date}</h3>
+        <h3 className={cn(`${baseCn}__date`)}>{session.attributes.date}</h3>
       )}
       <Ele className={cn(`${baseCn}__mini`)}>
         {!noHeader && (
           <div className={cn(`${baseCn}__image`)}>
             <div className={cn(`${baseCn}__image-wrapper`)}>
-              <div className={cn(`${baseCn}__image-inner`)} style={{backgroundImage: `url("${item.canonicalImage}")`}} />
+              <div className={cn(`${baseCn}__image-inner`)} style={{backgroundImage: `url("${item.attributes.canonicalImage}")`}} />
             </div>
           </div>
         )}
         {!noHeader && (
           <div className={cn(`${baseCn}__primary-attrs`)}>
             <div className={cn(`${baseCn}__year`)}>
-              {item.releaseDate}
+              {item.attributes.releaseDate}
             </div>
             <h3 className={cn(`${baseCn}__name`)}>
-              {item.name}
+              {item.attributes.name}
             </h3>
           </div>
         )}
