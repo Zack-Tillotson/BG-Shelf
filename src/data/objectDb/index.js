@@ -14,6 +14,19 @@ function initialize(db) {
   complexObject.initialize(objectList)
 }
 
+function get(refParam) {
+  let ref = refParam
+  if(!(ref instanceof Ref)) {
+    ref = new Ref(refParam)
+  }
+
+  try {
+    return complexObject.get(ref)
+  }catch(e) {}
+
+  return undefined
+}
+
 function watch(refParam, onData = NOOP, onLoading = NOOP) {
 
   let ref = refParam
@@ -52,6 +65,7 @@ function update(object) {
 
 export default {
   initialize,
+  get,
   watch,
   update,
 }

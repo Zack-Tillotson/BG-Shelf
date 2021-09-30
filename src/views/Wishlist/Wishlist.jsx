@@ -21,25 +21,25 @@ const baseCn = 'wishlist-view'
 
 function WishlistView(props) {
 
-  const gate = useInitGate()
   const auth = useAuth()
-
+  
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
-
+  
   const {
     clubId = userId, 
     memberId = userId, 
     itemId,
   } = useParams()
-
+  
   const member = useObjectDb({
     path: ['member', memberId],
     enabled: !!userId,
     createFunction: buildSelfMember,
     createParams: [userId, displayName]
   })
-
-
+  
+  
+  const gate = useInitGate(member)
   if(gate) return gate
 
   const handleAddClick = console.log

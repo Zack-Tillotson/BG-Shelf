@@ -24,7 +24,7 @@ function useObjectMonitor(ref, rawOptions) {
 
   const options = getOptions(rawOptions)
 
-  const [objectOrPromise, updateState] = useState(null)
+  const [objectOrPromise, updateState] = useState(objectDb.get(ref))
 
   useEffect(() => {
     if(!options.enabled) {
@@ -39,7 +39,7 @@ function useObjectMonitor(ref, rawOptions) {
       promise => {
         updateState(promise)
       })
-  }, [ref, options.enabled])
+  }, [ref.collection, ref.doc, options.enabled])
 
   if(objectOrPromise instanceof Promise) throw objectOrPromise
 

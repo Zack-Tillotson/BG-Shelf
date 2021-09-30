@@ -1,9 +1,9 @@
 import useAuth from 'data/auth/useAuth';
 
-function useInitGate() {
+function useInitGate(dependency) {
   const auth = useAuth()
 
-  if(!auth.isInitialized) {
+  if(!auth.isInitialized || !dependency) {
     return auth.renderLoadingPage()
   }
   
