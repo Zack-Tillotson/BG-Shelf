@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
+import {Link} from 'react-router-dom'
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth'
@@ -7,7 +8,7 @@ import useObjectDb from 'data/objectDb/useObjectDb'
 import useUpdateObjectDb from 'data/objectDb/useUpdateObjectDb'
 import Ref from 'data/objectDb/ref'
 
-import { buildSelfMember } from 'data/objectCreator'
+import { buildSelfMember, buildMemberItem } from 'data/objectCreator'
 
 import Card from 'atoms/Card'
 
@@ -45,8 +46,8 @@ function CollectionView(props) {
 
   if(gate) return gate
 
-  const handleAddClick = item => {
-    item.ref = new Ref('item', Ref.AUTO_ID)
+  const handleAddClick = attributes => {
+    const item = buildMemberItem(member, attributes)
     member.collection.push(item)
     updateDb(member)
   }
@@ -57,9 +58,11 @@ function CollectionView(props) {
       <ItemSelector onSelect={handleAddClick} suggestions={['wishlist']} object={member} />
 
       {member.collection.map(item => (
-        <Card key={item.id}>
-          <ItemMini item={item} member={member} />
-        </Card>
+        <Link key={item.id} to={`/app/item/${item.id}/`}>
+          <Card >
+            <ItemMini item={item} member={member} />
+          </Card>
+        </Link>
       ))}
     </Page>
   );

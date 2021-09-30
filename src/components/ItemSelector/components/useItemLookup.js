@@ -32,16 +32,14 @@ function useItemLookup() {
         const cleanDesc = cleanText(getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'description').innerHTML))
 
         const retItem = {
-          attributes: {
-            name: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'name' && attr.getAttribute('type') === 'primary').getAttribute('value')),
-            releaseDate: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'yearpublished').getAttribute('value')),
-            description: cleanDesc,
-            canonicalImage: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'image').innerHTML),
-            publisher: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'link' && attr.getAttribute('type') === 'boardgamepublisher').getAttribute('value')),
-            designer: getSafeValue(item, item => [...item.children].filter(attr => attr.tagName === 'link' && attr.getAttribute('type') === 'boardgamedesigner').map(pub => pub.getAttribute('value')).join(', ')),
-            minPlayers: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'minplayers').getAttribute('value')),
-            maxPlayers: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'maxplayers').getAttribute('value')),
-          },
+          name: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'name' && attr.getAttribute('type') === 'primary').getAttribute('value')),
+          releaseDate: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'yearpublished').getAttribute('value')),
+          description: cleanDesc,
+          canonicalImage: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'image').innerHTML),
+          publisher: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'link' && attr.getAttribute('type') === 'boardgamepublisher').getAttribute('value')),
+          designer: getSafeValue(item, item => [...item.children].filter(attr => attr.tagName === 'link' && attr.getAttribute('type') === 'boardgamedesigner').map(pub => pub.getAttribute('value')).join(', ')),
+          minPlayers: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'minplayers').getAttribute('value')),
+          maxPlayers: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'maxplayers').getAttribute('value')),
         }
         return retItem
       })

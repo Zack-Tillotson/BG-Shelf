@@ -1,14 +1,18 @@
+import Ref from 'data/objectDb/ref'
+
 //Returns an object of the given type
 export function buildEmptyObject(type) {
   switch(type) {
     case 'acquisition': {
       return {
+        ref: new Ref(type, Ref.AUTO_ID),
         attributes: {},
         item: null,
       }
     }
     case 'club': {
       return {
+        ref: new Ref(type, Ref.AUTO_ID),
         attributes: {},
         members: [],
         sessions: [],
@@ -16,11 +20,16 @@ export function buildEmptyObject(type) {
     }
     case 'item': {
       return {
+        ref: new Ref(type, Ref.AUTO_ID),
         attributes: {},
+        member: null,
+        ownership: null,
+        acquisitions: [],
       }
     }
     case 'session': {
       return {
+        ref: new Ref(type, Ref.AUTO_ID),
         attributes: {},
         item: null,
         participants: [],
@@ -28,6 +37,7 @@ export function buildEmptyObject(type) {
     }
     case 'member': {
       return {
+        ref: new Ref(type, Ref.AUTO_ID),
         attributes: {},
         collection: [],
         wishlist: [],
@@ -37,7 +47,10 @@ export function buildEmptyObject(type) {
     }
     case 'ownership': {
       return {
-        attributes: {},
+        ref: new Ref(type, Ref.AUTO_ID),
+        attributes: {
+          favorite: false,
+        },
         item: null,
       }
     }

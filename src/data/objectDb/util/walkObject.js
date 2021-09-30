@@ -22,10 +22,12 @@ function getOptions(raw = {}) {
 function walkObject(object, onChild, rawOptions) {
   const options = getOptions(rawOptions, object)
 
+  // XXX Why is this causing issues.
+  if(object && typeof object === 'object' && object.ref instanceof Ref && options.seenObjects.find(seenObject => object.ref.equals(seenObject.ref))) {
+    return
+  }
+
   const doRecursion = (child, path) => {
-    if(options.seenObjects.find(target => object.ref.equals(target.ref))) {
-      return
-    }
     options.seenObjects.push(object)
     walkObject(child, onChild, {...options, path})
   }

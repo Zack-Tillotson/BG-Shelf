@@ -17,10 +17,11 @@ function ItemSelectorPane(props) {
   const {
     onSelect,
     onClose,
+    object,
     suggestions = [],
   } = props
 
-  const results = useItemSelector(formName, {suggestions})
+  const results = useItemSelector(formName, {object, suggestions})
   const {lookupItem, isLoading} = useItemLookup()
 
   const handleBggItemClick = item => () => {
@@ -50,7 +51,7 @@ function ItemSelectorPane(props) {
           Select an item
         </h1>
         <section>
-          <Input formName={formName} />
+          <Input formName={formName} focus />
         </section>
         <section>
           {results.totalResults === 0 && (

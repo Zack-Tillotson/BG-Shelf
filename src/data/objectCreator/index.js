@@ -15,7 +15,6 @@ function buildSelf(userId, name) {
   const club = buildEmptyObject('club')
   const member = buildEmptyObject('member')
 
-  club.ref = new Ref('club', Ref.AUTO_ID)
   club.attributes.name = name
   
   member.ref = new Ref('member', userId)
@@ -25,4 +24,18 @@ function buildSelf(userId, name) {
   member.clubs.push(club)
 
   return {member, club}
+}
+
+export function buildMemberItem(member, attributes) {
+  const item = buildEmptyObject('item')
+  const ownership = buildEmptyObject('ownership')
+
+  item.attributes = attributes
+
+  item.ownership = ownership
+  item.member = member
+
+  ownership.item = item
+
+  return item
 }

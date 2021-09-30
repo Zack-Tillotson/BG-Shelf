@@ -5,11 +5,12 @@ function normalizeObject(target) {
   const objects = [target]
 
   walkObject(target, child => {
-    objects.push(child)
+    if(!objects.find(obj => obj.ref.equals(child.ref))) {
+      objects.push(child)
+    }
   }, {
     filter: IS_OBJ,
     recurse: true,
-    seenObjects: [target],
   })
 
   // We're modifying the parameter object. I think that's ok, but TBD
