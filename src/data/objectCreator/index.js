@@ -1,4 +1,5 @@
 import {buildEmptyObject} from './utils'
+import Ref from 'data/objectDb/ref'
 
 // Opinionated functions for use in specific use cases
 
@@ -14,10 +15,10 @@ function buildSelf(userId, name) {
   const club = buildEmptyObject('club')
   const member = buildEmptyObject('member')
 
-  club.id = userId
+  club.ref = new Ref('club', userId)
   club.attributes.name = name
   
-  member.id = userId
+  member.ref = new Ref('member', userId)
   member.attributes.name = name
 
   club.members.push(member)

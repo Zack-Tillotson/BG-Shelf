@@ -16,7 +16,7 @@ import {
   session2,
   acquisitions1,
   acquisitions2,
-} from './data'
+} from '../../data'
 
 function RenderItem() {
   return (

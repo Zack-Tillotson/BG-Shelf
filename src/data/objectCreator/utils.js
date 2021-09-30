@@ -3,14 +3,12 @@ export function buildEmptyObject(type) {
   switch(type) {
     case 'acquisition': {
       return {
-        type: 'acquisition',
         attributes: {},
         item: null,
       }
     }
     case 'club': {
       return {
-        type: 'club',
         attributes: {},
         members: [],
         sessions: [],
@@ -18,13 +16,11 @@ export function buildEmptyObject(type) {
     }
     case 'item': {
       return {
-        type: 'item',
         attributes: {},
       }
     }
     case 'session': {
       return {
-        type: 'session',
         attributes: {},
         item: null,
         participants: [],
@@ -32,7 +28,6 @@ export function buildEmptyObject(type) {
     }
     case 'member': {
       return {
-        type: 'member',
         attributes: {},
         collection: [],
         wishlist: [],
@@ -42,7 +37,6 @@ export function buildEmptyObject(type) {
     }
     case 'ownership': {
       return {
-        type: 'ownership',
         attributes: {},
         item: null,
       }

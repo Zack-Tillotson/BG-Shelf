@@ -30,6 +30,8 @@ class Ref {
     return Ref.isDbRef(target) || target instanceof Ref
   }
 
+  static AUTO_ID = 'AUTO_ID'
+
   getCollection() {
     return this.collection
   }

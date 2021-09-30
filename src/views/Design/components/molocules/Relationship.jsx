@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import Relationship from 'molocules/Relationship'
 
-import {club1} from './data'
+import {club1} from '../../data'
 
 function renderListTitles() {
 

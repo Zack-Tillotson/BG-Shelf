@@ -4,7 +4,7 @@ import cn from 'classnames'
 import Card from 'atoms/Card'
 import ItemMini from 'molocules/ItemMini'
 
-import {item1, item2, item3, member1, club1, ownership1, session1} from './data'
+import {item1, item2, item3, member1, club1, ownership1, session1} from '../../data'
 
 function renderItemMinis() {
   return (

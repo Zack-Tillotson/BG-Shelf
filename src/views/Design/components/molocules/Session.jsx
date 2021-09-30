@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import Session from 'molocules/Session'
 
-import {session1} from './data'
+import {session1} from '../../data'
 
 function RenderSession() {
 

@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import Acquisitions from 'molocules/Acquisitions'
 
-import {ownership1, item1, ownership2, item2, acquisitions1, acquisitions2} from './data'
+import {ownership1, item1, ownership2, item2, acquisitions1, acquisitions2} from '../../data'
 
 function RenderOwnership() {
 

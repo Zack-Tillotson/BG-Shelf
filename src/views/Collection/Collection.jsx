@@ -5,6 +5,7 @@ import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth'
 import useObjectDb from 'data/objectDb/useObjectDb'
 import useUpdateObjectDb from 'data/objectDb/useUpdateObjectDb'
+import Ref from 'data/objectDb/ref'
 
 import { buildSelfMember } from 'data/objectCreator'
 
@@ -45,6 +46,7 @@ function CollectionView(props) {
   if(gate) return gate
 
   const handleAddClick = item => {
+    item.ref = new Ref('item', Ref.AUTO_ID)
     member.collection.push(item)
     updateDb(member)
   }

@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import Club from 'molocules/Club'
 
-import {member1, member2, club1} from './data'
+import {member1, member2, club1} from '../../data'
 
 function RenderClub() {
   return (

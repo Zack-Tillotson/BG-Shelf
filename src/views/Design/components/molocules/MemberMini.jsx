@@ -4,7 +4,7 @@ import cn from 'classnames'
 import Card from 'atoms/Card'
 import MemberMini from 'molocules/MemberMini'
 
-import {member1, member2} from './data'
+import {member1, member2} from '../../data'
 
 function renderMemberMinis() {
   return (

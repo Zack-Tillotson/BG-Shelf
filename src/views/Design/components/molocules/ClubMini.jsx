@@ -4,7 +4,7 @@ import cn from 'classnames'
 import Card from 'atoms/Card'
 import ClubMini from 'molocules/ClubMini'
 
-import {club1} from './data'
+import {club1} from '../../data'
 
 function renderClubMinis() {
   return (

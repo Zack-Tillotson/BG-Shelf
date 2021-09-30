@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import {Provider} from 'react-redux'
 
-import Molecules from 'views/Molocules'
+import Design from 'views/Design'
 import Landing from 'views/Landing';
 
 import Member from 'views/Member';
@@ -48,7 +48,7 @@ function App({store}) {
             <Route path="/app/club/:clubId/member/:memberId/item/:itemId" exact component={Item} />
 
             <Route path="/" exact component={Landing} />
-            <Route path="/molocules/" exact component={Molecules} />
+            <Route path="/design/" exact component={Design} />
             
             <Route component={FileNotFound} />
           </Switch>
