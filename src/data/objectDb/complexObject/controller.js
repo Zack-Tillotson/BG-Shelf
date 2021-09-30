@@ -1,4 +1,5 @@
 import buildObject from './buildObject'
+import normalizeObject from './normalizeObject'
 
 const context = {}
 
@@ -10,4 +11,8 @@ function get(ref) {
   return buildObject(context.objectList.get, ref)
 }
 
-export {initialize, get}
+function normalize(object) {
+  return normalizeObject(object)
+}
+
+export {initialize, get, normalize}

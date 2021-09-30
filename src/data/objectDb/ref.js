@@ -1,3 +1,7 @@
+function generateId() {
+  return (Math.random() + '').slice(2)
+}
+
 class Ref {
   constructor(...params) {
     if(params.length === 1 && typeof params[0] === 'string') {
@@ -19,6 +23,10 @@ class Ref {
     } else if(params.length === 2) {
       this.collection = params[0]
       this.doc = params[1]
+    }
+
+    if(this.doc === Ref.AUTO_ID) {
+      this.doc = generateId()
     }
   }
 

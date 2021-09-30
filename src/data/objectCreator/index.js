@@ -15,7 +15,7 @@ function buildSelf(userId, name) {
   const club = buildEmptyObject('club')
   const member = buildEmptyObject('member')
 
-  club.ref = new Ref('club', userId)
+  club.ref = new Ref('club', Ref.AUTO_ID)
   club.attributes.name = name
   
   member.ref = new Ref('member', userId)

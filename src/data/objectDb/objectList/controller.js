@@ -1,4 +1,5 @@
 import debugObject from '../debug'
+import walkObject, { setChildPath } from '../util/walkObject'
 import refMonitor from './refMonitor'
 
 const context = {
@@ -46,4 +47,9 @@ function handleDataUpdate(update, ref) {
   context.pubSub.publish(ref, update)
 }
 
-export {initialize, watch, get}
+function put(...objects) {
+  const dbObjects = objects.forEach(object => refMonitor.put(object))
+  return dbObjects
+}
+
+export {initialize, watch, get, put}

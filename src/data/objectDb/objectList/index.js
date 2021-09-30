@@ -1,3 +1,3 @@
-import {initialize, watch, get} from './controller'
+import {initialize, watch, get, put} from './controller'
 
-export default {initialize, watch, get}
+export default {initialize, watch, get, put}

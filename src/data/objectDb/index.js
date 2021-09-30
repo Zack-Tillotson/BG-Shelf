@@ -7,12 +7,12 @@ import Ref from './ref'
 
 import pubSub from './pubSub'
 
+const NOOP = () => {}
+
 function initialize(db) {
   objectList.initialize(db, pubSub)
   complexObject.initialize(objectList)
 }
-
-const NOOP = () => {}
 
 function watch(refParam, onData = NOOP, onLoading = NOOP) {
 
@@ -21,7 +21,8 @@ function watch(refParam, onData = NOOP, onLoading = NOOP) {
     ref = new Ref(refParam)
   }
 
-  const unsub = pubSub.subscribe(ref, (callbackRef, object) => {
+  // Get ready to invoke callbacks as needed when data changes
+  const unsub = pubSub.subscribe(ref, () => {
     try {
       const fullObject = complexObject.get(ref)
       onData(fullObject, ref)
@@ -35,13 +36,18 @@ function watch(refParam, onData = NOOP, onLoading = NOOP) {
     }
   })
 
+  // Add object Ref to list of monitored objects
   objectList.watch(ref)
 
   return unsub
 }
 
 function update(object) {
-  console.log('objectdb update', object) // TODO
+  const normalizedObjects = complexObject.normalize(object)
+  objectList.put(...normalizedObjects)
+
+  // Return a reference to the original object (the first item)
+  return normalizedObjects.unshift().ref
 }
 
 export default {

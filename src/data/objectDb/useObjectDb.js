@@ -24,6 +24,10 @@ function useObjectDb(rawOptions) {
 
   let object = useObjectMonitor(ref, {enabled: options.enabled})
 
+  useEffect(() => {
+    updateRef(new Ref(options.path))
+  }, options.path)
+
   if(object === null && !!options.createFunction) {
     object = options.createFunction(...options.createParams)
   }

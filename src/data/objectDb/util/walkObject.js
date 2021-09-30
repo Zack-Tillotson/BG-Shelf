@@ -1,21 +1,56 @@
 import Ref from "../ref"
 
-const REF_ONLY = item => item instanceof Ref
+export const IS_REF = item => item instanceof Ref
+export const IS_OBJ = item => item instanceof Object && IS_REF(item.ref)
+
+const DEFAULT_OPTIONS = {
+  filter: IS_REF,
+  path: [],
+  seenObjects: [],
+  recurse: false,
+  depthFirst: true,
+}
+
+function getOptions(raw = {}) {
+  return {
+    ...DEFAULT_OPTIONS,
+    ...raw,
+  }
+}
 
 // Invokes onChild for each attribute, or for each array item if the attribute is an Array
-function walkObject(object, onChild, filter = REF_ONLY) {
+function walkObject(object, onChild, rawOptions) {
+  const options = getOptions(rawOptions, object)
+
+  const doRecursion = (child, path) => {
+    if(options.seenObjects.find(target => object.ref.equals(target.ref))) {
+      return
+    }
+    options.seenObjects.push(object)
+    walkObject(child, onChild, {...options, path})
+  }
+
+  const handleChild = (child, localPath) => {
+    if(options.filter(child)) {
+      const newPath = [...options.path, ...localPath]
+      if(options.recurse && options.depthFirst && IS_OBJ(child)) {
+        doRecursion(child, newPath)
+      }
+      onChild(child, newPath)
+      if(options.recurse && !options.depthFirst && IS_OBJ(child)) {
+        doRecursion(child, newPath)
+      }
+    }
+  }
+
   Object.keys(object).forEach(key => {
     const child = object[key]
     if(child instanceof Array) {
       child.forEach((subChild, index) => {
-        if(filter(subChild)) {
-          onChild(subChild, [key, index])
-        }
+        handleChild(subChild, [key, index])
       })
     } else {
-      if(filter(child)) {
-        onChild(child, [key])
-      }
+      handleChild(child, [key])
     }
   })
 }

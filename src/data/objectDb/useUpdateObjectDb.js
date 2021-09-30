@@ -1,6 +1,6 @@
 import objectDb from "."
 
-function useUpdateObjectDb(object) {
+function useUpdateObjectDb() {
   return object => objectDb.update(object)
 }
 

@@ -15,7 +15,7 @@ class RefErrors extends Error {
 }
 
 function makeCleanObject(obj, ref) {
-  const ret = {ref}
+  const ret = {ref, id: ref.doc}
   Object.keys(obj).forEach(key => {
     const value = obj[key]
     if(value instanceof Ref) {
@@ -39,7 +39,7 @@ function buildObject(get, ref, seenObjects = []) {
     return objRef.object
   }
 
-  const seenObject = seenObjects.find(target => target.ref === ref)
+  const seenObject = seenObjects.find(target => ref.equals(target.ref))
   if(seenObject) {
     return seenObject
   }

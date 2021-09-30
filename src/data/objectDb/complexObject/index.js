@@ -1,3 +1,3 @@
-import {initialize, get} from './controller'
+import {initialize, get, normalize} from './controller'
 
-export default {initialize, get}
+export default {initialize, get, normalize}

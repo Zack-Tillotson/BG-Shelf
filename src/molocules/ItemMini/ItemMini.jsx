@@ -47,7 +47,7 @@ function ItemMini(props) {
       </div>
       {showDetails && (
         <div className={cn(`${baseCn}__attrs`)}>
-          <AttributeList object="item" values={item} position="secondary" additionalAttrs={(item.attributes.minPlayers || item.attributes.maxPlayers) ? [{
+          <AttributeList object="item" values={item.attributes} position="secondary" additionalAttrs={(item.attributes.minPlayers || item.attributes.maxPlayers) ? [{
               label: 'Player Count', 
               value: [item.attributes.minPlayers, item.attributes.maxPlayers].filter(val => !!val).join('-'),
             }] : []} />
