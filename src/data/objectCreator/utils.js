@@ -25,6 +25,7 @@ export function buildEmptyObject(type) {
         member: null,
         ownership: null,
         acquisitions: [],
+        sessions: [],
       }
     }
     case 'session': {
@@ -33,6 +34,7 @@ export function buildEmptyObject(type) {
         attributes: {},
         item: null,
         participants: [],
+        club: null,
       }
     }
     case 'member': {

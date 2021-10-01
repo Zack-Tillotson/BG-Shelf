@@ -1,6 +1,6 @@
 import {member1, member2} from './base/member'
 import {club1} from './base/club'
-import {ownership1, ownership2} from './base/ownership'
+import {ownership1, ownership2, ownership3} from './base/ownership'
 import {acquisitions1, acquisitions2} from './base/acquisition'
 import {session1, session2} from './base/session'
 import {item1, item2, item3} from './base/item'
@@ -43,10 +43,22 @@ session2.id = getId()
 session2.item = item2
 
 item1.id = getId()
+item1.member = member1
+item1.ownership = ownership1
+item1.acquisitions = acquisitions1
+item1.sessions = [session1]
 
 item2.id = getId()
+item2.member = member1
+item2.ownership = ownership2
+item2.acquisitions = []
+item2.sessions = [session2]
 
 item3.id = getId()
+item3.member = member2
+item3.ownership = ownership3
+item3.acquisitions = []
+item3.sessions = []
 
 export {
   member1,

@@ -26,16 +26,9 @@ import RenderSession from './components/molocules/Session'
 import RenderAcquisitions from './components/molocules/Acquisitions'
 import RenderItem from './components/molocules/Item'
 
-// components (stateful)
-import RenderItemSelector from './components/components/ItemSelector'
-import RenderSortAndFilter from './components/components/SortAndFilter'
-
-const tabs = ['components', 'molocules', 'atoms']
+const tabs = ['molocules', 'atoms']
 function Component(props) {
   const [tab, updateTab] = useState(tabs[0])
-
-  const gate = useInitGate()
-  if(gate) return gate
 
   const handleTabUpdate = tab => event => updateTab(tab)
 
@@ -46,13 +39,6 @@ function Component(props) {
           <SharpToggle key={tabOption} color="blue" onClick={handleTabUpdate(tabOption)} active={tab === tabOption}>{tabOption}</SharpToggle>
         ))}
       </div>
-      {tab === 'components' && (
-        <section>
-          <h2 className="molocules__section-title">Components</h2>
-          <RenderSortAndFilter />
-          <RenderItemSelector />
-        </section>
-      )}
       {tab === 'molocules' && (
         <section>
           <h2 className="molocules__section-title">Molocules</h2>
@@ -72,11 +58,11 @@ function Component(props) {
       {tab === 'atoms' && (
         <section>
           <h2 className="molocules__section-title">Atoms</h2>
-          <RenderCard />
+          <RenderFont />
           <RenderButton />
           <RenderSharpToggles />
+          <RenderCard />
           <RenderImages />
-          <RenderFont />
         </section>
       )}
     </Page>

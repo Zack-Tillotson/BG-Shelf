@@ -46,9 +46,14 @@ function CollectionView(props) {
 
   if(gate) return gate
 
-  const handleAddClick = attributes => {
-    const item = buildMemberItem(member, attributes)
-    member.collection.push(item)
+  const handleAddClick = data => {
+    if(data.ref) {
+      member.wishlist = member.wishlist.filter(item => !item.ref.equals(data.ref))
+      member.collection.push(data)
+    } else {
+      const item = buildMemberItem(member, data)
+      member.collection.push(item)
+    }
     updateDb(member)
   }
 

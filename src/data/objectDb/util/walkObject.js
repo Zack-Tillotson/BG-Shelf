@@ -3,17 +3,18 @@ import Ref from "../ref"
 export const IS_REF = item => item instanceof Ref
 export const IS_OBJ = item => item instanceof Object && IS_REF(item.ref)
 
-const DEFAULT_OPTIONS = {
+const DEFAULT_OPTIONS = () => ({
   filter: IS_REF,
   path: [],
   seenObjects: [],
+  childObjects: [],
   recurse: false,
   depthFirst: true,
-}
+})
 
 function getOptions(raw = {}) {
   return {
-    ...DEFAULT_OPTIONS,
+    ...DEFAULT_OPTIONS(),
     ...raw,
   }
 }
@@ -22,13 +23,12 @@ function getOptions(raw = {}) {
 function walkObject(object, onChild, rawOptions) {
   const options = getOptions(rawOptions, object)
 
-  // XXX Why is this causing issues.
-  if(object && typeof object === 'object' && object.ref instanceof Ref && options.seenObjects.find(seenObject => object.ref.equals(seenObject.ref))) {
-    return
-  }
-
+  options.seenObjects.push(object)
+  
   const doRecursion = (child, path) => {
-    options.seenObjects.push(object)
+    if(options.seenObjects.find(seenObject => child.ref.equals(seenObject.ref))) {
+      return
+    }
     walkObject(child, onChild, {...options, path})
   }
 
@@ -38,7 +38,10 @@ function walkObject(object, onChild, rawOptions) {
       if(options.recurse && options.depthFirst && IS_OBJ(child)) {
         doRecursion(child, newPath)
       }
-      onChild(child, newPath)
+      if(!options.childObjects.includes(child)) {
+        onChild(child, newPath)
+        options.childObjects.push(child)
+      }
       if(options.recurse && !options.depthFirst && IS_OBJ(child)) {
         doRecursion(child, newPath)
       }

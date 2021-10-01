@@ -2,12 +2,10 @@ import walkObject, {IS_OBJ, setChildPath} from '../util/walkObject'
 import Ref from '../ref'
 
 function normalizeObject(target) {
-  const objects = [target]
+  const objects = []
 
   walkObject(target, child => {
-    if(!objects.find(obj => obj.ref.equals(child.ref))) {
-      objects.push(child)
-    }
+    objects.push(child)
   }, {
     filter: IS_OBJ,
     recurse: true,

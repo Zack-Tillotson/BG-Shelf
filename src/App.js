@@ -7,6 +7,7 @@ import {
 import {Provider} from 'react-redux'
 
 import Design from 'views/Design'
+import DesignComponents from 'views/DesignComponents'
 import Landing from 'views/Landing';
 
 import Member from 'views/Member';
@@ -34,6 +35,7 @@ function App({store}) {
         <Route path="/" component={Hack} />{/*A hack way to access the Browser Route in Saga files*/}
         <Suspense fallback={<Skeleton />}>
           <Switch>
+
             {/* No club, implicit self Member */}
             <Route path="/app/" exact component={Member} />
             <Route path="/app/collection/" exact component={Collection} />
@@ -49,6 +51,7 @@ function App({store}) {
 
             <Route path="/" exact component={Landing} />
             <Route path="/design/" exact component={Design} />
+            <Route path="/app/design/" exact component={DesignComponents} />
             
             <Route component={FileNotFound} />
           </Switch>

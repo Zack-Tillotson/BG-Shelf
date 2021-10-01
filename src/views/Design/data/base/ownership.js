@@ -22,4 +22,12 @@ export const ownership2 = {
   },
 }
 
+export const ownership3 = {
+  item: null,
+  attributes: {
+    favorite: false,
+    note: '',
+  },
+}
+
 export default ownership1

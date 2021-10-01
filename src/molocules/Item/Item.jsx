@@ -16,12 +16,9 @@ const baseCn = 'item'
 function Item(props) {
   const {
     item,
-    ownership,
-    acquisitions,
-    sessions,
     
     modifiable = false,
-
+    
     onToggleFavorite,
     onToggleCollection,
     onToggleWishlist,
@@ -30,6 +27,12 @@ function Item(props) {
     onEditAcquisition,
     onDeleteAcquisition,
   } = props
+  
+  const {
+    ownership,
+    acquisitions,
+    sessions,
+  } = item
 
   return (
     <div className={cn(baseCn)}>
@@ -51,6 +54,9 @@ function Item(props) {
         <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAddSession, primary: true}}>
           Plays
         </ListTitle>
+        {sessions.length === 0 && (
+          <div>Not yet played.</div>          
+        )}
         {sessions.map(session => (
           <div key={session.id} className="item__list-item">
             <SessionMini noHeader session={session} />

@@ -31,9 +31,8 @@ export function buildMemberItem(member, attributes) {
   const ownership = buildEmptyObject('ownership')
 
   item.attributes = attributes
-
-  item.ownership = ownership
   item.member = member
+  item.ownership = ownership
 
   ownership.item = item
 

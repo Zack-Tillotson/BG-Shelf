@@ -46,9 +46,14 @@ function WishlistView(props) {
 
   if(gate) return gate
 
-  const handleAddClick = attributes => {
-    const item = buildMemberItem(member, attributes)
-    member.wishlist.push(item)
+  const handleAddClick = data => {
+    if(data.ref) {
+      member.collection = member.collection.filter(item => !item.ref.equals(data.ref))
+      member.wishlist.push(data)
+    } else {
+      const item = buildMemberItem(member, data)
+      member.wishlist.push(item)
+    }
     updateDb(member)
   }
 
