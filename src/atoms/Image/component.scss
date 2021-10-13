@@ -1,13 +1,50 @@
+:root {
+  --to-and-fro-top: 20% 0%;
+  --to-and-fro-left: 25% 0%;
+  --to-and-fro-bottom: 50% 100%;
+  --to-and-fro-animation-delay: 0s;
+}
+
+@keyframes to-and-fro {
+  
+  0% {
+    left: -100vw;
+  }
+
+  50% {
+    left: 0vw;
+  }
+
+  100% {
+    left: -100vw;
+  }
+}
+
 .atom-image {
   position: relative;
   display: inline-block;
   
+  padding: 0 var(--pad-half);
+  overflow: hidden;  
+}
+
+.atom-image:before {
+  content: ' ';
+  position: absolute;
+
+  left: -100vw; 
+  width: 200vw;
+  top: 0;
+  bottom: 0;
+  
+  overflow: hidden;
   background: var(--color-bg-offset-light);
   background: 
-    radial-gradient(ellipse at top, var(--color-bg-focus), transparent), 
-    radial-gradient(ellipse at left, var(--color-bg-focus), transparent), 
-    radial-gradient(ellipse at bottom, var(--color-contrast-bg-base), transparent);
-  padding: 0 var(--pad-half);
+      radial-gradient(ellipse at var(--to-and-fro-top), var(--color-bg-focus), transparent), 
+      radial-gradient(ellipse at var(--to-and-fro-left), var(--color-bg-focus), transparent), 
+      radial-gradient(ellipse at var(--to-and-fro-bottom), var(--color-contrast-bg-base), transparent);
+
+  animation: to-and-fro 10s infinite var(--animation-delay, var(--to-and-fro-animation-delay));
 }
 
 .atom-image__inner {

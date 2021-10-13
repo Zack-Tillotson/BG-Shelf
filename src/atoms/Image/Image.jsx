@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 
 import './component.scss'
@@ -11,9 +11,10 @@ function Image(props) {
     src,
   } = props
   
+  const [animationDealy] = useState(Math.random() * 5)
 
   return (
-    <div className={cn(baseCn, className)}>
+    <div className={cn(baseCn, className)} style={{[`--animation-delay`]: animationDealy + 's'}}>
       <div className={cn(`${baseCn}__inner`)} style={{backgroundImage: `url("${src}")`}} />
     </div>
   );
