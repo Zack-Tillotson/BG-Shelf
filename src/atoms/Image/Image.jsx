@@ -11,7 +11,7 @@ function Image(props) {
     src,
   } = props
   
-  const [animationDealy] = useState(Math.random() * 5)
+  const [animationDealy] = useState(Math.random() * 8)
 
   return (
     <div className={cn(baseCn, className)} style={{[`--animation-delay`]: animationDealy + 's'}}>

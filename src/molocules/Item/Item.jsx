@@ -41,14 +41,14 @@ function Item(props) {
         <SharpToggle color="blue" onClick={onToggleCollection} active={ownership.attributes.favorite}>Collection</SharpToggle>
         <SharpToggle color="green" onClick={onToggleWishlist} active={ownership.attributes.favorite}>Wishlist</SharpToggle>
       </section>
-      <section className={cn(`${baseCn}__image`)}>
-        <Image className={cn(`${baseCn}__hero`)} src={item.attributes.canonicalImage} />
-      </section>
       <section>
         <h1>{item.attributes.name}</h1>
         <div className={cn(`${baseCn}__year`)}>
           <span className={cn(`${baseCn}__label`)}>Year: </span> {item.attributes.releaseDate}
         </div>
+      </section>
+      <section className={cn(`${baseCn}__image`)}>
+        <Image className={cn(`${baseCn}__hero`)} src={item.attributes.canonicalImage} />
       </section>
       <section className={cn(`${baseCn}__section`)}>
         <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAddSession, primary: true}}>

@@ -60,20 +60,8 @@ strong {
   color: var(--color-font-primary);
 }
 
-figure {
-  display: inline-block;
-  width: 100%;
-  max-width: 600px;
-  height: fit-content;
-  margin: var(--pad) auto;
-  padding: var(--pad);
-  border: var(--border-2);
-  border-radius: 8px;
-}
-
 figcaption {
-  color: var(--color-font-secondary);
-  font-style: italic;
+  color: var(--color-font-focus);
 }
 
 video {

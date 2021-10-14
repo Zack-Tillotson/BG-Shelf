@@ -34,8 +34,11 @@ function Member(props) {
           <Card className={`${baseCn}__card ${baseCn}--special-1`}>
             <h3 className="member-member__title">Collection</h3>
             <div className={`${baseCn}__image-pack`}>
-              {collection.slice(0, 5).map(item => (
-                <Image className={`${baseCn}__image-pack-item`} src={item.attributes.canonicalImage} key={item.id} />
+              {collection.slice(0, 4).map(item => (
+                <figure key={item.id} className={`${baseCn}__image-pack-item`}>
+                  <figcaption className={`${baseCn}__image-pack-name`}>{item.attributes.name}</figcaption>
+                  <Image className={`${baseCn}__image-pack-image`} src={item.attributes.canonicalImage} />
+                </figure>
               ))}
             </div>
           </Card>
@@ -44,8 +47,11 @@ function Member(props) {
           <Card className={`${baseCn}__card ${baseCn}--special-2`}>
             <h3 className="member-member__title">Wishlist</h3>
             <div className={`${baseCn}__image-pack`}>
-              {wishlist.slice(0, 5).map(item => (
-                <Image className={`${baseCn}__image-pack-item`} src={item.attributes.canonicalImage} key={item.id} />
+              {wishlist.slice(0, 4).map(item => (
+                <div key={item.id} className={`${baseCn}__image-pack-item`}>
+                  <div className={`${baseCn}__image-pack-name`}>{item.attributes.name}</div>
+                  <Image className={`${baseCn}__image-pack-image`} src={item.attributes.canonicalImage} />
+                </div>
               ))}
             </div>
           </Card>

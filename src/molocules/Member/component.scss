@@ -15,21 +15,21 @@
   .member-member__image-pack {
     display: flex;
     flex-flow: row nowrap;
-    justify-items: after;
+    justify-content: space-around;
   }
 
-  .member-member__image-pack-item {
+  .member-member__image-pack-image {
     height: 75px;
     width: 150px;
   }
 
+  .member-member__image-pack-name {
+    font-size: var(--font-size-delta);
+  }
+
   .member-member--special-1 {
-    background: var(--color-bg-offset-light);
-    background: radial-gradient(ellipse at bottom, var(--color-bg-primary), transparent), radial-gradient(ellipse at top, var(--color-bg-base), transparent);  
   }
 
   .member-member--special-2 {
-    background: var(--color-bg-offset-light);
-    background: radial-gradient(ellipse at bottom, var(--color-bg-secondary), transparent), radial-gradient(ellipse at top, var(--color-bg-base), transparent);  
   }
 }
