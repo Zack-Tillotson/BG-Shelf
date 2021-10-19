@@ -32,18 +32,67 @@ function ItemView(props) {
     enabled: !!userId,
   })
 
-  const gate = useInitGate(member)
+  const item = useObjectDb({
+    path: ['item', itemId],
+    enabled: !!userId,
+  })
+
+  const gate = useInitGate(member, item)
   const updateDb = useUpdateObjectDb()
 
   if(gate) return gate
-  
-  const item = [...member.collection, ...member.wishlist].find(item => item.id === itemId)
 
-  if(!item) throw new Error('item not found on member collections')
+  const onToggleFavorite = () => {
+    item.ownership.attributes.favorite = !item.ownership.attributes.favorite
+    updateDb(item.ownership)
+  }
+
+  const onToggleCollection = () => {
+    const itemIndex = member.collection.indexOf(item)
+    if(itemIndex < 0) {
+      member.collection.push(item)
+    } else {
+      member.collection.splice(itemIndex, 1)
+    }
+    updateDb(member)
+  }
+  
+  const onToggleWishlist = () => {
+    
+  }
+
+  const onAddSession = () => {
+    
+  }
+
+  const onAddAquisition = () => {
+    
+  }
+
+  const onEditAcquisition = () => {
+    
+  }
+
+  const onDeleteAcquisition = () => {
+    
+  }
+
+  const itemProps = {
+    item, 
+    member,
+    
+    onToggleFavorite,
+    onToggleCollection,
+    onToggleWishlist,
+    onAddSession,
+    onAddAquisition,
+    onEditAcquisition,
+    onDeleteAcquisition,
+  }
 
   return (
     <Page className={baseCn}>
-      <Item item={item} member={member} />
+      <Item {...itemProps} />
     </Page>
   );
 }

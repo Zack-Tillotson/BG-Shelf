@@ -3,14 +3,14 @@ import cn from 'classnames'
 
 import Club from 'molocules/Club'
 
-import {member1, member2, club1} from '../../data'
+import {member1} from '../../data'
 
 function RenderClub() {
   return (
     <section>
       <h3 className="molocules__title">Club</h3>
       <div className="molocules__item">
-        <Club club={club1} />
+        <Club club={member1.clubs[0]} />
       </div>
     </section>
   )

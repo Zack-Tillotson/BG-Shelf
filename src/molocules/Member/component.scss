@@ -6,10 +6,11 @@
 
   .member-member__card {
     min-height: 100px;
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: contain;
     margin-top: var(--pad);
+
+    &:hover {
+      background: unset;
+    }
   }
 
   .member-member__image-pack {
@@ -25,11 +26,5 @@
 
   .member-member__image-pack-name {
     font-size: var(--font-size-delta);
-  }
-
-  .member-member--special-1 {
-  }
-
-  .member-member--special-2 {
   }
 }

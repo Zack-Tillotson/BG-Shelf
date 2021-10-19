@@ -25,7 +25,7 @@ function useItemSelector(formName, options) {
       .map(suggestion => ({
         id: suggestion.id,
         name: suggestion.name,
-        results: suggestion.objectPath.reduce((soFar, piece) => soFar[piece], object)
+        results: suggestion.objectMapper(object), // XXX
       }))
   } catch(e) {}
 

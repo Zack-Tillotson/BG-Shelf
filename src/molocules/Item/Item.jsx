@@ -16,6 +16,8 @@ const baseCn = 'item'
 function Item(props) {
   const {
     item,
+    ownership,
+    club,
     
     modifiable = false,
     
@@ -27,19 +29,15 @@ function Item(props) {
     onEditAcquisition,
     onDeleteAcquisition,
   } = props
-  
-  const {
-    ownership,
-    acquisitions,
-    sessions,
-  } = item
+
+  const sessions = club.getSessions(item)
 
   return (
     <div className={cn(baseCn)}>
       <section className={cn(`${baseCn}__quick-actions`)}>
         <SharpToggle color="red" onClick={onToggleFavorite} active={ownership.attributes.favorite}>Favorite</SharpToggle>
-        <SharpToggle color="blue" onClick={onToggleCollection} active={ownership.attributes.favorite}>Collection</SharpToggle>
-        <SharpToggle color="green" onClick={onToggleWishlist} active={ownership.attributes.favorite}>Wishlist</SharpToggle>
+        <SharpToggle color="blue" onClick={onToggleCollection} active={ownership.attributes.collection}>Collection</SharpToggle>
+        <SharpToggle color="green" onClick={onToggleWishlist} active={ownership.attributes.wishlist}>Wishlist</SharpToggle>
       </section>
       <section>
         <h1>{item.attributes.name}</h1>
@@ -66,7 +64,7 @@ function Item(props) {
       <section className={cn(`${baseCn}__section`)}>
         <Acquisitions 
           noHeader 
-          acquisitions={acquisitions} 
+          ownership={ownership}
           modifiable={modifiable} 
           onAdd={onAddAquisition}
           onEdit={onEditAcquisition} 

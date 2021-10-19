@@ -42,7 +42,7 @@ function SessionMini(props) {
           </div>
         )}
         <div className={cn(`${baseCn}__secondary-attrs`)}>
-          <AttributeList object="session" values={session} position="secondary" />
+          <AttributeList object="session" values={session.attributes} position="secondary" />
         </div>
       </Ele>
     </div>

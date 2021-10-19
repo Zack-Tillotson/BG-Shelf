@@ -10,7 +10,6 @@ const baseCn = 'session'
 function SessionView(props) {
   const {
     session,
-    item,
     ownership,
     modifiable,
     onEdit,
@@ -19,8 +18,8 @@ function SessionView(props) {
 
   return (
     <div className={cn(baseCn)}>
-      <ItemMini item={item} showDetails={false} ownership={ownership} />
-      <AttributeList object="session" values={session} position="secondary" />
+      <ItemMini item={session.item} showDetails={false} ownership={ownership} />
+      <AttributeList object="session" values={session.attributes} position="secondary" />
       <div className="session__control">
         {modifiable && onEdit && (
           <Button className="session__control-edit" hollow onClick={onEdit}>Edit</Button>

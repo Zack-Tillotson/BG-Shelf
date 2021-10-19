@@ -9,9 +9,7 @@ const baseCn = 'acquisitions'
 
 function AcquisitionsView(props) {
   const {
-    item,
     ownership,
-    acquisitions,
     modifiable = false,
     noHeader = false,
     onAdd,
@@ -22,19 +20,19 @@ function AcquisitionsView(props) {
   return (
     <div className={cn(baseCn)}>
       {!noHeader && (
-        <ItemMini item={item} showDetails={false} ownership={ownership} />
+        <ItemMini item={ownership.item} showDetails={false} ownership={ownership} />
       )}
       <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAdd, primary: true}}>
         Acquisitions
       </ListTitle>
-      {acquisitions.length === 0 && (
+      {ownership.acquisitions.length === 0 && (
         <div className={`${baseCn}__not-owned`}>
           Not yet acquired.
         </div>
       )}
-      {acquisitions.length > 0 && (
+      {ownership.acquisitions.length > 0 && (
         <ol>
-          {acquisitions.map(acquisition => (
+          {ownership.acquisitions.map(acquisition => (
             <li key={acquisition.attributes.date}>
               <div className={cn(`${baseCn}__acquisition`)}>
                 <div className="acquisitions__piece">

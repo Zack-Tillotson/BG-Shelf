@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import Relationship from 'molocules/Relationship'
 
-import {club1} from '../../data'
+import {member1} from '../../data'
 
 function renderListTitles() {
 
@@ -17,7 +17,7 @@ function renderListTitles() {
 
       <div className="molocules__item">
         <h4 className="molocules__subtitle">Club</h4>
-        <Relationship view="Collection" club={club1} member={club1.members[0]} />
+        <Relationship view="Collection" club={member1.clubs[0]} member={member1} />
       </div>
     </section>
   )

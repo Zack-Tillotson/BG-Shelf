@@ -21,12 +21,12 @@ function MemberMini(props) {
       {!showButton && (
         <div key="highlights" className={cn(`${baseCn}__highlights`)}>
           <span className={cn(`${baseCn}__highlight`)}>
-            <span className={cn(`${baseCn}__highlight-label`)}>Times played: </span>
-            <span className={cn(`${baseCn}__highlight-value`)}>{member.sessions.length}</span>
+            <span className={cn(`${baseCn}__highlight-label`)}>Collection: </span>
+            <span className={cn(`${baseCn}__highlight-value`)}>{member.getCollection().length} items</span>
           </span>
           <span className={cn(`${baseCn}__highlight`)}>
-            <span className={cn(`${baseCn}__highlight-label`)}>Games owned: </span>
-            <span className={cn(`${baseCn}__highlight-value`)}>{member.collection.length}</span>
+            <span className={cn(`${baseCn}__highlight-label`)}>Wishlist: </span>
+            <span className={cn(`${baseCn}__highlight-value`)}>{member.getWishlist().length} items</span>
           </span>
         </div>
       )}

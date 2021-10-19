@@ -1,5 +1,9 @@
-import {buildEmptyObject} from './utils'
-import Ref from 'data/objectDb/ref'
+import { Club } from './types/club'
+import { Member } from './types/member'
+import { Ownership } from './types/ownership'
+import { Item } from './types/item' 
+import { Acquisition } from './types/acquisition'
+import { Session } from './types/session'
 
 // Opinionated functions for use in specific use cases
 
@@ -12,14 +16,9 @@ export function buildSelfMember(userId, name) {
 }
 
 function buildSelf(userId, name) {
-  const club = buildEmptyObject('club')
-  const member = buildEmptyObject('member')
-
-  club.attributes.name = name
+  const club = new Club({name})
+  const member = new Member(userId, {name})
   
-  member.ref = new Ref('member', userId)
-  member.attributes.name = name
-
   club.members.push(member)
   member.clubs.push(club)
 
@@ -27,14 +26,18 @@ function buildSelf(userId, name) {
 }
 
 export function buildMemberItem(member, attributes) {
-  const item = buildEmptyObject('item')
-  const ownership = buildEmptyObject('ownership')
-
-  item.attributes = attributes
-  item.member = member
-  item.ownership = ownership
-
-  ownership.item = item
+  const item = new Item(attributes.bggId, attributes)
+  
+  member.ownerships.push(new Ownership(item))
 
   return item
+}
+
+export {
+  Club,
+  Member,
+  Ownership,
+  Item,
+  Acquisition,
+  Session,
 }

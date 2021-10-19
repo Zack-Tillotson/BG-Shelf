@@ -32,6 +32,7 @@ function useItemLookup() {
         const cleanDesc = cleanText(getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'description').innerHTML))
 
         const retItem = {
+          bggId: itemBrief.id,
           name: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'name' && attr.getAttribute('type') === 'primary').getAttribute('value')),
           releaseDate: getSafeValue(item, item => [...item.children].find(attr => attr.tagName === 'yearpublished').getAttribute('value')),
           description: cleanDesc,

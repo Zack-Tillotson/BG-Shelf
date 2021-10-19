@@ -114,11 +114,11 @@ export default {
     "suggestions": [{
       id: "collection",
       name: "Collection",
-      objectPath: ["collection"],
+      objectMapper: object => object.getCollection()
     }, {
       id: "wishlist",
       name: "Wishlist",
-      objectPath: ["wishlist"],
+      objectMapper: object => object.getWishlist()
     }]
   },
   "member" : {

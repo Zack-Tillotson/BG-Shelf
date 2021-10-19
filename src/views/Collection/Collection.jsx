@@ -62,7 +62,7 @@ function CollectionView(props) {
       <Relationship view="Collection" member={member} />
       <ItemSelector onSelect={handleAddClick} suggestions={['wishlist']} object={member} />
 
-      {member.collection.map(item => (
+      {member.getCollection().map(item => (
         <Link key={item.id} to={`/app/item/${item.id}/`}>
           <Card >
             <ItemMini item={item} member={member} />

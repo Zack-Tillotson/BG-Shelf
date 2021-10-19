@@ -4,9 +4,12 @@ import cn from 'classnames'
 import Card from 'atoms/Card'
 import SessionMini from 'molocules/SessionMini'
 
-import {item1, item2, item3, member1, club1, ownership1, session1, session2} from '../../data'
+import {member1} from '../../data'
 
 function renderSessionMinis() {
+  const session1 = member1.clubs[0].sessions[0]
+  const session2 = member1.clubs[0].sessions[1]
+
   return (
     <section>
       <h3 className="molocules__title">Session Minis</h3>
