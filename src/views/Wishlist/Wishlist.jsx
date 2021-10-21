@@ -63,12 +63,12 @@ function WishlistView(props) {
   return (
     <Page className={baseCn}>
       <Relationship view="Wishlist" member={member} />
-      <ItemSelector onSelect={handleAddClick} />
+      <ItemSelector onSelect={handleAddClick} suggestions={['collection']} object={member} />
 
-      {member.wishlist.map(item => (
-        <Link to={`/app/item/${item.id}/`} key={item.id}>
-          <Card>
-            <ItemMini item={item} member={member} />
+      {member.getWishlist().map(ownership => (
+        <Link key={ownership.id} to={`/app/item/${ownership.item.id}/`}>
+          <Card >
+            <ItemMini item={ownership.item} member={member} ownership={ownership} />
           </Card>
         </Link>
       ))}

@@ -17,7 +17,7 @@ export class ObjectDbBase {
 
     this.ref = new Ref(this.getType(), id)
     this.attributes = attributes
-    this.id = id
+    this.id = this.ref.getDoc()
     
     Object.keys(rest).forEach(key => this[key] = rest[key])
   }

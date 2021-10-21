@@ -50,7 +50,7 @@
       radial-gradient(ellipse at var(--to-and-fro-bottom), var(--color-bg-primary), transparent),
       radial-gradient(ellipse at var(--to-and-fro-right), var(--color-bg-secondary), transparent);
 
-  animation: to-and-fro 8s infinite var(--animation-delay, var(--to-and-fro-animation-delay));
+  animation: to-and-fro 5s infinite var(--animation-delay, var(--to-and-fro-animation-delay));
 }
 
 .atom-image__inner {

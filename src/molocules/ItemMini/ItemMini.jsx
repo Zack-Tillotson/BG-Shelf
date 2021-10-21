@@ -21,7 +21,7 @@ function ItemMini(props) {
     onClick = () => {},
   } = props
 
-  let dateAcquired = null, isFavorite = false, acquisitionCount = 0
+  let dateAcquired = null, isFavorite = false
   try {
     dateAcquired = ownership.acquisitions[0].attributes.dateAcquired
     isFavorite = ownership.attributes.favorite

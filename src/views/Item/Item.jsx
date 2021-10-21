@@ -47,23 +47,22 @@ function ItemView(props) {
 
   if(gate) return gate
 
+  const ownership = member.getOwnership(item)
+  const club = urlClub || member.clubs[0]
+
   const onToggleFavorite = () => {
-    item.ownership.attributes.favorite = !item.ownership.attributes.favorite
-    updateDb(item.ownership)
+    ownership.attributes.favorite = !ownership.attributes.favorite
+    updateDb(ownership)
   }
 
   const onToggleCollection = () => {
-    const itemIndex = member.collection.indexOf(item)
-    if(itemIndex < 0) {
-      member.collection.push(item)
-    } else {
-      member.collection.splice(itemIndex, 1)
-    }
-    updateDb(member)
+    ownership.attributes.collection = !ownership.attributes.collection
+    updateDb(ownership)
   }
   
   const onToggleWishlist = () => {
-    
+    ownership.attributes.wishlist = !ownership.attributes.wishlist
+    updateDb(ownership)
   }
 
   const onAddSession = () => {
@@ -81,9 +80,6 @@ function ItemView(props) {
   const onDeleteAcquisition = () => {
     
   }
-
-  const ownership = member.getOwnership(item)
-  const club = urlClub || member.clubs[0]
 
   const itemProps = {
     item, 

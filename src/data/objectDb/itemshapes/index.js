@@ -114,11 +114,11 @@ export default {
     "suggestions": [{
       id: "collection",
       name: "Collection",
-      objectMapper: object => object.getCollection()
+      objectMapper: object => object.getCollection().map(ownership => ownership.item)
     }, {
       id: "wishlist",
       name: "Wishlist",
-      objectMapper: object => object.getWishlist()
+      objectMapper: object => object.getWishlist().map(ownership => ownership.item)
     }]
   },
   "member" : {

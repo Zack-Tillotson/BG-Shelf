@@ -1,8 +1,8 @@
-import walkObject, {IS_OBJ, setChildPath} from '../util/walkObject'
+import walkObject, {IS_OBJ, IS_REF, NO_FILTER, setChildPath} from '../util/walkObject'
 import Ref from '../ref'
 
 function normalizeObject(target) {
-  const objects = []
+  const objects = [target]
 
   walkObject(target, child => {
     objects.push(child)
@@ -13,10 +13,12 @@ function normalizeObject(target) {
 
   // We're modifying the parameter object. I think that's ok, but TBD
   const normalObjs = objects.map(object => {
+    const cleanObject = {}
     walkObject(object, (child, path) => {
-      setChildPath(object, path, child.ref)
-    }, {filter: IS_OBJ})
-    return object    
+      const newValue = IS_OBJ(child) ? child.ref : child
+      setChildPath(cleanObject, path, newValue)
+    }, {filter: NO_FILTER})
+    return cleanObject
   })
 
   return normalObjs

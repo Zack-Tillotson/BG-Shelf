@@ -52,7 +52,7 @@ function add(ref) {
 }
 
 function put(object) {
-  const {ref, ...restObject} = object
+  const {ref, id, ...restObject} = object
   const dbRef = context.db.collection(ref.collection).doc(ref.doc)
   
   fillRefs(restObject)

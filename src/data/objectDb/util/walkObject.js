@@ -2,6 +2,7 @@ import Ref from "../ref"
 
 export const IS_REF = item => item instanceof Ref
 export const IS_OBJ = item => item instanceof Object && IS_REF(item.ref)
+export const NO_FILTER = _ => true
 
 const DEFAULT_OPTIONS = () => ({
   filter: IS_REF,
@@ -63,7 +64,14 @@ function walkObject(object, onChild, rawOptions) {
 export function setChildPath(object, path, value) {
   const cleanPath = [...path]
   const attrName = cleanPath.pop()
-  const target = cleanPath.reduce((soFar, piece) => {
+  const target = cleanPath.reduce((soFar, piece, pieceIndex) => {
+    if(soFar[piece] === undefined) {
+      if(Number.isInteger(Number(path[pieceIndex + 1]))) {
+        soFar[piece] = []
+      } else {
+        soFar[piece] = {}
+      }
+    }
     return soFar[piece]
   }, object)
   target[attrName] = value
