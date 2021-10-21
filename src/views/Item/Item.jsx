@@ -81,10 +81,14 @@ function ItemView(props) {
     
   }
 
+  const isClubMember = !!club.members.find(clubMember => clubMember.equals(member))
+
   const itemProps = {
     item, 
     ownership,
     club,
+
+    modifiable: isClubMember,
     
     onToggleFavorite,
     onToggleCollection,
