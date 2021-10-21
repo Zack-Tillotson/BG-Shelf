@@ -54,7 +54,7 @@ function Member(props) {
             <ListTitle>Clubs</ListTitle>
             {clubs.map((club, index) => (
               <Link key={club.id || index} to={`/app/club/${club.id}/`}>
-                <Card>
+                <Card className={`${baseCn}__card`}>
                   <ClubMini club={club} />
                 </Card>
               </Link>

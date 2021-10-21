@@ -4,7 +4,7 @@
 :root {
 
   /* brand colors (each 1-4, 2 is standard) */
-  --brand-primary-1: #93DBFF;
+  --brand-primary-1: #C7ECFF;
   --brand-primary-2: #0086CD;
   --brand-primary-3: #025886;
   --brand-primary-4: #012d46;
@@ -13,11 +13,11 @@
   --brand-secondary-3: #13852b;
   --brand-secondary-4: #035214;
   --brand-white: #ffffff;
-  --brand-grey-1: rgb(247, 247, 247);
-  --brand-grey-2: rgb(124, 124, 124);
-  --brand-grey-3: rgb(73, 73, 73);
-  --brand-grey-4: rgb(36, 36, 36);
-  --brand-black: rgb(14, 14, 14);
+  --brand-grey-1: #f5f5f5;
+  --brand-grey-2: #7c7c7c;
+  --brand-grey-3: #494949;
+  --brand-grey-4: #242424;
+  --brand-black: #0e0e0e;
   --brand-red-1: #ec9090;
   --brand-red-2: #ff0000;
   --brand-red-3: #8b0000;
@@ -33,7 +33,7 @@
 
   /* semantics standard */
   --color-bg-base: var(--brand-grey-1);
-  --color-bg-base-transparent: rgba(247, 247, 247, .8); /* manually keep to up to date with above */
+  --color-bg-base-transparent: #f5f5f593; /* manually keep to up to date with above */
   --color-bg-focus: var(--brand-white);
   --color-bg-primary: var(--brand-primary-1);
   --color-bg-secondary: var(--brand-secondary-1);

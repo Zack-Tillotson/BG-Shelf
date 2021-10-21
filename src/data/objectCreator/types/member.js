@@ -1,19 +1,31 @@
 import { ObjectDbBase } from './objectDbBase'
 
-const TYPE = 'member'
-
 const attributeFilter = attribute => ownership => ownership.attributes[attribute]
 
-export class Member extends ObjectDbBase {
-  constructor(id, attributes) {
-    super(TYPE, {id, attributes})
+const TYPE = 'member'
 
-    this.clubs = []
-    this.ownerships = []
+export class Member extends ObjectDbBase {
+  static TYPE = TYPE
+  constructor(params) {
+    super(params)
+
+    this.clubs = this.clubs || []
+    this.ownerships = this.ownerships || []
   }
 
-  DEFAULT_ATTRS = {
-    name: '',
+  static fromDb(id, object) {
+    const ret = new Member({id, ...object})
+    return ret
+  }
+
+  getType() { 
+    return TYPE
+  }
+
+  getDefaultAttrs() { 
+    return {
+      name: '',
+    }
   }
 
   getCollection() {
@@ -29,6 +41,6 @@ export class Member extends ObjectDbBase {
   }
 
   getOwnership(item) {
-    return this.ownerships.find(ownership => ownership.item === item)
+    return this.ownerships.find(ownership => ownership.item.equals(item))
   }
 }

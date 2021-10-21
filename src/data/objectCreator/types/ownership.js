@@ -3,16 +3,28 @@ import { ObjectDbBase } from './objectDbBase'
 const TYPE = 'ownership'
 
 export class Ownership extends ObjectDbBase {
-  constructor(item) {
-    super(TYPE)
-
-    this.item = item
-    this.acquisitions = []
+  static TYPE = TYPE
+  
+  constructor(params) {
+    super(params)
+    
+    this.acquisitions = this.acquisitions || []
   }
 
-  DEFAULT_ATTRS = {
-    favorite: false,
-    wishlist: false,
-    collection: false,
+  static fromDb(id, object) {
+    const ret = new Ownership({id, ...object})
+    return ret
+  }
+
+  getType() { 
+    return TYPE
+  }
+
+  getDefaultAttrs() { 
+    return {
+      favorite: false,
+      wishlist: false,
+      collection: false,
+    }
   }
 }

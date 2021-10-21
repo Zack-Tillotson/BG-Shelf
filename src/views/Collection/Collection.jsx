@@ -6,9 +6,8 @@ import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth'
 import useObjectDb from 'data/objectDb/useObjectDb'
 import useUpdateObjectDb from 'data/objectDb/useUpdateObjectDb'
-import Ref from 'data/objectDb/ref'
 
-import { buildSelfMember, buildMemberItem } from 'data/objectCreator'
+import { buildSelfMember, buildOwnership } from 'data/objectCreator'
 
 import Card from 'atoms/Card'
 
@@ -29,7 +28,7 @@ function CollectionView(props) {
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
   
   const {
-    clubId = userId, 
+    clubId, 
     memberId = userId, 
     itemId,
   } = useParams()
@@ -47,14 +46,17 @@ function CollectionView(props) {
   if(gate) return gate
 
   const handleAddClick = data => {
-    if(data.ref) {
-      member.wishlist = member.wishlist.filter(item => !item.ref.equals(data.ref))
-      member.collection.push(data)
+    if(data.ref) { // Selection from our ownership items
+      const ownership = member.getOwnership(data)
+      ownership.attributes.collection = true
+      updateDb(ownership)
     } else {
-      const item = buildMemberItem(member, data)
-      member.collection.push(item)
+      const ownership = buildOwnership(member, data)
+      ownership.attributes.collection = true
+
+      member.ownerships.push(ownership)
+      updateDb(member)
     }
-    updateDb(member)
   }
 
   return (
@@ -62,10 +64,10 @@ function CollectionView(props) {
       <Relationship view="Collection" member={member} />
       <ItemSelector onSelect={handleAddClick} suggestions={['wishlist']} object={member} />
 
-      {member.getCollection().map(item => (
-        <Link key={item.id} to={`/app/item/${item.id}/`}>
+      {member.getCollection().map(ownership => (
+        <Link key={ownership.id} to={`/app/item/${ownership.item.id}/`}>
           <Card >
-            <ItemMini item={item} member={member} />
+            <ItemMini item={ownership.item} member={member} ownership={ownership} />
           </Card>
         </Link>
       ))}

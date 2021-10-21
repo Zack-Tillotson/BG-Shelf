@@ -37,6 +37,11 @@ function ItemView(props) {
     enabled: !!userId,
   })
 
+  const urlClub = useObjectDb({
+    path: ['club', clubId],
+    enabled: !!clubId,
+  })
+
   const gate = useInitGate(member, item)
   const updateDb = useUpdateObjectDb()
 
@@ -77,9 +82,13 @@ function ItemView(props) {
     
   }
 
+  const ownership = member.getOwnership(item)
+  const club = urlClub || member.clubs[0]
+
   const itemProps = {
     item, 
-    member,
+    ownership,
+    club,
     
     onToggleFavorite,
     onToggleCollection,

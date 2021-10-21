@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth';
 import useObjectDb from 'data/objectDb/useObjectDb';
-import { buildSelfMember, buildMemberItem } from 'data/objectCreator';
+import { buildSelfMember, buildOwnership } from 'data/objectCreator';
 import useUpdateObjectDb from 'data/objectDb/useUpdateObjectDb'
 import Ref from 'data/objectDb/ref'
 
@@ -47,14 +47,17 @@ function WishlistView(props) {
   if(gate) return gate
 
   const handleAddClick = data => {
-    if(data.ref) {
-      member.collection = member.collection.filter(item => !item.ref.equals(data.ref))
-      member.wishlist.push(data)
+    if(data.ref) { // Selection from our ownership items
+      const ownership = member.getOwnership(data)
+      ownership.attributes.wishlist = true
+      updateDb(ownership)
     } else {
-      const item = buildMemberItem(member, data)
-      member.wishlist.push(item)
+      const ownership = buildOwnership(member, data)
+      ownership.attributes.wishlist = true
+
+      member.ownerships.push(ownership)
+      updateDb(member)
     }
-    updateDb(member)
   }
 
   return (

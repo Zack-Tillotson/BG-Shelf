@@ -3,15 +3,28 @@ import { ObjectDbBase } from './objectDbBase'
 const TYPE = 'club'
 
 export class Club extends ObjectDbBase {
-  constructor(attributes) {
-    super(TYPE, {attributes})
-
-    this.members = []
-    this.sessions = []
+  static TYPE = TYPE
+  
+  constructor(params) {
+    super(params)
+    
+    this.members = this.members || []
+    this.sessions = this.sessions || []
   }
 
-  DEFAULT_ATTRS = {
-    name: '',
+  static fromDb(id, object) {
+    const ret = new Club({id, ...object})
+    return ret
+  }
+  
+  getType() { 
+    return TYPE
+  }
+
+  getDefaultAttrs() { 
+    return {
+      name: '',
+    }
   }
 
   getSessions(item) {

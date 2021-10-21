@@ -1,12 +1,16 @@
 import { ObjectDbBase } from './objectDbBase'
 
 const TYPE = 'item'
-
 export class Item extends ObjectDbBase {
-  constructor(id, attributes) {
-    super(TYPE, {id, attributes})
+  static TYPE = TYPE
+
+  static fromDb(id, object) {
+    const ret = new Item({...object, id})
+    return ret
   }
 
-  DEFAULT_ATTRS = {
+  getType() { 
+    return TYPE
   }
+
 }

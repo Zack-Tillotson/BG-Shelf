@@ -3,13 +3,20 @@ import { ObjectDbBase } from './objectDbBase'
 const TYPE = 'session'
 
 export class Session extends ObjectDbBase {
-  constructor(item, attributes) {
-    super(TYPE, {attributes})
+  static TYPE = TYPE
 
-    this.item = item
+  static fromDb(id, object) {
+    const ret = new Session({id, ...object})
+    return ret
   }
 
-  DEFAULT_ATTRS = {
-    participants: []
+  getType() { 
+    return TYPE
+  }
+
+  getDefaultAttrs() { 
+    return {
+      participants: []
+    }
   }
 }

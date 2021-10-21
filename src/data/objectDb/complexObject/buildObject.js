@@ -1,5 +1,7 @@
 import walkObject, {setChildPath} from '../util/walkObject'
 import Ref from '../ref'
+import {getObjectOfType} from '../../objectCreator'
+
 
 // 1. get the object at ref
 // 2. Check attributes for refs
@@ -15,7 +17,12 @@ class RefErrors extends Error {
 }
 
 function makeCleanObject(obj, ref) {
-  const ret = {ref, id: ref.doc}
+  
+  const objectType = getObjectOfType(ref.collection)
+  const ret = objectType.fromDb(ref.doc, obj) // TODO identify object type, create object from obj
+
+  // const ret = {ref, id: ref.doc} 
+
   Object.keys(obj).forEach(key => {
     const value = obj[key]
     if(value instanceof Ref) {

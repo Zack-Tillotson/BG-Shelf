@@ -5,6 +5,24 @@ import { Item } from './types/item' 
 import { Acquisition } from './types/acquisition'
 import { Session } from './types/session'
 
+export {
+  Club,
+  Member,
+  Ownership,
+  Item,
+  Acquisition,
+  Session,
+}
+
+const OBJECT_LIST = [
+  Club,
+  Member,
+  Ownership,
+  Item,
+  Acquisition,
+  Session,
+]
+
 // Opinionated functions for use in specific use cases
 
 export function buildSelfClub(userId, name) {
@@ -16,8 +34,8 @@ export function buildSelfMember(userId, name) {
 }
 
 function buildSelf(userId, name) {
-  const club = new Club({name})
-  const member = new Member(userId, {name})
+  const club = new Club({attributes: {name}})
+  const member = new Member({id: userId, attributes: {name}})
   
   club.members.push(member)
   member.clubs.push(club)
@@ -25,19 +43,16 @@ function buildSelf(userId, name) {
   return {member, club}
 }
 
-export function buildMemberItem(member, attributes) {
-  const item = new Item(attributes.bggId, attributes)
-  
-  member.ownerships.push(new Ownership(item))
+export function buildOwnership(member, attributes) {
+  const item = new Item({id: attributes.bggId, attributes})
+  const ownership = new Ownership({item})
 
-  return item
+  return ownership
 }
 
-export {
-  Club,
-  Member,
-  Ownership,
-  Item,
-  Acquisition,
-  Session,
+export function getObjectOfType(type) {
+  const retType = OBJECT_LIST.find(object => object.TYPE === type)
+  if(!retType) throw new Error('object type not found: ' + type)
+
+  return retType
 }
