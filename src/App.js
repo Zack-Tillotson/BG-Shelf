@@ -47,7 +47,7 @@ function App({store}) {
             <Route path="/app/club/:clubId/member/:memberId/" exact component={Member} />
             <Route path="/app/club/:clubId/member/:memberId/collection/" exact component={Collection} />
             <Route path="/app/club/:clubId/member/:memberId/wishlist/" exact component={Wishlist} />
-            <Route path="/app/club/:clubId/member/:memberId/item/:itemId" exact component={Item} />
+            <Route path="/app/club/:clubId/item/:itemId" exact component={Item} />
 
             <Route path="/" exact component={Landing} />
             <Route path="/design/" exact component={Design} />

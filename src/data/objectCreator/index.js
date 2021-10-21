@@ -34,7 +34,7 @@ export function buildSelfMember(userId, name) {
 }
 
 function buildSelf(userId, name) {
-  const club = new Club({attributes: {name}})
+  const club = new Club({attributes: {name: `${name}'s Club`}})
   const member = new Member({id: userId, attributes: {name}})
   
   club.members.push(member)

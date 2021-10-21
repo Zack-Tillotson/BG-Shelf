@@ -20,9 +20,9 @@ function Relationship(props) {
     <div className={cn(baseCn)}>
       {!!club && (
         <div className={cn(`${baseCn}__club-title`)}> 
-          <Button type="link" className={cn(`${baseCn}__club`)} to="TODO" minimal tight>{club.attributes.name}</Button>
+          <Button type="link" className={cn(`${baseCn}__club`)} to={`/app/club/${club.id}/`} minimal tight>{club.attributes.name}</Button>
           <div className={cn(`${baseCn}__separator`)}>-</div>
-          <Button type="link" className={cn(`${baseCn}__member`)} to="TODO" minimal tight>{member.attributes.name}</Button>
+          <Button type="link" className={cn(`${baseCn}__member`)} to={`/app/club/${club.id}/member/${member.id}/`} minimal tight>{member.attributes.name}</Button>
         </div>
       )}
       <ListTitle className={cn(`${baseCn}__view`)}button={button}>{view}</ListTitle>

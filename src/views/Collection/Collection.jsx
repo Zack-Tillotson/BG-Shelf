@@ -39,6 +39,18 @@ function CollectionView(props) {
     createFunction: buildSelfMember,
     createParams: [userId, displayName]
   })
+
+  const selfMember = useObjectDb({
+    path: ['member', userId],
+    enabled: !!userId,
+    createFunction: buildSelfMember,
+    createParams: [userId, displayName]
+  })
+
+  const urlClub = useObjectDb({
+    path: ['club', clubId],
+    enabled: !!clubId,
+  })
   
   const gate = useInitGate(member)
   const updateDb = useUpdateObjectDb()
@@ -59,18 +71,23 @@ function CollectionView(props) {
     }
   }
 
+  const baseUrl = '/app' + (clubId ? `/club/${clubId}` : '')
+
   return (
     <Page className={baseCn}>
-      <Relationship view="Collection" member={member} />
+      <Relationship view="Collection" member={member} club={urlClub} />
       <ItemSelector onSelect={handleAddClick} suggestions={['wishlist']} object={member} />
 
-      {member.getCollection().map(ownership => (
-        <Link key={ownership.id} to={`/app/item/${ownership.item.id}/`}>
-          <Card >
-            <ItemMini item={ownership.item} member={member} ownership={ownership} />
-          </Card>
-        </Link>
-      ))}
+      {member.getCollection().map(ownership => {
+        const selfOwnership = selfMember.getOwnership(ownership.item)
+        return (
+          <Link key={ownership.id} to={`${baseUrl}/item/${ownership.item.id}/`}>
+            <Card >
+              <ItemMini item={ownership.item} member={member} ownership={selfOwnership} />
+            </Card>
+          </Link>
+        )
+      })}
     </Page>
   );
 }

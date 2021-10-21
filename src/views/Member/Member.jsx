@@ -21,7 +21,7 @@ function MemberView(props) {
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
   
   const {
-    clubId = userId, 
+    clubId, 
     memberId = userId, 
     itemId,
   } = useParams()
@@ -32,6 +32,11 @@ function MemberView(props) {
     createFunction: buildSelfMember,
     createParams: [userId, displayName]
   })
+
+  const urlClub = useObjectDb({
+    path: ['club', clubId],
+    enabled: !!clubId,
+  })
   
   const gate = useInitGate(member)
   if(gate) return gate
@@ -40,7 +45,8 @@ function MemberView(props) {
     <Page className={baseCn}>
       <Member 
         view="Board Game Piggy"
-        member={member} />
+        member={member}
+        club={urlClub} />
     </Page>
   );
 }

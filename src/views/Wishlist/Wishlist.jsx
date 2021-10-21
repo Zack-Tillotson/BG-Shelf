@@ -41,6 +41,11 @@ function WishlistView(props) {
     createParams: [userId, displayName]
   })
 
+  const urlClub = useObjectDb({
+    path: ['club', clubId],
+    enabled: !!clubId,
+  })
+
   const gate = useInitGate(member)
   const updateDb = useUpdateObjectDb()
 
@@ -60,13 +65,15 @@ function WishlistView(props) {
     }
   }
 
+  const baseUrl = '/app' + (clubId ? `/club/${clubId}` : '')
+
   return (
     <Page className={baseCn}>
-      <Relationship view="Wishlist" member={member} />
+      <Relationship view="Wishlist" member={member} club={urlClub} />
       <ItemSelector onSelect={handleAddClick} suggestions={['collection']} object={member} />
 
       {member.getWishlist().map(ownership => (
-        <Link key={ownership.id} to={`/app/item/${ownership.item.id}/`}>
+        <Link key={ownership.id} to={`${baseUrl}/item/${ownership.item.id}/`}>
           <Card >
             <ItemMini item={ownership.item} member={member} ownership={ownership} />
           </Card>

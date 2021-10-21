@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames'
+import { useParams } from 'react-router';
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth';
 import useObjectDb from 'data/objectDb/useObjectDb';
-import { buildSelfClub } from 'data/objectCreator';
 
 import Page from 'components/Page'
 import Club from 'molocules/Club'
@@ -20,11 +20,13 @@ function ClubView(props) {
 
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
+  const {
+    clubId,
+  } = useParams()
+
   const club = useObjectDb({
-    path: ['club', userId],
-    enabled: !!userId,
-    createFunction: buildSelfClub,
-    createParams: [userId, displayName]
+    path: ['club', clubId],
+    enabled: !!clubId,
   })
 
   if(gate) return gate

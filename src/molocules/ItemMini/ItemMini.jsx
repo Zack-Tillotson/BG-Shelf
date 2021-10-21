@@ -23,8 +23,10 @@ function ItemMini(props) {
 
   let dateAcquired = null, isFavorite = false
   try {
-    dateAcquired = ownership.acquisitions[0].attributes.dateAcquired
     isFavorite = ownership.attributes.favorite
+  } catch (e) {}
+  try {
+    dateAcquired = ownership.acquisitions[0].attributes.dateAcquired
   } catch (e) {}
 
   return (
