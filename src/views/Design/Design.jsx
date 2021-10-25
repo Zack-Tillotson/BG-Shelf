@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import useInitGate from 'state/useInitGate'
 import Page from 'components/Page'
 import SharpToggle from 'atoms/SharpToggle'
 

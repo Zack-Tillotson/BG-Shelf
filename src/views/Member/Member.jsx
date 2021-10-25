@@ -41,12 +41,15 @@ function MemberView(props) {
   const gate = useInitGate(member)
   if(gate) return gate
 
+  const baseUrl = '/app' + (clubId ? `/club/${clubId}` : '')
+
   return (
     <Page className={baseCn}>
       <Member 
         view="Board Game Piggy"
         member={member}
-        club={urlClub} />
+        club={urlClub}
+        baseUrl={baseUrl} />
     </Page>
   );
 }

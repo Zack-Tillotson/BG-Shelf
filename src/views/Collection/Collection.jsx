@@ -75,14 +75,17 @@ function CollectionView(props) {
 
   return (
     <Page className={baseCn}>
-      <Relationship view="Collection" member={member} club={urlClub} />
-      <ItemSelector onSelect={handleAddClick} suggestions={['wishlist']} object={member} />
+      <Relationship 
+        view="Collection" 
+        member={member} 
+        club={urlClub} 
+        button={{Element: ItemSelector, onSelect: handleAddClick, suggestions: ['wishlist'], object: member}} />
 
       {member.getCollection().map(ownership => {
         const selfOwnership = selfMember.getOwnership(ownership.item)
         return (
           <Link key={ownership.id} to={`${baseUrl}/item/${ownership.item.id}/`}>
-            <Card >
+            <Card className={`${baseCn}__card`}>
               <ItemMini item={ownership.item} member={member} ownership={selfOwnership} />
             </Card>
           </Link>

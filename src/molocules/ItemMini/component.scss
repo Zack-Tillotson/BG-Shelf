@@ -97,8 +97,8 @@
 
   .item-mini__favorite {
     position: absolute;
-    right: var(--pad);
-    top: var(--pad);
+    right: 0;
+    top: 0;
     font-size: var(--font-size-delta);
   }
 

@@ -69,8 +69,11 @@ function WishlistView(props) {
 
   return (
     <Page className={baseCn}>
-      <Relationship view="Wishlist" member={member} club={urlClub} />
-      <ItemSelector onSelect={handleAddClick} suggestions={['collection']} object={member} />
+      <Relationship 
+        view="Wishlist"
+        member={member} 
+        club={urlClub} 
+        button={{Element: ItemSelector, onSelect: handleAddClick, suggestions: ['wishlist'], object: member}} />
 
       {member.getWishlist().map(ownership => (
         <Link key={ownership.id} to={`${baseUrl}/item/${ownership.item.id}/`}>
