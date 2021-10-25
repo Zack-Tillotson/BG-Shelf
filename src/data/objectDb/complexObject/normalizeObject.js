@@ -13,7 +13,7 @@ function normalizeObject(target) {
   })
 
   // We're modifying the parameter object. I think that's ok, but TBD
-  const normalObjs = [...objects.entries].map(object => {
+  const normalObjs = [...objects.values()].map(object => {
     const cleanObject = {}
     walkObject(object, (child, path) => {
       const newValue = IS_OBJ(child) ? child.ref : child
