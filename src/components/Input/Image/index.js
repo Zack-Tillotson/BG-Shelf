@@ -1,2 +1,2 @@
-import C from './Component'
+import C from './ImageInput'
 export default C

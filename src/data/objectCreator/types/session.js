@@ -5,6 +5,11 @@ const TYPE = 'session'
 export class Session extends ObjectDbBase {
   static TYPE = TYPE
 
+  constructor(...args) {
+    super(...args)
+    this.clubParticipants = this.clubParticipants || []
+  }
+
   static fromDb(id, object) {
     const ret = new Session({id, ...object})
     return ret
@@ -16,7 +21,7 @@ export class Session extends ObjectDbBase {
 
   getDefaultAttrs() { 
     return {
-      participants: []
+      otherParticipants: '',
     }
   }
 }

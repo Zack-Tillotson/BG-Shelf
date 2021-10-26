@@ -163,9 +163,14 @@ export default {
       "type" : "string",
       "unique" : true
     },
-    "participants" : {
-      "copy" : "Player(s)",
+    "clubParticipants" : {
+      "copy" : "Club player(s)",
       "order" : 1,
+      "position" : "secondary",
+      "type" : "member"
+    }, "otherParticipants" : {
+      "copy" : "Non-club player(s)",
+      "order" : 2,
       "position" : "secondary",
       "type" : "string"
     }

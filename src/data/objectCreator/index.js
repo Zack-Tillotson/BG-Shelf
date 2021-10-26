@@ -56,3 +56,9 @@ export function getObjectOfType(type) {
 
   return retType
 }
+
+export function buildSession(item = null) {
+  const session = new Session({item})
+
+  return session
+}

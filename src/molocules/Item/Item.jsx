@@ -18,6 +18,8 @@ function Item(props) {
     item,
     ownership,
     club,
+
+    baseUrl = '',
     
     modifiable = false,
     
@@ -49,7 +51,7 @@ function Item(props) {
         <Image className={cn(`${baseCn}__hero`)} src={item.attributes.canonicalImage} />
       </section>
       <section className={cn(`${baseCn}__section`)}>
-        <ListTitle showButton={modifiable} button={{children: "+ Add", onClick: onAddSession, primary: true}}>
+        <ListTitle showButton={modifiable} button={{type: 'link', children: "+ Add", onClick: onAddSession, primary: true, to: `${baseUrl}/session/?itemId=${item.id}`}}>
           Plays
         </ListTitle>
         {sessions.length === 0 && (

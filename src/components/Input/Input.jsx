@@ -7,6 +7,7 @@ import useShapes from 'data/objectDb/useShapes';
 import Image from './Image';
 import Bool from './Bool';
 import Text from './Text'
+import Member from './Member'
 
 import formSelector from 'state/selectors/form'
 
@@ -37,6 +38,9 @@ function Input(props) {
     }
     case 'image': {
       return <Image {...inputProps} />
+    }
+    case 'member': {
+      return <Member {...inputProps } />
     }
   }
   return 'Input type not supported (' + formName + ', ' + shape.type + ')'

@@ -19,7 +19,10 @@ function getValue(attr, value, shape, joiner = ', ') {
     case 'string': {
       return value
     }
-    case 'number': { // TODO
+    case 'member': {
+      return !value ? '' : value.attributes.name
+    }
+    case 'number': {
       return Number(value)
     }
     case 'date': { // TODO

@@ -22,7 +22,7 @@ function ItemView(props) {
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
   
   const {
-    clubId = userId, 
+    clubId, 
     memberId = userId, 
     itemId,
   } = useParams()
@@ -82,12 +82,14 @@ function ItemView(props) {
   }
 
   const isClubMember = !!club.members.find(clubMember => clubMember.equals(member))
+  const baseUrl = '/app' + (clubId ? `/club/${clubId}` : '')
 
   const itemProps = {
     item, 
     ownership,
     club,
 
+    baseUrl,
     modifiable: isClubMember,
     
     onToggleFavorite,

@@ -61,8 +61,8 @@ ownership3.attributes.wishlist = true
 const member = new Member({attributes: {name: 'Alice McGee'}})
 const club = new Club({attributes: {name: 'Test Club #1'}})
 
-club.sessions.push(new Session({item: item1, attributes: {participants: ['Alice', 'Bob', 'Charlie', 'Dan', 'Erin']}}))
-club.sessions.push(new Session({item: item2, attributes: {participants: ['Alice McGee', 'Bob Longnamington', 'Charlie The Man Dude', 'Dan', 'Erin Erinovicherinly']}}))
+club.sessions.push(new Session({item: item1, attributes: {clubParticipants: member, otherParticipants: 'Bob, Charlie, Dan, Erin'}}))
+club.sessions.push(new Session({item: item2, attributes: {otherParticipants: 'Alice McGee, Bob Longnamington, Charlie The Man Dude, Dan, Erin Erinovicherinly'}}))
 
 member.clubs.push(club)
 member.ownerships.push(ownership1, ownership2, ownership3)

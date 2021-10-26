@@ -15,16 +15,17 @@ function RenderSession() {
       <div className="molocules__item">
         <h4 className="molocules__subtitle">View - Modifiable</h4>
         <Session
-          session={session1} 
+          session={session1}
+          club={member1.clubs[0]} 
           modifiable 
           onEdit={()=>console.log('edit')} 
           onDelete={()=>console.log('delete')} />
         <h4 className="molocules__subtitle">View</h4>
-        <Session session={session1} />
+        <Session session={session1} club={member1.clubs[0]} />
       </div>
       <div className="molocules__item">
         <h4 className="molocules__subtitle">Form</h4>
-        <Session form session={session1} />
+        <Session form session={session1} club={member1.clubs[0]} />
       </div>
     </section>
   )

@@ -28,6 +28,6 @@ export class Club extends ObjectDbBase {
   }
 
   getSessions(item) {
-    return this.sessions.filter(session => session.item === item)
+    return this.sessions.filter(session => session.item.equals(item))
   }
 }

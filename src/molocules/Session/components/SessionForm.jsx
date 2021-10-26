@@ -11,7 +11,7 @@ const baseCn = 'session'
 function SessionForm(props) {
   const {
     itemSelect,
-    item,
+    session,
     ownership,
     onSubmit,
   } = props
@@ -24,8 +24,8 @@ function SessionForm(props) {
   return (
     <div className={cn(baseCn)}>
       {itemSelect && ('ItemSelector')}
-      {!itemSelect && !!item && (
-        <ItemMini item={item} showDetails={false} ownership={ownership} />
+      {!itemSelect && !!session.item && (
+        <ItemMini item={session.item} showDetails={false} ownership={ownership} />
       )}
       <form onSubmit={handleSubmit}>
         <InputList object="session" />
