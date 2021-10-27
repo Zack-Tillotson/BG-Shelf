@@ -26,7 +26,10 @@ function Item(props) {
     onToggleFavorite,
     onToggleCollection,
     onToggleWishlist,
-    onAddSession,
+    
+    onEditSession,
+    onDeleteSession,
+    
     onAddAquisition,
     onEditAcquisition,
     onDeleteAcquisition,
@@ -51,7 +54,7 @@ function Item(props) {
         <Image className={cn(`${baseCn}__hero`)} src={item.attributes.canonicalImage} />
       </section>
       <section className={cn(`${baseCn}__section`)}>
-        <ListTitle showButton={modifiable} button={{type: 'link', children: "+ Add", onClick: onAddSession, primary: true, to: `${baseUrl}/session/?itemId=${item.id}`}}>
+        <ListTitle showButton={modifiable} button={{type: 'link', children: "+ Add", primary: true, to: `${baseUrl}/session/?itemId=${item.id}`}}>
           Plays
         </ListTitle>
         {sessions.length === 0 && (
@@ -59,7 +62,12 @@ function Item(props) {
         )}
         {sessions.map(session => (
           <div key={session.id} className="item__list-item">
-            <SessionMini noHeader session={session} />
+            <SessionMini
+              noHeader
+              session={session} 
+              modifiable={modifiable} 
+              onEdit={onEditSession}
+              onDelete={onDeleteSession} />
           </div>
         ))}
       </section>

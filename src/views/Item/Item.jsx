@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames'
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth';
@@ -45,6 +45,8 @@ function ItemView(props) {
   const gate = useInitGate(member, item)
   const updateDb = useUpdateObjectDb()
 
+  const history = useHistory()
+
   if(gate) return gate
 
   const ownership = member.getOwnership(item)
@@ -65,8 +67,12 @@ function ItemView(props) {
     updateDb(ownership)
   }
 
-  const onAddSession = () => {
-    
+  const onEditSession = session => {
+    history.push(`${baseUrl}/session/${session.id}`)
+  }
+
+  const onDeleteSession = () => {
+
   }
 
   const onAddAquisition = () => {
@@ -95,7 +101,10 @@ function ItemView(props) {
     onToggleFavorite,
     onToggleCollection,
     onToggleWishlist,
-    onAddSession,
+    
+    onEditSession,
+    onDeleteSession,
+
     onAddAquisition,
     onEditAcquisition,
     onDeleteAcquisition,

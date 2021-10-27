@@ -97,6 +97,7 @@ function SessionView(props) {
   }
 
   const isForm = !sessionId
+  const isClubMember = club.members.find(member => member.equals(selfMember))
 
   return (
     <Page className={baseCn}>
@@ -104,7 +105,7 @@ function SessionView(props) {
         view="Session" 
         club={urlClub} />
       
-      <Session form={isForm}  session={session} club={club} onSubmit={handleSubmit} />
+      <Session form={isForm} modifiable={isClubMember} session={session} club={club} onSubmit={handleSubmit} />
 
     </Page>
   );

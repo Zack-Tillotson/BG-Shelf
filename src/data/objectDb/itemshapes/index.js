@@ -168,7 +168,8 @@ export default {
       "order" : 1,
       "position" : "secondary",
       "type" : "member"
-    }, "otherParticipants" : {
+    }, 
+    "otherParticipants" : {
       "copy" : "Non-club player(s)",
       "order" : 2,
       "position" : "secondary",
