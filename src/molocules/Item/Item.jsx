@@ -60,16 +60,18 @@ function Item(props) {
         {sessions.length === 0 && (
           <div>Not yet played.</div>          
         )}
-        {sessions.map(session => (
-          <div key={session.id} className="item__list-item">
-            <SessionMini
-              noHeader
-              session={session} 
-              modifiable={modifiable} 
-              onEdit={onEditSession}
-              onDelete={onDeleteSession} />
-          </div>
-        ))}
+        <ol>
+          {sessions.map(session => (
+            <li key={session.id} className="item__list-item">
+              <SessionMini
+                noHeader
+                session={session} 
+                modifiable={modifiable} 
+                onEdit={onEditSession}
+                onDelete={onDeleteSession} />
+            </li>
+          ))}
+        </ol>
       </section>
       <section className={cn(`${baseCn}__section`)}>
         <Acquisitions 

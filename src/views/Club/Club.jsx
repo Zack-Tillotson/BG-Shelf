@@ -15,25 +15,35 @@ const baseCn = 'club-view'
 
 function ClubView(props) {
 
-  const gate = useInitGate()
   const auth = useAuth()
 
   const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
 
   const {
     clubId,
+    memberId = userId, 
   } = useParams()
+  
+  const member = useObjectDb({
+    path: ['member', memberId],
+    enabled: !!userId,
+  })
 
   const club = useObjectDb({
     path: ['club', clubId],
     enabled: !!clubId,
   })
 
+  const gate = useInitGate(member, club)
+
   if(gate) return gate
+
+  const isClubMember = !!club.members.find(clubMember => clubMember.equals(member))
+  const baseUrl = `/app/club/${clubId}`
 
   return (
     <Page className={baseCn}>
-      <Club club={club} />
+      <Club club={club} modifiable={isClubMember} baseUrl={baseUrl} />
     </Page>
   );
 }

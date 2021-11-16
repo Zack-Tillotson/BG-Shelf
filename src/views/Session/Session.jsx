@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import {useLocation, useHistory} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import useInitGate from 'state/useInitGate'
 import useAuth from 'data/auth/useAuth'
 import useObjectDb from 'data/objectDb/useObjectDb'
 import useUpdateObjectDb from 'data/objectDb/useUpdateObjectDb'
 
+import {Item} from 'data/objectCreator'
+
 import { buildSelfMember, buildSession } from 'data/objectCreator'
 
 import formSelector from 'state/selectors/form'
+import actions from 'state/actions'
 
 import Page from 'components/Page'
-import ItemSelector from 'components/ItemSelector'
-
 import Relationship from 'molocules/Relationship'
 import Session from 'molocules/Session'
 
@@ -36,7 +37,9 @@ function SessionView(props) {
     clubId, 
     sessionId,
   } = useParams()
-  const query = useQuery();
+  const query = useQuery()
+  
+  const {location} = props
   
   const itemId = query.get('itemId')
   
@@ -67,9 +70,11 @@ function SessionView(props) {
   const updateDb = useUpdateObjectDb()
   
   const formValues = useSelector(formSelector)['session']
+  const dispatch = useDispatch()
 
   const history = useHistory()
-
+  const [sessionItem, updateSessionItem] = useState(null)
+  const [isForm, updateIsForm] = useState(!sessionId)
   
   if(gate) return gate
   
@@ -77,11 +82,15 @@ function SessionView(props) {
   const club = urlClub || selfMember.clubs[0]
   
   const handleSubmit = () => {
-    const {clubParticipants, ...restAttrs} = formValues
+    const {clubParticipants = [], ...restAttrs} = formValues
     session.attributes = restAttrs
     session.clubParticipants = Object.keys(clubParticipants)
       .filter(id => clubParticipants[id])
       .map(id => club.members.find(clubMember => clubMember.id === id))
+
+    if(sessionItem) {
+      session.item = sessionItem
+    }
     
     if(sessionId) {
       console.log('form submitted - existing session', session)
@@ -94,18 +103,43 @@ function SessionView(props) {
 
       history.replace(`${baseUrl}/session/${session.id}`)
     }
+    dispatch(actions.formInitialized())
+    updateIsForm(false)
   }
 
-  const isForm = !sessionId
+  const handleItemSelect = data => {
+    const item = data.ref ? data : new Item({id: data.bggId, attributes: data})
+    updateSessionItem(item)
+  }
+
+  const handleEdit = () => {
+    dispatch(actions.formInitialized(session.attributes))
+    updateIsForm(true)
+  }
+
+  const handleDelete = () => {
+    
+  }
+
   const isClubMember = club.members.find(member => member.equals(selfMember))
 
   return (
     <Page className={baseCn}>
       <Relationship 
-        view="Session" 
+        view="Session"
         club={urlClub} />
       
-      <Session form={isForm} modifiable={isClubMember} session={session} club={club} onSubmit={handleSubmit} />
+      <Session
+        form={isForm}
+        itemSelect={!itemId}
+        modifiable={isClubMember}
+        item={sessionItem}
+        club={club}
+        session={session}
+        onItemSelect={handleItemSelect}
+        onSubmit={handleSubmit}
+        onEdit={handleEdit}
+        onDelete={handleDelete} />
 
     </Page>
   );

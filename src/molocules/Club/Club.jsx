@@ -15,7 +15,13 @@ const baseCn = 'club-club'
 function Club(props) {
   const {
     club,
+
+    modifiable,
+    baseUrl = '',
+
   } = props
+
+  if(!club) return null
 
   return (
     <div className={cn(baseCn)}>
@@ -33,7 +39,7 @@ function Club(props) {
         ))}
       </section>
       <section className="club-club__section">
-        <ListTitle button={{type: 'link', children: "+ Add", to: "TODO"}}>
+        <ListTitle showButton={modifiable} button={{type: 'link', children: "+ Add", primary: true, to: `${baseUrl}/session/`}}>
           Sessions
         </ListTitle>
         {club.sessions.map(session => (

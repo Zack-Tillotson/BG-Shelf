@@ -13,6 +13,8 @@ import './item-selector.scss'
 const CLASS_PORTAL_OPEN = '--portal-open'
 
 function ItemSelector(props) {
+  const {buttonLabel = 'Add Item'} = props
+
   const dispatch = useDispatch()
 
   const handlePortalOpen = () => {
@@ -29,7 +31,7 @@ function ItemSelector(props) {
       {({ openPortal, closePortal, isOpen, portal }) => (
         <React.Fragment>
           <Button onClick={openPortal} primary>
-            Add Item
+            {buttonLabel}
           </Button>
           {portal(
             <ItemSelectorPane onClose={closePortal} {...props} />

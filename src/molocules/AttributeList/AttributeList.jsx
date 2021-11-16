@@ -60,7 +60,7 @@ function AttributeList(props) {
     .filter(({value}) => showEmpty || value)
     .sort(({shape: a}, {shape: b}) => ((a.order || 999) - (b.order || 999)))
 
-  const fullAttrs = [...formAttrs, ...additionalAttrs]
+  const fullAttrs = [...additionalAttrs, ...formAttrs]
 
   return (
     <div className={cn(`${baseCn}`)}>

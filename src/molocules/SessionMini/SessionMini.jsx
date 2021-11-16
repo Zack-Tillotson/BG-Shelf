@@ -42,7 +42,19 @@ function SessionMini(props) {
           </div>
         )}
         <div className={cn(`${baseCn}__secondary-attrs`)}>
-          <AttributeList object="session" values={{...session.attributes, clubParticipants: session.clubParticipants}} position="secondary" />
+          <AttributeList 
+            object="session" 
+            values={session.attributes} 
+            additionalAttrs={[{
+              shape: {
+                "position" : "secondary",
+                "type" : "string",
+                "unique" : true
+              },
+              label: 'Club player(s)',
+              value: session.clubParticipants.map(member => member.attributes.name),
+            }]}
+            position="secondary" />
         </div>
       </Ele>
     </div>

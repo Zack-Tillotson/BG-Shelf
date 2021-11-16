@@ -3,17 +3,18 @@ import cn from 'classnames'
 
 import Button from 'atoms/Button'
 import ItemMini from 'molocules/ItemMini'
-import ListTitle from 'molocules/ListTitle'
 import InputList from 'components/InputList'
+import ItemSelector from 'components/ItemSelector'
 
 const baseCn = 'session'
 
 function SessionForm(props) {
   const {
     itemSelect,
-    session,
+    item,
     ownership,
     onSubmit,
+    onItemSelect,
   } = props
 
   const handleSubmit = event => {
@@ -23,9 +24,9 @@ function SessionForm(props) {
 
   return (
     <div className={cn(baseCn)}>
-      {itemSelect && ('ItemSelector')}
-      {!itemSelect && !!session.item && (
-        <ItemMini item={session.item} showDetails={false} ownership={ownership} />
+      {itemSelect && <ItemSelector buttonLabel="Select Item" onSelect={onItemSelect} />}
+      {!!item && (
+        <ItemMini item={item} showDetails={false} ownership={ownership} />
       )}
       <form onSubmit={handleSubmit}>
         <InputList object="session" />
