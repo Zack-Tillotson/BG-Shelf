@@ -27,7 +27,11 @@ function useItemSelector(formName, options) {
         name: suggestion.name,
         results: suggestion.objectMapper(object), // XXX
       }))
-  } catch(e) {}
+  } catch(e) {
+    console.log('suggestions', e)
+
+  }
+
 
   const nameLookup = useNameLookup()
   const value = formName.split('.').reduce((value = {}, path) => value[path], form)

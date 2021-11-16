@@ -8,13 +8,14 @@ import objectDb from './objectDb'
 import image from './image'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBU4coiQFABFfweG91LTjQidzeSFSfpYfw",
-  authDomain: "boardgamepiggy.firebaseapp.com",
-  projectId: "boardgamepiggy",
-  storageBucket: "boardgamepiggy.appspot.com",
-  messagingSenderId: "941134951158",
-  appId: "1:941134951158:web:10dfadc9fde6c14b2db2d7",
-  measurementId: "G-PQS927J25D"
+  apiKey: "AIzaSyBNlRMrS5F5CIymipCqEcN-xcJPsLAwDZU",
+  authDomain: "bgshelf.firebaseapp.com",
+  databaseURL: "https://bgshelf-default-rtdb.firebaseio.com",
+  projectId: "bgshelf",
+  storageBucket: "bgshelf.appspot.com",
+  messagingSenderId: "842063608603",
+  appId: "1:842063608603:web:33e9b69a4030d5b30271be",
+  measurementId: "G-73D8JCK3R7"
 }
 
 function initialize(store) {

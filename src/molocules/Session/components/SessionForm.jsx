@@ -12,6 +12,7 @@ function SessionForm(props) {
   const {
     itemSelect,
     item,
+    member,
     ownership,
     onSubmit,
     onItemSelect,
@@ -24,7 +25,7 @@ function SessionForm(props) {
 
   return (
     <div className={cn(baseCn)}>
-      {itemSelect && <ItemSelector buttonLabel="Select Item" onSelect={onItemSelect} />}
+      {itemSelect && <ItemSelector buttonLabel="Select Item" onSelect={onItemSelect} suggestions={['collection', 'wishlist']} object={member} />}
       {!!item && (
         <ItemMini item={item} showDetails={false} ownership={ownership} />
       )}

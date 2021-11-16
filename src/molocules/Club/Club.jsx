@@ -2,6 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import {Link} from 'react-router-dom'
 
+import Button from 'atoms/Button'
 import Card from 'atoms/Card'
 
 import ListTitle from 'molocules/ListTitle'
@@ -43,9 +44,11 @@ function Club(props) {
           Sessions
         </ListTitle>
         {club.sessions.map(session => (
-          <Card key={session.id} className="club-club__list-item">
-            <SessionMini session={session} />
-          </Card>
+          <Button key={session.id} type="link" to={`${baseUrl}/session/${session.id}/`} minimal wide className="club-club__list-item">
+            <Card>
+              <SessionMini session={session} />
+            </Card>
+          </Button>
         ))}
       </section>
     </div>

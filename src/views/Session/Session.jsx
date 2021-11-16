@@ -136,6 +136,7 @@ function SessionView(props) {
         item={sessionItem}
         club={club}
         session={session}
+        member={selfMember}
         onItemSelect={handleItemSelect}
         onSubmit={handleSubmit}
         onEdit={handleEdit}

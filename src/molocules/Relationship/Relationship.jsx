@@ -29,7 +29,7 @@ function Relationship(props) {
           )}
         </div>
       )}
-      <ListTitle className={cn(`${baseCn}__view`)}button={button}>{view}</ListTitle>
+      <ListTitle className={cn(`${baseCn}__view`)} button={button}>{view}</ListTitle>
     </div>
   );
 }
