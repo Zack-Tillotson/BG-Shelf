@@ -93,11 +93,9 @@ function SessionView(props) {
     }
     
     if(sessionId) {
-      console.log('form submitted - existing session', session)
       updateDb(session)
     } else {
       club.sessions.push(session)
-      console.log('form submitted - new session', club)
       
       updateDb(club)
 

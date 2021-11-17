@@ -35,7 +35,7 @@ function ClubView(props) {
   })
 
   const gate = useInitGate(club)
-console.log('views/club.jsx', member, club, gate)
+  
   if(gate) return gate
 
   const isClubMember = !!club.members.find(clubMember => clubMember.equals(member))
