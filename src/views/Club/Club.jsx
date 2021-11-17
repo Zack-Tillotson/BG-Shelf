@@ -17,7 +17,7 @@ function ClubView(props) {
 
   const auth = useAuth()
 
-  const {uid: userId, displayName} = auth.isInitialized ? auth.user : {}
+  const {uid: userId, displayName} = auth.user || {}
 
   const {
     clubId,
@@ -34,8 +34,8 @@ function ClubView(props) {
     enabled: !!clubId,
   })
 
-  const gate = useInitGate(member, club)
-
+  const gate = useInitGate(club)
+console.log('views/club.jsx', member, club, gate)
   if(gate) return gate
 
   const isClubMember = !!club.members.find(clubMember => clubMember.equals(member))

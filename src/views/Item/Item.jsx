@@ -42,7 +42,7 @@ function ItemView(props) {
     enabled: !!clubId,
   })
 
-  const gate = useInitGate(member, item)
+  const gate = useInitGate(item)
   const updateDb = useUpdateObjectDb()
 
   const history = useHistory()
